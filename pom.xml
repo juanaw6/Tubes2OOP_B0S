@@ -111,7 +111,7 @@
     <artifactId>exec-maven-plugin</artifactId>
     <version>3.0.0</version>  <!-- Use the latest version available -->
     <configuration>
-        <mainClass>com.example.tubes2oop_b0s.HelloApplication</mainClass>
+        <mainClass>tubes2oop_b0s.HelloApplication</mainClass>
     </configuration>
 </plugin>
 
@@ -124,7 +124,7 @@
             <manifest>
                 <addClasspath>true</addClasspath>
                 <classpathPrefix>lib/</classpathPrefix>
-                <mainClass>com.example.tubes2oop_b0s.HelloApplication</mainClass>
+                <mainClass>tubes2oop_b0s.HelloApplication</mainClass>
             </manifest>
         </archive>
     </configuration>
@@ -147,7 +147,7 @@
         <execution>
             <id>default-cli</id>
             <configuration>
-                <mainClass>com.example.tubes2oop_b0s.HelloApplication</mainClass>
+                <mainClass>tubes2oop_b0s.HelloApplication</mainClass>
                 <launcher>app</launcher>
                 <jlinkZipName>app</jlinkZipName>
                 <jlinkImageName>app</jlinkImageName>

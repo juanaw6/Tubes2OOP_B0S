@@ -1,4 +1,4 @@
-package com.example.tubes2oop_b0s;
+package tubes2oop_b0s;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

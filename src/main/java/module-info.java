@@ -1,4 +1,4 @@
-module com.example.tubes2oop_b0s {
+module tubes2oop_b0s {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -11,6 +11,7 @@ module com.example.tubes2oop_b0s {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.example.tubes2oop_b0s to javafx.fxml;
-    exports com.example.tubes2oop_b0s;
+    opens tubes2oop_b0s to javafx.fxml;
+
+    exports tubes2oop_b0s;
 }
