@@ -6,10 +6,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import tubes2oop_b0s.game.GameApplication;
 
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 800);
         stage.setTitle("Hello!");
@@ -19,6 +21,8 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
+        // GameApplication a = new GameApplication();
+        // a.main(args);
         launch();
     }
 }
