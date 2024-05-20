@@ -5,8 +5,14 @@ import tubes2oop_b0s.card.PlacableCard;
 public class Crop extends PlacableCard {
     private int age;
 
-    public Crop(String name, String description) {
-        super(name, description);
+    public Crop(String name, int age) {
+        super(name);
+        this.age = age;
+    }
+
+    @Override
+    public void update() {
+
     }
 
     public int getAge() {
