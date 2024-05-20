@@ -1,21 +1,23 @@
 package tubes2oop_b0s.card.animals;
 
 import tubes2oop_b0s.card.ConsumableCard;
-import tubes2oop_b0s.card.EffectCard;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Carnivore extends Animal {
 
-    public Carnivore(String name, EffectCard currentEffect) {
-        super(name, currentEffect);
+    public Carnivore(String name, ConsumableCard harvestResult, int harvestWeight) {
+        super(name, harvestResult, harvestWeight);
     }
 
     @Override
-    public void consume(ConsumableCard consumableCard) {
-
-    }
-
-    @Override
-    public void update() {
-
+    public void consume(ConsumableCard consumableCard) throws Exception {
+        ArrayList<String> allowedFoods = new ArrayList<>(Arrays.asList("Sirip Hiu", "Susu", "Telur", "Daging Kuda", "Daging Domba", "Daging Beruang"));
+        if (allowedFoods.contains(consumableCard.getName())) {
+            this.setWeight(this.getWeight() + consumableCard.getAddedWeight());
+        } else {
+            throw new Exception("Wrong Food");
+        }
     }
 }

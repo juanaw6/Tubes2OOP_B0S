@@ -10,6 +10,7 @@ module tubes2oop_b0s {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires com.fasterxml.jackson.databind;
 
     opens tubes2oop_b0s to javafx.fxml;
 
