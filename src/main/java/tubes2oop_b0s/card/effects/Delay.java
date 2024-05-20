@@ -1,14 +1,11 @@
 package tubes2oop_b0s.card.effects;
 
-import tubes2oop_b0s.card.SuperCard;;
+import tubes2oop_b0s.card.Card;
+import tubes2oop_b0s.card.EffectCard;
 
-public class Delay extends SuperCard {
-    public Delay(String name, String description) {
-        super(name, description);
-    }
+public class Delay extends Card implements EffectCard {
 
-    @Override
-    public void play() {
-        // Implementation for delaying something
+    public Delay(String name) {
+        super(name);
     }
 }

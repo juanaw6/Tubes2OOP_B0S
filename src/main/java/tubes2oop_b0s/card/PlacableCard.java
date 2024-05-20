@@ -1,12 +1,18 @@
 package tubes2oop_b0s.card;
 
-public class PlacableCard extends Card {
-    public PlacableCard(String name, String description) {
-        super(name, description);
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public abstract class PlacableCard extends Card {
+    private HashMap<String, Integer> currentEffect;
+
+    public PlacableCard(String name) {
+        super(name);
     }
 
-    @Override
-    public void play() {
-        // Implementation for placing the card
+    public abstract void update();
+
+    public boolean isProtected() {
+
     }
 }
