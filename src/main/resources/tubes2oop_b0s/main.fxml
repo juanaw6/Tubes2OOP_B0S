@@ -3,23 +3,55 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<VBox alignment="CENTER" prefHeight="490.0" prefWidth="564.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="tubes2oop_b0s.MainController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-  </padding>
-   <AnchorPane prefHeight="191.0" prefWidth="524.0" VBox.vgrow="NEVER">
+<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.MainController">
+   <HBox prefHeight="900.0" prefWidth="1110.0">
       <children>
-          <Label fx:id="welcomeText"/>
-         <Button alignment="TOP_CENTER" layoutX="465.0" layoutY="14.0" mnemonicParsing="false" text="NEXT" />
-        <Button layoutX="216.0" layoutY="69.0" onAction="#onHelloButtonClick" text="Hello!" />
+         <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent  #E0E0E0 transparent transparent; -fx-border-width: 0 2 0 0;">
+            <children>
+               <AnchorPane prefHeight="149.0" prefWidth="870.0" style="-fx-font-size: 24px;">
+                  <children>
+                     <HBox layoutX="83.0" layoutY="30.0" prefHeight="42.0" prefWidth="573.0" spacing="20">
+                        <children>
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm" />
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Plugin" />
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Save State" />
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" />
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" />
+                        </children>
+                     </HBox>
+                  </children>
+               </AnchorPane>
+               <AnchorPane prefHeight="576.0" prefWidth="870.0">
+                 
+                  <children>
+                      <TilePane fx:id="farm" hgap="30" layoutX="83.0" layoutY="26.0" prefHeight="499.0" prefWidth="759.0" vgap="15" />
+                  </children>
+               </AnchorPane>
+               <AnchorPane prefHeight="249.0" prefWidth="870.0">
+                   <children>
+                       <TilePane fx:id="deck" hgap="30" layoutX="25.0" layoutY="51.0" prefHeight="160.0" prefWidth="820.0" vgap="15" />
+                     <Button layoutX="39.0" layoutY="19.0" mnemonicParsing="false" text="Deck" />
+                     <Button layoutX="760.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="33/40" />
+                   </children>
+               </AnchorPane>
+            </children>
+         </VBox>
+         <AnchorPane prefHeight="900.0" prefWidth="280.0">
+            <children>
+               <Circle fill="DODGERBLUE" layoutX="138.0" layoutY="128.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+               <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="194.0" text="NEXT TURN" />
+               <Button layoutX="23.0" layoutY="777.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 2" />
+               <Button layoutX="23.0" layoutY="713.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 1" />
+            </children>
+         </AnchorPane>
       </children>
-      <VBox.margin>
-         <Insets />
-      </VBox.margin>
-   </AnchorPane>
-   <TilePane fx:id="tilePane"  prefHeight="200.0" prefWidth="200.0" />
+      <padding>
+         <Insets bottom="30.0" top="30.0" />
+      </padding>
+   </HBox>
 </VBox>
