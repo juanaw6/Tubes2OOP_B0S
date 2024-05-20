@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tubes2oop_b0s.StartController" >
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+    <Text text="Welcome to the Game!" style="-fx-font-size: 24px;"/>
+    <Button text="Start Game" fx:id="startButton" onAction="#handleStartGame"/>
+    <Button text="Exit" fx:id="exitButton" onAction="#handleExit"/>
+</VBox>

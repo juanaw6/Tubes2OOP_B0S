@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="CENTER"  prefHeight="130.0" prefWidth="110.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141"  style="-fx-background-color: #e0e0e0"  fx:controller="tubes2oop_b0s.CardController"  fx:id="card">
+   <children>
+      <ImageView fitHeight="110.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" fx:id="cardImage">
+         <image>
+            <Image url="@../public/item/Accelerate.png" fx:id="ImageView"/>
+         </image>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </ImageView>
+      <Label text="clock" fx:id="cardLabel">
+         <font>
+            <Font name="Clarendon BT Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>
