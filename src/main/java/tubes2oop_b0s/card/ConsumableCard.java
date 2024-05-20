@@ -1,12 +1,18 @@
 package tubes2oop_b0s.card;
 
 public class ConsumableCard extends Card {
-    public ConsumableCard(String name, String description) {
-        super(name, description);
+    private int addedWeight;
+
+    public ConsumableCard(String name, int addedWeight) {
+        super(name);
+        this.addedWeight = addedWeight;
     }
 
-    @Override
-    public void play() {
-        // Implementation for consuming the card
+    public int getAddedWeight() {
+        return addedWeight;
+    }
+
+    public void setAddedWeight(int addedWeight) {
+        this.addedWeight = addedWeight;
     }
 }

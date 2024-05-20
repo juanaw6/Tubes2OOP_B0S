@@ -1,14 +1,25 @@
 package tubes2oop_b0s.card.crops;
 
-import tubes2oop_b0s.card.PlacableCard;;
+import tubes2oop_b0s.card.PlacableCard;
 
 public class Crop extends PlacableCard {
-    public Crop(String name, String description) {
-        super(name, description);
+    private int age;
+
+    public Crop(String name, int age) {
+        super(name);
+        this.age = age;
     }
 
     @Override
-    public void play() {
-        // Implementation for planting a crop
+    public void update() {
+
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

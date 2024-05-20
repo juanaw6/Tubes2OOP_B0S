@@ -1,14 +1,12 @@
 package tubes2oop_b0s.card.effects;
 
-import tubes2oop_b0s.card.SuperCard;;
+import tubes2oop_b0s.card.Card;
+import tubes2oop_b0s.card.EffectCard;
 
-public class InstantHarvest extends SuperCard {
-    public InstantHarvest(String name, String description) {
-        super(name, description);
-    }
+public class InstantHarvest extends Card implements EffectCard {
 
-    @Override
-    public void play() {
-        // Implementation for InstantHarvest something
+
+    public InstantHarvest(String name) {
+        super(name);
     }
 }

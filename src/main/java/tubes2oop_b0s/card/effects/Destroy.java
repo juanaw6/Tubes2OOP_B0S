@@ -1,14 +1,11 @@
 package tubes2oop_b0s.card.effects;
 
-import tubes2oop_b0s.card.SuperCard;;
+import tubes2oop_b0s.card.Card;
+import tubes2oop_b0s.card.EffectCard;
 
-public class Destroy extends SuperCard {
-    public Destroy(String name, String description) {
-        super(name, description);
-    }
+public class Destroy extends Card implements EffectCard {
 
-    @Override
-    public void play() {
-        // Implementation for Destroy something
+    public Destroy(String name) {
+        super(name);
     }
 }

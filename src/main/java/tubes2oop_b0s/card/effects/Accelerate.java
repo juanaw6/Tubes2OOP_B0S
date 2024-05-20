@@ -1,14 +1,10 @@
 package tubes2oop_b0s.card.effects;
 
-import tubes2oop_b0s.card.SuperCard;;
+import tubes2oop_b0s.card.Card;
+import tubes2oop_b0s.card.EffectCard;
 
-public class Accelerate extends SuperCard {
-    public Accelerate(String name, String description) {
-        super(name, description);
-    }
-
-    @Override
-    public void play() {
-        // Implementation for Accelerateing something
+public class Accelerate extends Card implements EffectCard {
+    public Accelerate(String name) {
+        super(name);
     }
 }
