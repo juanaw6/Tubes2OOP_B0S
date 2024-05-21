@@ -1,6 +1,10 @@
 package tubes2oop_b0s;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,6 +16,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.input.DragEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.util.spi.CalendarDataProvider;
 
 public class CardController {
     @FXML
@@ -39,6 +48,7 @@ public class CardController {
         card.setOnDragOver(this::onDragOver);
         card.setOnDragDropped(this::onDragDropped);
         card.setOnDragDetected(this::onDragDetected);
+        card.setOnMouseClicked(this::handleCardClick);
     }
 
     @FXML
@@ -84,5 +94,28 @@ public class CardController {
 
         event.setDropCompleted(success);
         event.consume();
+    }
+    
+    @FXML
+    private void handleCardClick(MouseEvent event) {
+        try {
+            System.out.println(card.getId());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dialogCard.fxml"));
+            Parent dialog = loader.load();
+            Scene scene = new Scene(dialog);
+            DialogCardController controller = loader.getController();
+            controller.setDialogCardPaneId("p"+((Node)event.getSource()).getId());
+            
+            
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Card Details");
+            dialogStage.initStyle(StageStyle.UNDECORATED);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(((Node)event.getSource()).getScene().getWindow());
+            dialogStage.setScene(scene);
+            dialogStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
