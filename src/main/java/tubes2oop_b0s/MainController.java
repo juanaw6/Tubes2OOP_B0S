@@ -109,12 +109,13 @@ public class MainController {
     }
 
     @FXML
-    private void showLoadDialog() {
+    private void showLoadDialog(ActionEvent event) {
         try {
             VBox dialogContent = FXMLLoader.load(getClass().getResource("LoadDialog.fxml"));
             Dialog<Void> dialog = new Dialog<>();
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
             dialog.getDialogPane().setContent(dialogContent);
             dialog.showAndWait();
         } catch (IOException e) {
@@ -123,12 +124,13 @@ public class MainController {
     }
 
     @FXML
-    private void showPluginDialog() {
+    private void showPluginDialog(ActionEvent event) {
         try {
             VBox dialogContent = FXMLLoader.load(getClass().getResource("PluginDialog.fxml"));
             Dialog<Void> dialog = new Dialog<>();
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
             dialog.getDialogPane().setContent(dialogContent);
             dialog.showAndWait();
         } catch (IOException e) {
