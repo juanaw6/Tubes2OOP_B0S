@@ -111,7 +111,6 @@ public class CardController {
             dialogStage.setTitle("Card Details");
             dialogStage.initStyle(StageStyle.UNDECORATED);
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.setOpacity(0.9);
             dialogStage.initOwner(((Node)event.getSource()).getScene().getWindow());
             dialogStage.setScene(scene);
             dialogStage.show();

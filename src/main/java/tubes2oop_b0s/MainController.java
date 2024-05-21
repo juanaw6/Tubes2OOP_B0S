@@ -39,7 +39,7 @@ public class MainController {
             
             CardController controller = loader.getController();
             controller.setCardInfo("card"+i, "item/Delay.png", "Delay");
-;
+
             farm.getChildren().add(card);
         }
         for (int i = 0; i < 6; i++) {

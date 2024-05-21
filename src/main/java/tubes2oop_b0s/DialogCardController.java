@@ -12,19 +12,33 @@ public class DialogCardController {
     private VBox dialogCardPane;
     
     @FXML
-    public void initialize() {
-        
-    }
-
-    @FXML
     private Button closeButton;  // Ensure this button is linked if you are using Scene Builder or add the fx:id in the FXML.
-
+    
     @FXML
-    private void closeDialog(MouseEvent event) {
-        // Get the stage from the button that is part of the dialog.
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+    public void initialize() {
+        closeButton.setOnMouseClicked(event -> {
+            System.out.println("Mouse clicked");
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+            // Your existing handler code
+        });
+        closeButton.setOnMousePressed(event -> {
+            System.out.println("Mouse pressed on closeButton");
+        });
+
+        closeButton.setOnMouseReleased(event -> {
+            System.out.println("Mouse released on button");
+            // Perform action here
+        });
     }
+
+
+//    @FXML
+//    private void closeDialog(MouseEvent event) {
+//        // Get the stage from the button that is part of the dialog.
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage.close();
+//    }
     
     public void setDialogCardPaneId(String id) {
       dialogCardPane.setId(id); 
