@@ -21,7 +21,7 @@ public class StoreController {
             Node card = loader.load();
 
             CardController controller = loader.getController();
-            controller.setCardInfo("card-store"+i, "item/Delay.png", "Delay");
+            controller.setCardInfo("store-"+i, "Delay.png", "Delay", false);
             store.getChildren().add(card);
         }
        
