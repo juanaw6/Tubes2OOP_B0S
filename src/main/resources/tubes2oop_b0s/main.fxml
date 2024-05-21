@@ -2,13 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" spacing="20.0"  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tubes2oop_b0s.MainController">
+<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.MainController">
    <HBox prefHeight="900.0" prefWidth="1110.0">
       <children>
          <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent  #E0E0E0 transparent transparent; -fx-border-width: 0 2 0 0;">
@@ -17,12 +22,12 @@
                   <children>
                      <HBox layoutX="83.0" layoutY="30.0" prefHeight="42.0" prefWidth="573.0" spacing="20">
                         <children>
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm"/>
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm" onAction="#HandleBackSwapField"/>
                            <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Plugin" onAction="#showPluginDialog" />
                            <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Save" onAction="#showSaveDialog" />
                            <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Load" onAction="#showLoadDialog" />
                            <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" onAction="#HandleOpenStore"/>
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" />
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" onAction="#HandleSwapField"/>
                         </children>
                      </HBox>
                   </children>
@@ -44,10 +49,42 @@
          </VBox>
          <AnchorPane prefHeight="900.0" prefWidth="280.0">
             <children>
-               <Circle fill="DODGERBLUE" layoutX="138.0" layoutY="128.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-               <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="194.0" text="NEXT TURN" />
+               <Circle fill="#ff1f1f" layoutX="138.0" layoutY="462.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle layoutX="138.0" layoutY="128.0" radius="100.0" stroke="BLACK" strokeType="INSIDE">
+                  <fill>
+                     <LinearGradient endX="1.0" endY="1.0">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color red="0.42105263471603394" green="0.42105263471603394" blue="0.42105263471603394" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="1.0" green="1.0" blue="1.0" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill></Circle>
+               <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="42.0" prefWidth="194.0" text="NEXT TURN" />
                <Button layoutX="23.0" layoutY="777.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 2" />
                <Button layoutX="23.0" layoutY="713.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 1" />
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="408.0" prefHeight="136.0" prefWidth="184.0" text="60">
+                  <font>
+                     <Font size="69.0" />
+                  </font>
+               </Label>
+               <Label layoutX="83.0" layoutY="399.0" prefHeight="42.0" prefWidth="115.0" text="RAWRRRRRR......">
+                  <font>
+                     <Font size="21.0" />
+                  </font>
+               </Label>
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1">
+                  <font>
+                     <Font size="69.0" />
+                  </font>
+               </Label>
             </children>
          </AnchorPane>
       </children>

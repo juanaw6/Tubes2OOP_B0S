@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -25,6 +26,9 @@ import java.util.spi.CalendarDataProvider;
 public class CardController {
     @FXML
     private VBox card;
+    
+    private boolean isView;
+    
     @FXML
     private ImageView cardImage;
     @FXML
@@ -40,14 +44,17 @@ public class CardController {
         return cardImage;
     }
 
-    public void setCardInfo(String id, String imageName, String cardName) {
+    public void setCardInfo(String id, String imageName, String cardName, boolean isView ) {
         Image image = new Image(getClass().getResourceAsStream("/public/" + imageName));
         cardImage.setImage(image);
         cardLabel.setText(cardName);
         card.setId(id);
-        card.setOnDragOver(this::onDragOver);
-        card.setOnDragDropped(this::onDragDropped);
-        card.setOnDragDetected(this::onDragDetected);
+        if(!isView) {
+            card.setOnDragOver(this::onDragOver);
+            card.setOnDragDropped(this::onDragDropped);
+            card.setOnDragDetected(this::onDragDetected);
+        }
+        this.isView = isView;
         card.setOnMouseClicked(this::handleCardClick);
     }
 
@@ -86,8 +93,6 @@ public class CardController {
             System.out.println("Dragged from: " + sourceVBox.getId());
             System.out.println("Dropped on: " + targetVBox.getId());
 
-            // Implement your logic for handling the dropped data
-            // For example, you could swap the contents of the source and target VBox
 
             success = true;
         }
@@ -104,13 +109,13 @@ public class CardController {
             Parent dialog = loader.load();
             Scene scene = new Scene(dialog);
             DialogCardController controller = loader.getController();
-            controller.setDialogCardPaneId("p"+((Node)event.getSource()).getId());
+            controller.setDialogCardPaneId("detail-" + card.getId(), isView);
             
             
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Card Details");
             dialogStage.initStyle(StageStyle.UNDECORATED);
-            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
             dialogStage.initOwner(((Node)event.getSource()).getScene().getWindow());
             dialogStage.setScene(scene);
             dialogStage.show();

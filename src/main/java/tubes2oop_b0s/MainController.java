@@ -21,6 +21,7 @@ import javafx.stage.StageStyle;
 
 import java.io.Console;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainController {
     @FXML
@@ -37,31 +38,22 @@ public class MainController {
     }
 
     public void initialize() throws IOException {
-        for (int i = 0; i < 20; i++) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
-            Node card = loader.load();
-
-            CardController controller = loader.getController();
-            controller.setCardInfo("card" + i, "item/Delay.png", "Delay");
-
-            farm.getChildren().add(card);
-        }
-        for (int i = 0; i < 6; i++) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
-            Node card = loader.load();
-
-            CardController controller = loader.getController();
-            controller.setCardInfo("active-deck" + i, "item/Delay.png", "Delay");
-
-            deck.getChildren().add(card);
-        }
+        reload();
     }
 
-    @FXML
-    protected void onHelloButtonClick2(ActionEvent event) {
-        Button clickedButton = (Button) event.getSource();
-        System.out.println("clicked button: " + clickedButton.getText());
-        // welcomeText.setText(clickedButton.getText() + " clicked!");
+    private void reload() {
+        farm.getChildren().clear();
+        deck.getChildren().clear();
+        MainData data = MainData.getInstance();
+        ArrayList<Node> farmNodes = data.getFarmNodes();
+        System.out.println(data.getTurn());
+        for (int i = 0; i < farmNodes.size(); i++) {
+            farm.getChildren().add(farmNodes.get(i));
+        }
+        ArrayList<Node> deckNodes = data.getDeckNodes();
+        for (int i = 0; i < deckNodes.size(); i++) {
+            deck.getChildren().add(deckNodes.get(i));
+        }
     }
 
     @FXML
@@ -78,6 +70,27 @@ public class MainController {
             e.printStackTrace();
             // Handle exceptions possibly with a dialog or logging
         }
+    }
+
+    @FXML
+    protected void HandleNextTurn(ActionEvent event) {
+        MainData mainData = MainData.getInstance();
+        mainData.NextTurn();
+        reload();
+    }
+
+    @FXML
+    protected void HandleSwapField(ActionEvent event) {
+        MainData mainData = MainData.getInstance();
+        mainData.SwapField();
+        reload();
+    }
+
+    @FXML
+    protected void HandleBackSwapField(ActionEvent event) {
+        MainData mainData = MainData.getInstance();
+        mainData.BackSwapField();
+        reload();
     }
 
     @FXML
