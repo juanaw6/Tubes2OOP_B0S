@@ -2,9 +2,8 @@ package tubes2oop_b0s.card.effects;
 
 import tubes2oop_b0s.card.Card;
 import tubes2oop_b0s.card.EffectCard;
-import tubes2oop_b0s.card.PlaceableCard;
-import tubes2oop_b0s.card.animals.Carnivore;
-import tubes2oop_b0s.factory.CardFactory;
+import tubes2oop_b0s.deck.CardFactory;
+import tubes2oop_b0s.deck.ICardFactory;
 
 public class Trap extends Card implements EffectCard {
 
@@ -13,7 +12,7 @@ public class Trap extends Card implements EffectCard {
     }
 
     public Card use() {
-        CardFactory cardFactory = new CardFactory();
+        ICardFactory cardFactory = new CardFactory();
         return cardFactory.createCard("Beruang");
     }
 }

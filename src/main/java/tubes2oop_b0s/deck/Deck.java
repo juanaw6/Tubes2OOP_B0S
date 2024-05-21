@@ -1,18 +1,17 @@
-package tubes2oop_b0s.factory;
+package tubes2oop_b0s.deck;
 
 import org.jetbrains.annotations.NotNull;
 import tubes2oop_b0s.card.Card;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 
 public class Deck {
     private final int MAX_ACTIVE_DECK_SIZE = 6;
     private final int MAX_SHUFFLED_DECK_SIZE = 40;
-    private final ArrayList<Card> activeDeck = new ArrayList<Card>(MAX_ACTIVE_DECK_SIZE);
-    private final ArrayList<Card> shuffledDeck = new ArrayList<Card>(MAX_SHUFFLED_DECK_SIZE);
+    private final ArrayList<Card> activeDeck = new ArrayList<>();
+    private final ArrayList<Card> shuffledDeck = new ArrayList<>();
 
     public Deck() {
         initShuffledDeck();
@@ -21,7 +20,6 @@ public class Deck {
         }
     }
 
-    // INI MAU GIMANA KALAU PAS LOAD UBAH LAGI YE
     public Deck(int turn) {
         initShuffledDeck(turn);
         for (int i = 0; i < MAX_ACTIVE_DECK_SIZE; i++) {
@@ -30,7 +28,7 @@ public class Deck {
     }
 
     public void initShuffledDeck() {
-        CardFactory factory = new CardFactory();
+        ICardFactory factory = new CardFactory();
         String[] cardTypes = {
                 "Hiu Darat", "Domba", "Sapi", "Kuda", "Ayam", "Beruang",
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
@@ -38,7 +36,7 @@ public class Deck {
                 "Jagung", "Labu", "Stroberi",
                 "Accelerate", "Delay", "Instant harvest", "Destroy", "Protect", "Trap"
         };
-        String[] mustHaveCard = {
+        String[] mustHaveCards = {
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
                 "Accelerate", "Protect", "Instant harvest", "Trap",
                 "Biji Jagung", "Biji Labu", "Biji Stroberi"
@@ -46,10 +44,10 @@ public class Deck {
 
         int totalCards = 0;
         java.util.Random rand = new java.util.Random();
-        int lengthMustHaveCard = mustHaveCard.length;
+        int lengthMustHaveCard = mustHaveCards.length;
 
         while (totalCards < lengthMustHaveCard) {
-            String selectedType = mustHaveCard[rand.nextInt(lengthMustHaveCard)];
+            String selectedType = mustHaveCards[rand.nextInt(lengthMustHaveCard)];
             shuffledDeck.add(factory.createCard(selectedType));
             totalCards++;
         }
@@ -63,7 +61,7 @@ public class Deck {
     }
 
     public void initShuffledDeck(int turn) {
-        CardFactory factory = new CardFactory();
+        ICardFactory factory = new CardFactory();
         shuffledDeck.clear();
         java.util.Random rand = new java.util.Random();
         String[] cardTypes = {
@@ -73,17 +71,17 @@ public class Deck {
                 "Jagung", "Labu", "Stroberi",
                 "Accelerate", "Delay", "Instant harvest", "Destroy", "Protect", "Trap"
         };
-        String[] mustHaveCard = {
+        String[] mustHaveCards = {
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
                 "Accelerate", "Protect", "Instant harvest", "Trap"
         };
         int remainingCards = MAX_SHUFFLED_DECK_SIZE - turn * 4;
         remainingCards = Math.max(0, remainingCards);
-        int lengthMustHaveCard = mustHaveCard.length;
+        int lengthMustHaveCard = mustHaveCards.length;
         int totalCards = 0;
         if (remainingCards > MAX_SHUFFLED_DECK_SIZE - lengthMustHaveCard) {
             while (totalCards < lengthMustHaveCard) {
-                String selectedType = mustHaveCard[rand.nextInt(lengthMustHaveCard)];
+                String selectedType = mustHaveCards[rand.nextInt(lengthMustHaveCard)];
                 shuffledDeck.add(factory.createCard(selectedType));
                 totalCards++;
             }
@@ -132,6 +130,14 @@ public class Deck {
         }
     }
 
+    public void removeFromActiveDeck(int index) {
+        if (index >= 0 && index < activeDeck.size()) {
+            activeDeck.set(index, null);
+        } else {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+    }
+
     public void addToActiveDeck(Card card) {
         for (int i = 0; i < activeDeck.size(); i++) {
             if (activeDeck.get(i) == null) {
@@ -141,10 +147,17 @@ public class Deck {
         }
     }
 
+    public void addToActiveDeck(int index, Card card) {
+        if (index >= 0 && index < activeDeck.size()) {
+            this.activeDeck.set(index, card);
+        } else {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+    }
+
     public void addToActiveDeck(@NotNull ArrayList<Card> cards) {
         for (Card card : cards) {
             this.addToActiveDeck(card);
         }
     }
-
 }

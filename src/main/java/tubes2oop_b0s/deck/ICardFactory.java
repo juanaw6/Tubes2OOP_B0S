@@ -1,4 +1,4 @@
-package tubes2oop_b0s.factory;
+package tubes2oop_b0s.deck;
 
 import tubes2oop_b0s.card.Card;
 

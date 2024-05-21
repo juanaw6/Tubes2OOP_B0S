@@ -1,6 +1,6 @@
 package tubes2oop_b0s.state;
 
-import tubes2oop_b0s.factory.Deck;
+import tubes2oop_b0s.deck.Deck;
 import tubes2oop_b0s.field.Field;
 
 public class Player {
@@ -24,7 +24,7 @@ public class Player {
         this.gulden = gulden;
     }
 
-    public Deck getDeck() {
+    public Deck getDeckRef() {
         return deck;
     }
 
@@ -32,7 +32,7 @@ public class Player {
         this.deck = deck;
     }
 
-    public Field getField() {
+    public Field getFieldRef() {
         return field;
     }
 

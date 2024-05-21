@@ -9,14 +9,18 @@ public class GameState {
 
     private GameState() {
         players = new ArrayList<>();
-        players.add(new Player());
-        players.add(new Player());
+        players.add(new Player("Player 1"));
+        players.add(new Player("Player 2"));
         turn = 0;
         currentPlayerIndex = 0;
     }
 
-    public static GameState createGameState() {
-        return new GameState();
+    private static class GameStateHolder {
+        private static final GameState INSTANCE = new GameState();
+    }
+
+    public static GameState getInstance() {
+        return GameStateHolder.INSTANCE;
     }
 
     public int getCurrentPlayerIndex() {
@@ -25,6 +29,11 @@ public class GameState {
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
+    }
+
+    public Player getEnemyPlayer() {
+        int enemyPlayerIndex = (currentPlayerIndex + 1) % 2;
+        return players.get(enemyPlayerIndex);
     }
 
     public void nextTurn() {
