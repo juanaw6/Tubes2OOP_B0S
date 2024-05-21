@@ -11,10 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -31,20 +33,34 @@ public class MainController {
     private TilePane farm;
     @FXML
     private TilePane deck;
-
+    
+   @FXML
+    private AnchorPane timerPlace;
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
     public void initialize() throws IOException {
+        
         reload();
     }
 
-    private void reload() {
+    private void reload() throws IOException{
         farm.getChildren().clear();
         deck.getChildren().clear();
         MainData data = MainData.getInstance();
+        if (data.getTurn() ==3){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Timer.fxml"));
+            Node root = loader.load();
+            TimerController controller = loader.getController();
+            timerPlace.getChildren().add(root);
+            controller.timerCompletedProperty().addListener((obs, wasCompleted, isCompleted) -> {
+                if (isCompleted) {
+                    timerPlace.getChildren().clear();// Call method to handle post-timer completion
+                }
+            });
+        }
         ArrayList<Node> farmNodes = data.getFarmNodes();
         System.out.println(data.getTurn());
         for (int i = 0; i < farmNodes.size(); i++) {
@@ -73,21 +89,21 @@ public class MainController {
     }
 
     @FXML
-    protected void HandleNextTurn(ActionEvent event) {
+    protected void HandleNextTurn(ActionEvent event) throws IOException {
         MainData mainData = MainData.getInstance();
         mainData.NextTurn();
         reload();
     }
 
     @FXML
-    protected void HandleSwapField(ActionEvent event) {
+    protected void HandleSwapField(ActionEvent event) throws IOException {
         MainData mainData = MainData.getInstance();
         mainData.SwapField();
         reload();
     }
 
     @FXML
-    protected void HandleBackSwapField(ActionEvent event) {
+    protected void HandleBackSwapField(ActionEvent event) throws IOException {
         MainData mainData = MainData.getInstance();
         mainData.BackSwapField();
         reload();

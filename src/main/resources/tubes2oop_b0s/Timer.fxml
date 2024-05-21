@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="244.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.TimerController">
+      <Circle fx:id="timerFrame" fill="#ff1f1f" layoutX="140.0" layoutY="252.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="48.0" layoutY="180.0" prefHeight="136.0" prefWidth="184.0" text="60">
+          <font>
+              <Font size="69.0" />
+          </font>
+      </Label>
+</AnchorPane>
