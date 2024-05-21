@@ -1,0 +1,23 @@
+.button-back {
+    -fx-background-color: #ADD8E6;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-size: 15px;
+}
+
+.button-back:hover {
+    -fx-background-color: #87CEEB; /* Lighter blue on hover */
+}
+
+.button-save {
+    -fx-background-color: #28B463;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-font-size: 18px;
+    -fx-pref-width: 500px;
+}
+
+.button-save:hover {
+    -fx-background-color: #2ECC71; /* Lighter green on hover */
+}
