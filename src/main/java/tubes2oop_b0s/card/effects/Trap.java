@@ -4,6 +4,7 @@ import tubes2oop_b0s.card.Card;
 import tubes2oop_b0s.card.EffectCard;
 import tubes2oop_b0s.card.PlaceableCard;
 import tubes2oop_b0s.card.animals.Carnivore;
+import tubes2oop_b0s.factory.CardFactory;
 
 public class Trap extends Card implements EffectCard {
 
@@ -12,7 +13,7 @@ public class Trap extends Card implements EffectCard {
     }
 
     public Card use() {
-        // TODO: Use CardFactory
-        return new Carnivore("Beruang");
+        CardFactory cardFactory = new CardFactory();
+        return cardFactory.createCard("Beruang");
     }
 }
