@@ -1,8 +1,11 @@
 package tubes2oop_b0s.state;
 
+import tubes2oop_b0s.store.Store;
+
 import java.util.ArrayList;
 
 public class GameState {
+    private static GameState instance = null;
     private int currentPlayerIndex;
     private final ArrayList<Player> players;
     private int turn;
@@ -15,12 +18,19 @@ public class GameState {
         currentPlayerIndex = 0;
     }
 
-    private static class GameStateHolder {
-        private static final GameState INSTANCE = new GameState();
+    public static GameState getInstance() {
+        if (instance == null) {
+            instance = new GameState();
+        }
+        return instance;
     }
 
-    public static GameState getInstance() {
-        return GameStateHolder.INSTANCE;
+    public void setPlayer1(Player player1) {
+        players.set(0, player1);
+    }
+
+    public void setPlayer2(Player player2) {
+        players.set(1, player2);
     }
 
     public int getCurrentPlayerIndex() {

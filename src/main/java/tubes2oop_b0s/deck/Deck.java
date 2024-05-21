@@ -20,8 +20,8 @@ public class Deck {
         }
     }
 
-    public Deck(int turn) {
-        initShuffledDeck(turn);
+    public Deck(int shuffledCardCount) {
+        initShuffledDeck(shuffledCardCount);
         for (int i = 0; i < MAX_ACTIVE_DECK_SIZE; i++) {
             activeDeck.add(null);
         }
@@ -60,7 +60,7 @@ public class Deck {
         reshuffleDeck();
     }
 
-    public void initShuffledDeck(int turn) {
+    public void initShuffledDeck(int n) {
         ICardFactory factory = new CardFactory();
         shuffledDeck.clear();
         java.util.Random rand = new java.util.Random();
@@ -75,7 +75,8 @@ public class Deck {
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
                 "Accelerate", "Protect", "Instant harvest", "Trap"
         };
-        int remainingCards = MAX_SHUFFLED_DECK_SIZE - turn * 4;
+        // int remainingCards = MAX_SHUFFLED_DECK_SIZE - turn * 4;
+        int remainingCards = n;
         remainingCards = Math.max(0, remainingCards);
         int lengthMustHaveCard = mustHaveCards.length;
         int totalCards = 0;

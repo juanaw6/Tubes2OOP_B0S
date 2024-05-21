@@ -1,0 +1,21 @@
+{
+  "turn": 2,
+  "store": [
+    {
+      "name": "JAGUNG",
+      "quantity": 3
+    },
+    {
+      "name": "DAGING_KUDA",
+      "quantity": 5
+    },
+    {
+      "name": "SUSU",
+      "quantity": 4
+    }
+  ],
+  "playerFiles": [
+    "Player1.json",
+    "Player2.json"
+  ]
+}

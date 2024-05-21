@@ -1,18 +1,19 @@
 package tubes2oop_b0s.store;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import tubes2oop_b0s.card.Card;
+import tubes2oop_b0s.card.ConsumableCard;
+import tubes2oop_b0s.deck.CardFactory;
+import tubes2oop_b0s.deck.ICardFactory;
+import tubes2oop_b0s.state.Player;
+import tubes2oop_b0s.utils.StringFormatter;
 
 public class Store {
-    private static Store instance;
-    private ArrayList<Card> products;
+    private static Store instance = null;
+    private final ArrayList<ConsumableCard> items;
 
     private Store() {
-        // Initialize the store data
-        products = new ArrayList<>(100);
+        items = new ArrayList<>();
     }
 
     public static Store getInstance() {
@@ -22,49 +23,59 @@ public class Store {
         return instance;
     }
 
-    public void displayProducts() {
-        // Method to display products in Store
-        Map<String, Integer> productCounts = new HashMap<>();
-        for (Card card : products) {
-            productCounts.put(card.getName(), productCounts.getOrDefault(card.getName(), 0) + 1);
-        }
+    public void clear() {
+        items.clear();
+    }
 
-        for (Map.Entry<String, Integer> entry : productCounts.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+    public void addItem(String name) {
+        ICardFactory cardFactory = new CardFactory();
+        items.add((ConsumableCard) cardFactory.createCard(name));
+    }
+
+    public void addItem(ConsumableCard card) {
+        items.add(card);
+    }
+
+    public void removeItem(String name) {
+        for (ConsumableCard item : items) {
+            if (item.getName().equals(name)) {
+                items.remove(item);
+                break;
+            }
         }
     }
 
-    public void handleBuy(Card card, int quantity) {
+    public void removeItem(ConsumableCard card) {
+        items.remove(card);
+    }
+
+    public void buyItem(ConsumableCard card, Player player) {
+        player.getDeckRef().addToActiveDeck(card);
+        player.setGulden(player.getGulden() - card.getPrice());
+        removeItem(card);
+    }
+
+    public void sellItem(ConsumableCard card, Player player) {
+        player.getDeckRef().removeFromActiveDeck(card);
+        player.setGulden(player.getGulden() + card.getPrice());
+        addItem(card);
+    }
+
+    public ArrayList<ConsumableCard> getItemsRef() {
+        return items;
+    }
+
+    public ArrayList<ConsumableCard> getItemsCopy() {
+        return new ArrayList<>(items);
+    }
+
+    public int getQuantity(String name) {
         int count = 0;
-        for (Card product : products) {
-            if (product.getName().equals(card.getName())) {
+        for (ConsumableCard item : items) {
+            if (item.getName().equals(StringFormatter.formatString(name))) {
                 count++;
             }
         }
-
-        if (quantity<=count) {
-            for (int i = 0; i < quantity; i++) {
-                products.remove(card);
-            }
-
-            System.out.println("Membeli " + quantity + " " + card.getName() + " dari toko");
-        } else {
-            System.out.println("Jumlah " + card.getName() + " di toko tidak cukup");
-        }
-    }
-
-    public void handleBuy(Card card) {
-        handleBuy(card, 1);
-    }
-
-    public void handleSell(Card card, int quantity) {
-        for (int i = 0; i < quantity; i++) {
-            products.add(card);
-        }
-        System.out.println("Menjual " + quantity + " " + card.getName());
-    }
-
-    public void handleSell(Card card) {
-        handleSell(card, 1);
+        return count;
     }
 }

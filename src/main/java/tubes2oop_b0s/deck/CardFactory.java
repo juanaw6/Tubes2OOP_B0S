@@ -7,11 +7,12 @@ import tubes2oop_b0s.card.animals.Herbivore;
 import tubes2oop_b0s.card.animals.Omnivore;
 import tubes2oop_b0s.card.crops.Crop;
 import tubes2oop_b0s.card.effects.*;
+import tubes2oop_b0s.utils.StringFormatter;
 
 public class CardFactory implements ICardFactory {
     @Override
     public Card createCard(String type) {
-        return switch (type) {
+        return switch (StringFormatter.formatString(type)) {
             case "Hiu Darat" -> new Carnivore(type, new ConsumableCard("Sirip Hiu", 12, 500), 20);
             case "Domba" -> new Herbivore(type, new ConsumableCard("Daging Domba", 6, 120), 12);
             case "Sapi" -> new Herbivore(type, new ConsumableCard("Susu", 4, 100), 10);
