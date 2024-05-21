@@ -11,6 +11,7 @@ module tubes2oop_b0s {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires com.fasterxml.jackson.databind;
+    requires annotations;
 
     opens tubes2oop_b0s to javafx.fxml;
 
