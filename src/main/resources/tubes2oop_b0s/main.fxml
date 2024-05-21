@@ -22,12 +22,12 @@
                   <children>
                      <HBox layoutX="83.0" layoutY="30.0" prefHeight="42.0" prefWidth="573.0" spacing="20">
                         <children>
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm" onAction="#HandleBackSwapField"/>
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Plugin" onAction="#showPluginDialog" />
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Save" onAction="#showSaveDialog" />
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Load" onAction="#showLoadDialog" />
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" onAction="#HandleOpenStore"/>
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" onAction="#HandleSwapField"/>
+                           <Button mnemonicParsing="false" onAction="#HandleBackSwapField" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm" />
+                           <Button mnemonicParsing="false" onAction="#showPluginDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Plugin" />
+                           <Button mnemonicParsing="false" onAction="#showSaveDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Save" />
+                           <Button mnemonicParsing="false" onAction="#showLoadDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Load" />
+                           <Button mnemonicParsing="false" onAction="#HandleOpenStore" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" />
+                           <Button mnemonicParsing="false" onAction="#HandleSwapField" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" />
                         </children>
                      </HBox>
                   </children>
@@ -49,7 +49,7 @@
          </VBox>
          <AnchorPane prefHeight="900.0" prefWidth="280.0">
             <children>
-               <Circle fill="#ff1f1f" layoutX="138.0" layoutY="462.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+              
                <Circle layoutX="138.0" layoutY="128.0" radius="100.0" stroke="BLACK" strokeType="INSIDE">
                   <fill>
                      <LinearGradient endX="1.0" endY="1.0">
@@ -70,21 +70,13 @@
                <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="42.0" prefWidth="194.0" text="NEXT TURN" />
                <Button layoutX="23.0" layoutY="777.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 2" />
                <Button layoutX="23.0" layoutY="713.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 1" />
-               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="408.0" prefHeight="136.0" prefWidth="184.0" text="60">
-                  <font>
-                     <Font size="69.0" />
-                  </font>
-               </Label>
-               <Label layoutX="83.0" layoutY="399.0" prefHeight="42.0" prefWidth="115.0" text="RAWRRRRRR......">
-                  <font>
-                     <Font size="21.0" />
-                  </font>
-               </Label>
+               
                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1">
                   <font>
                      <Font size="69.0" />
                   </font>
                </Label>
+               <AnchorPane fx:id="timerPlace" layoutY="305.0" prefHeight="200.0" prefWidth="200.0" />
             </children>
          </AnchorPane>
       </children>
