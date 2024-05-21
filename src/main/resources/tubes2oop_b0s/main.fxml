@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.MainController">
+<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" spacing="20.0"  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tubes2oop_b0s.MainController">
    <HBox prefHeight="900.0" prefWidth="1110.0">
       <children>
          <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent  #E0E0E0 transparent transparent; -fx-border-width: 0 2 0 0;">
@@ -17,10 +17,10 @@
                   <children>
                      <HBox layoutX="83.0" layoutY="30.0" prefHeight="42.0" prefWidth="573.0" spacing="20">
                         <children>
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm" />
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm"/>
                            <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Plugin" />
                            <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Save State" />
-                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" />
+                           <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" onAction="#HandleOpenStore"/>
                            <Button mnemonicParsing="false" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" />
                         </children>
                      </HBox>

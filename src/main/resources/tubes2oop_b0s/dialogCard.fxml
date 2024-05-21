@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="dialogCardPane" alignment="CENTER_LEFT" prefHeight="285.0" prefWidth="499.0" spacing="5" style="-fx-background-color: #e0e0e0; -fx-padding: 10;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tubes2oop_b0s.DialogCardController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="262.0" prefWidth="479.0" spacing="10">
+            <children>
+            <AnchorPane prefHeight="262.0" prefWidth="483.0">
+               <children>
+                      <Button layoutX="6.0" layoutY="8.0" minWidth="70.0" text="Kembali" onMouseClicked="#closeDialog" fx:id="closeButton"/>
+                      <ImageView fitHeight="106.0" fitWidth="113.0" layoutX="359.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../public/item/Accelerate.png" />
+                          </image>
+                      </ImageView>
+                  <AnchorPane layoutX="45.0" layoutY="13.0" prefHeight="241.0" prefWidth="305.0">
+                     <children>
+                             <Label alignment="CENTER" layoutX="45.0" scaleShape="false" text="okokokokokokok">
+                                 <font>
+                                     <Font size="39.0" />
+                                 </font>
+                             </Label>
+                             <Label layoutX="-3.0" layoutY="69.0" prefHeight="45.0" prefWidth="112.0" text="Berat: 5 KG">
+                                 <font>
+                                     <Font size="16.0" />
+                                 </font>
+                             </Label>
+                             <Label layoutY="100.0" prefHeight="90.0" prefWidth="274.0" text="Item aktif: Accelerate (1), Delay (1), Protect (1)">
+                                 <font>
+                                     <Font size="12.0" />
+                                 </font>
+                             </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            </children>
+        </HBox>
+    </children>
+</VBox>

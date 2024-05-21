@@ -3,6 +3,8 @@ package tubes2oop_b0s;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
 import java.io.Console;
 import java.io.IOException;
@@ -55,6 +58,22 @@ public class MainController {
         Button clickedButton = (Button) event.getSource();
         System.out.println("clicked button: " + clickedButton.getText());
         // welcomeText.setText(clickedButton.getText() + " clicked!");
+    }
+
+    @FXML
+    protected void HandleOpenStore(ActionEvent event) {
+        try {
+            Parent mainRoot = FXMLLoader.load(getClass().getResource("store.fxml"));
+            Scene mainScene = new Scene(mainRoot, 1150, 900);
+
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(mainScene);
+            window.setResizable(false);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle exceptions possibly with a dialog or logging
+        }
     }
 
 }
