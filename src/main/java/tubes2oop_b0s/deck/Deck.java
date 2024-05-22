@@ -170,4 +170,18 @@ public class Deck {
     public ArrayList<Card> getActiveDeckCopy() {
         return new ArrayList<>(activeDeck);
     }
+
+    public int getShuffledDeckSize() {
+        return shuffledDeck.size();
+    }
+
+    public int getActiveDeckSize() {
+        int count = 0;
+        for (Card card : activeDeck) {
+            if (card != null) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

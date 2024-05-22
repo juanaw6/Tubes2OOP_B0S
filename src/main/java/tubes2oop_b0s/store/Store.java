@@ -69,6 +69,16 @@ public class Store {
         return new ArrayList<>(items);
     }
 
+    public ArrayList<String> getItemsUniqueStr() {
+        ArrayList<String> temp = new ArrayList<>();
+        for (ConsumableCard item : items) {
+            if (!temp.contains(item.getName())) {
+                temp.add(item.getName());
+            }
+        }
+        return temp;
+    }
+
     public int getQuantity(String name) {
         int count = 0;
         for (ConsumableCard item : items) {

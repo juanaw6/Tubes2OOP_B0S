@@ -35,9 +35,8 @@ public class LoaderManager {
             Class<?> cls = urlClassLoader.loadClass(className);
             Object externalLoader = cls.getDeclaredConstructor().newInstance();
             if (externalLoader instanceof FileConverter converter) {
-                GameStateLoader adapter = new LoaderAdapter(converter);
-                loaders.put(adapter.getSupportedFileExtension(), adapter);
-                System.out.println("Loader added support: " + adapter.getSupportedFileExtension());
+                addLoader(new LoaderAdapter(converter));
+                System.out.println("Loader added support: " + converter.supportedExtension());
                 return true;
             }
         } catch (Exception e) {
@@ -66,5 +65,9 @@ public class LoaderManager {
 
     public ArrayList<String> getSupportedFileExtensions() {
         return new ArrayList<>(loaders.keySet());
+    }
+
+    public void addLoader(GameStateLoader gameStateLoader) {
+        loaders.put(gameStateLoader.getSupportedFileExtension(), gameStateLoader);
     }
 }

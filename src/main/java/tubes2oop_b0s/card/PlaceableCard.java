@@ -3,6 +3,7 @@ package tubes2oop_b0s.card;
 import tubes2oop_b0s.card.effects.Accelerate;
 import tubes2oop_b0s.card.effects.Delay;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class PlaceableCard extends Card {
@@ -40,7 +41,7 @@ public abstract class PlaceableCard extends Card {
         return this.effects.containsKey("Trap");
     }
 
-    public ConsumableCard Harvest() {
+    public ConsumableCard harvest() {
         return new ConsumableCard(harvestResult);
     }
 
@@ -66,5 +67,16 @@ public abstract class PlaceableCard extends Card {
 
     public void removeEffect(String effect) {
         this.effects.remove(effect);
+    }
+
+    public ArrayList<String> getEffectsAsListStr() {
+        ArrayList<String> effectsList = new ArrayList<>();
+        for (String effect : effects.keySet()) {
+            int count = effects.get(effect);
+            for (int i = 0; i < count; i++) {
+                effectsList.add(effect);
+            }
+        }
+        return effectsList;
     }
 }

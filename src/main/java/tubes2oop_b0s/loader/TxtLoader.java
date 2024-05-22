@@ -3,6 +3,7 @@ package tubes2oop_b0s.loader;
 import tubes2oop_b0s.card.PlaceableCard;
 import tubes2oop_b0s.card.animals.Animal;
 import tubes2oop_b0s.card.crops.Crop;
+import tubes2oop_b0s.field.Field;
 import tubes2oop_b0s.state.GameState;
 import tubes2oop_b0s.state.Player;
 import tubes2oop_b0s.store.Store;
@@ -13,9 +14,7 @@ import tubes2oop_b0s.deck.ICardFactory;
 import tubes2oop_b0s.utils.LocationParser;
 import tubes2oop_b0s.utils.StringFormatter;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class TxtLoader implements GameStateLoader {
@@ -51,7 +50,33 @@ public class TxtLoader implements GameStateLoader {
 
     @Override
     public void saveGameState(String folderPath) {
-        // Implement save logic
+        try {
+            GameState gameState = GameState.getInstance();
+            Store store = Store.getInstance();
+
+            // Save game state
+            BufferedWriter gameWriter = new BufferedWriter(new FileWriter(folderPath + "/gamestate.txt"));
+            gameWriter.write(String.valueOf(gameState.getTurn()));
+            gameWriter.newLine();
+
+            ArrayList<String> storeItems = store.getItemsUniqueStr();
+            gameWriter.write(String.valueOf(storeItems.size()));
+            gameWriter.newLine();
+            for (String item : storeItems) {
+                gameWriter.write(StringFormatter.unformatString(item) + " " + store.getQuantity(item));
+                gameWriter.newLine();
+            }
+            gameWriter.close();
+
+            // Save player 1 state
+            savePlayer(new BufferedWriter(new FileWriter(folderPath + "/player1.txt")), gameState.getPlayer1());
+
+            // Save player 2 state
+            savePlayer(new BufferedWriter(new FileWriter(folderPath + "/player2.txt")), gameState.getPlayer2());
+
+        } catch (IOException e) {
+            System.err.println("Error saving game state to files: " + e.getMessage());
+        }
     }
 
     @Override
@@ -109,5 +134,49 @@ public class TxtLoader implements GameStateLoader {
 
         reader.close();
         return player;
+    }
+
+    private void savePlayer(BufferedWriter writer, Player player) throws IOException {
+        writer.write(String.valueOf(player.getGulden()));
+        writer.newLine();
+
+        Deck deck = player.getDeckRef();
+        writer.write(String.valueOf(deck.getShuffledDeckSize()));
+        writer.newLine();
+
+        ArrayList<Card> activeDeck = deck.getActiveDeckRef();
+        writer.write(String.valueOf(deck.getActiveDeckSize()));
+        writer.newLine();
+        for (int i = 0; i < activeDeck.size(); i++) {
+            Card card = activeDeck.get(i);
+            if (card != null) {
+                writer.write(LocationParser.convertForActiveDeck(i) + " " + StringFormatter.unformatString(card.getName()));
+                writer.newLine();
+            }
+        }
+
+        Field field = player.getFieldRef();
+        ArrayList<PlaceableCard> fieldArray = field.getFieldRef();
+        writer.write(String.valueOf(field.getCardInFieldCount()));
+        writer.newLine();
+        for (int i = 0; i < fieldArray.size(); i++) {
+            PlaceableCard placeableCard = fieldArray.get(i);
+            if (placeableCard != null) {
+                int ageOrWeight = 0;
+                if (placeableCard instanceof Animal animal) {
+                    ageOrWeight = animal.getWeight();
+                } else if (placeableCard instanceof Crop crop) {
+                    ageOrWeight = crop.getAge();
+                }
+                writer.write(LocationParser.convertForField(i) + " " + StringFormatter.unformatString(placeableCard.getName()) + " " +
+                        ageOrWeight + " " + placeableCard.getEffectsAsListStr().size());
+                for (String effect : placeableCard.getEffectsAsListStr()) {
+                    writer.write(" " + StringFormatter.unformatString(effect));
+                }
+                writer.newLine();
+            }
+        }
+
+        writer.close();
     }
 }

@@ -25,6 +25,14 @@ public class GameState {
         return instance;
     }
 
+    public Player getPlayer1() {
+        return players.get(0);
+    }
+
+    public Player getPlayer2() {
+        return players.get(1);
+    }
+
     public void setPlayer1(Player player1) {
         players.set(0, player1);
     }

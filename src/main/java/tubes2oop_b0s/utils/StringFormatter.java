@@ -15,6 +15,11 @@ public class StringFormatter {
             return input;
         }
 
+        // Check if the string is already in the correct format
+        if (input.matches("([A-Z][a-z]*\\s)*[A-Z][a-z]*")) {
+            return input;
+        }
+
         String[] words = input.split("_");
         StringBuilder formattedString = new StringBuilder();
 
@@ -42,6 +47,11 @@ public class StringFormatter {
      */
     public static String unformatString(String input) {
         if (input == null || input.isEmpty()) {
+            return input;
+        }
+
+        // Check if the string is already in the correct format
+        if (input.matches("([A-Z]+_)*[A-Z]+")) {
             return input;
         }
 

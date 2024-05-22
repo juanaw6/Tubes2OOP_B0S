@@ -82,4 +82,14 @@ public class Field {
         }
         return pushedCards;
     }
+
+    public int getCardInFieldCount() {
+        int count = 0;
+        for (PlaceableCard card : field) {
+            if (card != null) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

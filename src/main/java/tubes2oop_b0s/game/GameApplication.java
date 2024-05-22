@@ -6,6 +6,7 @@ import tubes2oop_b0s.card.*;
 import tubes2oop_b0s.card.animals.*;
 import tubes2oop_b0s.card.crops.*;
 import tubes2oop_b0s.card.effects.*;
+import tubes2oop_b0s.loader.LoaderAdapter;
 import tubes2oop_b0s.loader.LoaderManager;
 import tubes2oop_b0s.state.GameState;
 import tubes2oop_b0s.state.Player;
@@ -19,15 +20,20 @@ public class GameApplication {
         GameState gs = GameState.getInstance();
         Store store = Store.getInstance();
         LoaderManager lm = LoaderManager.getInstance();
-        lm.loadGameState("C:/Users/LENOVO/OneDrive/Desktop/Tubes2OOP_B0S/src/main/resources/saves", "txt");
+        FileConverter jsoncv = new JsonConverter();
+        FileConverter yamlcv = new YamlConverter();
+        lm.addLoader(new LoaderAdapter(jsoncv));
+        lm.addLoader(new LoaderAdapter(yamlcv));
+
+        String folder = "C:/Users/LENOVO/OneDrive/Desktop/Tubes2OOP_B0S/src/main/resources/test_json";
+
+        lm.loadGameState(folder, "json");
         System.out.println("Current player gulden: " + gs.getCurrentPlayer().getGulden());
         System.out.println("Current player gulden: " + gs.getCurrentPlayer().getDeckRef().toString());
 
-
-        String folder = "C:/Users/LENOVO/OneDrive/Desktop/Tubes2OOP_B0S/src/main/resources/test_json";
-        FileConverter cv = new JsonConverter();
-//        FileConverter cv = new YamlConverter();
-        cv.convertFromTxt(folder);
+        lm.saveGameState(folder, "txt");
+//        yamlcv.convertToTxt(folder);
+//        jsoncv.convertFromTxt(folder);
     }
 
 }
