@@ -23,6 +23,7 @@ import javafx.stage.StageStyle;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 
+import java.awt.event.ActionEvent;
 import java.util.spi.CalendarDataProvider;
 
 public class StoreCardController {
@@ -59,85 +60,20 @@ public class StoreCardController {
         return cardImage;
     }
 
-    public void setCardInfo(String id, String imageName, String cardName, int price, int stock, boolean isView ) {
+    public void setCardInfo(String id, String imageName, String cardName, int price, int stock ) {
         Image image = new Image(getClass().getResourceAsStream("/public/" + imageName));
         cardImage.setImage(image);
         cardLabel.setText(cardName);
         priceLabel.setText("Price: " + price);
         stockLabel.setText("Stock: " + stock);
         card.setId(id);
-        if(!isView) {
-            card.setOnDragOver(this::onDragOver);
-            card.setOnDragDropped(this::onDragDropped);
-            card.setOnDragDetected(this::onDragDetected);
-        }
-        this.isView = isView;
-        card.setOnMouseClicked(this::handleCardClick);
     }
-
-    @FXML
-    protected void onDragOver(DragEvent event) {
-        if (event.getGestureSource() != event.getSource() && event.getDragboard().hasString()) {
-            event.acceptTransferModes(TransferMode.MOVE);
-        }
-        event.consume();
-    }
-
-    @FXML
-    protected void onDragDetected(MouseEvent event) {
-        VBox vBox = (VBox) event.getSource();
-        Dragboard db = vBox.startDragAndDrop(TransferMode.MOVE);
-
-        ClipboardContent content = new ClipboardContent();
-        content.putString(vBox.getId());
-        db.setContent(content);
-
-        WritableImage image = vBox.snapshot(new SnapshotParameters(), null);
-        db.setDragView(image, event.getX(), event.getY());
-
-        event.consume();
-    }
-
-    @FXML
-    protected void onDragDropped(DragEvent event) {
-        Dragboard db = event.getDragboard();
-        boolean success = false;
-
-        if (db.hasString()) {
-            VBox sourceVBox = (VBox) event.getGestureSource();
-            VBox targetVBox = (VBox) event.getGestureTarget();
-
-            System.out.println("Dragged from: " + sourceVBox.getId());
-            System.out.println("Dropped on: " + targetVBox.getId());
-
-
-            success = true;
-        }
-
-        event.setDropCompleted(success);
-        event.consume();
-    }
-
-    @FXML
-    private void handleCardClick(MouseEvent event) {
-        try {
-            System.out.println(card.getId());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("dialogCard.fxml"));
-            Parent dialog = loader.load();
-            Scene scene = new Scene(dialog);
-            DialogCardController controller = loader.getController();
-            controller.setDialogCardPaneId("detail-" + card.getId(), isView);
-
-
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Card Details");
-            dialogStage.initStyle(StageStyle.UNDECORATED);
-            dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.initOwner(((Node)event.getSource()).getScene().getWindow());
-            dialogStage.setScene(scene);
-            dialogStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public  void  onBuy(ActionEvent event) {
+        MainData mainData = MainData.getInstance();
+        String[] targetparts = card.getId().split("-");
+        mainData.onBuy(targetparts[1]);
     }
 }
+
+
+   

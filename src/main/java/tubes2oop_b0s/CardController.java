@@ -2,6 +2,7 @@ package tubes2oop_b0s;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +17,9 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.input.DragEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -56,6 +60,25 @@ public class CardController {
     public ImageView getCardImage() {
         return cardImage;
     }
+
+    public void setAttackedCard() {
+        // Set drop shadow
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.web("#FF0000"));  // Red color for the shadow
+        dropShadow.setOffsetX(2);
+        dropShadow.setOffsetY(6);
+        dropShadow.setRadius(10);
+        dropShadow.setSpread(0.5);
+
+        // Set background color to red
+//        BackgroundFill backgroundFill = new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY);
+//        Background background = new Background(backgroundFill);
+//        card.setBackground(background);
+
+        // Apply the drop shadow effect
+        card.setEffect(dropShadow);
+    }
+
 
     public void setCardInfo(String id, String imageName, String cardName, boolean isView ) {
         Image image = new Image(getClass().getResourceAsStream("/public/" + imageName));

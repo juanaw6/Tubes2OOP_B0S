@@ -11,6 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tubes2oop_b0s.card.Card;
+import tubes2oop_b0s.card.ConsumableCard;
+import tubes2oop_b0s.card.animals.Animal;
+import tubes2oop_b0s.card.crops.Crop;
 import tubes2oop_b0s.state.GameState;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,22 +76,39 @@ public class DialogCardController {
         } catch (NumberFormatException e) {
             System.out.println("The third part of the string is not a valid integer.");
         }
-        String name = gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getName();
-        Image image = new Image(getClass().getResourceAsStream("/public/" + name + ".png"));
-        detailCardImage.setImage(image);
-        detailCardLabel.setText(name);
         
 //        get index and get the type
         if (!isView) {
             System.out.println(input);
             switch (parts[1]) {
                 case "farm" -> {
-                    detailCardEffect.setText(convertMapToString(gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
-                    buttonAction.setDisable(true);
+                    String name = gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getName();
+                    Image image = new Image(getClass().getResourceAsStream("/public/" + name + ".png"));
+                    detailCardImage.setImage(image);
+                    detailCardLabel.setText(name);
+                    if (gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number) instanceof Animal) {
+                        Animal animal = ((Animal) gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number));
+                        detailCard.setText("Weight: "+animal.getWeight() + " ("+ animal.getHarvestWeight() + ")");
+                        buttonAction.setDisable(!animal.isReadyToHarvest());
+                        
+                    }else if (gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number) instanceof Crop){
+                        Crop crop = (Crop) gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number);
+                        detailCard.setText("Age: "+crop.getAge() + " ("+ crop.getHarvestAge() + ")");
+                        if (crop.isReadyToHarvest()) {
+                            image = new Image(getClass().getResourceAsStream("/public/" + name.replace("Biji ", "") + ".png"));
+                            detailCardImage.setImage(image);
+                        }
+                        buttonAction.setDisable(!crop.isReadyToHarvest());
+                    }
+                    detailCardEffect.setText("Item aktif: "+convertMapToString(gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
                     buttonAction.setText("Harvest");
                 }
                 case "deck" -> {
-//                    detailCardEffect.setText(convertMapToString(gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).);
+                    String name = gameState.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(number).getName();
+                    Image image = new Image(getClass().getResourceAsStream("/public/" + name + ".png"));
+                    detailCardImage.setImage(image);
+                    detailCardLabel.setText(name);
+                    detailCard.setText("Price: "+String.valueOf(((ConsumableCard) gameState.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(number)).getPrice()));
                     buttonAction.setDisable(true);
                     buttonAction.setText("Sell");
                 }
@@ -100,19 +120,31 @@ public class DialogCardController {
     
     @FXML
     protected void OnClickButton(ActionEvent event){
+        String input = dialogCardPane.getId();
+
+        String[] parts = input.split("-");
+        int numberId = 0;
+        try {
+            numberId = Integer.parseInt(parts[2]);
+        } catch (NumberFormatException e) {
+            System.out.println("The third part of the string is not a valid integer.");
+        }
         MainData mainData = MainData.getInstance();
 //        do someting about the data
             System.out.println(dialogCardPane.getId());
             System.out.println(buttonAction.getText());
         switch (buttonAction.getText()) {
             case "Harvest" -> {
-                buttonAction.setDisable(true);
-                buttonAction.setText("Harvest");
+                mainData.onHarvest(numberId);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.close();
             }
             case "Sell" -> {
+                mainData.onSell(numberId);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.close();
             }
-            case "Buy" -> {
-            }
+            
         }
     }
     

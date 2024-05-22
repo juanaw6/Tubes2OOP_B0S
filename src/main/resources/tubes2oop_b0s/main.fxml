@@ -23,12 +23,12 @@
                   <children>
                      <HBox layoutY="30.0" prefHeight="30.0" spacing="10" alignment="CENTER_LEFT" style="-fx-border-color: transparent transparent #FFF6E9 transparent; -fx-border-width: 0 0 3 0; -fx-padding: 0 0 20 50;">
                         <children>
-                           <Button fx:id="btnMyFarm" mnemonicParsing="false" onAction="#HandleBackSwapField" text="My Farm" styleClass="button-default-farm" />
-                           <Button fx:id="btnOpponentFarm" mnemonicParsing="false" onAction="#HandleSwapField" text="Opponent's Farm" styleClass="button-default" />
-                           <Button fx:id="btnShop" mnemonicParsing="false" onAction="#HandleOpenStore" text="Shop" styleClass="button-default" />
-                           <Button fx:id="btnSave" mnemonicParsing="false" onAction="#showSaveDialog" text="Save State" styleClass="button-default" />
-                           <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#showLoadDialog" text="Load State" styleClass="button-default" />
-                           <Button fx:id="btnPlugin" mnemonicParsing="false" onAction="#showPluginDialog" text="Plugin" styleClass="button-default" />
+                           <Button fx:id="farmButton" mnemonicParsing="false" onAction="#HandleBackSwapField" text="My Farm" styleClass="button-default-farm" />
+                           <Button fx:id="oponentButton" mnemonicParsing="false" onAction="#HandleSwapField" text="Opponent's Farm" styleClass="button-default" />
+                           <Button fx:id="shopButton" mnemonicParsing="false" onAction="#HandleOpenStore" text="Shop" styleClass="button-default" />
+                           <Button fx:id="saveButton" mnemonicParsing="false" onAction="#showSaveDialog" text="Save State" styleClass="button-default" />
+                           <Button fx:id="loadButton" mnemonicParsing="false" onAction="#showLoadDialog" text="Load State" styleClass="button-default" />
+                           <Button fx:id="pluginButton" mnemonicParsing="false" onAction="#showPluginDialog" text="Plugin" styleClass="button-default" />
                         </children>
                         <AnchorPane.leftAnchor>0.0</AnchorPane.leftAnchor>
                         <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>

@@ -1,5 +1,6 @@
 package tubes2oop_b0s;
 
+import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -86,6 +87,7 @@ public class MainController {
     }
 
     public void bearAttack() {
+        MainData data = MainData.getInstance();
         javafx.application.Platform.runLater(() -> {
             try {
                 shopButton.setDisable(true);
@@ -94,13 +96,16 @@ public class MainController {
                 loadButton.setDisable(true);
                 pluginButton.setDisable(true);
                 nextButton.setDisable(true);
+                saveButton.setDisable(true);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Timer.fxml"));
                 Node root = loader.load();
                 TimerController controller = loader.getController();
                 timerPlace.getChildren().add(root);
+                data.setAttackCard();
                 controller.timerCompletedProperty().addListener((obs, wasCompleted, isCompleted) -> {
                     if (isCompleted) {
-
+                        data.finishAttackCard();
+                        shopButton.setDisable(false);
                         shopButton.setDisable(false);
                         farmButton.setDisable(false);
                         oponentButton.setDisable(false);
