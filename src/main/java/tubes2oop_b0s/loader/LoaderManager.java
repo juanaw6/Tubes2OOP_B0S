@@ -4,7 +4,6 @@ import api.FileConverter;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -46,23 +45,27 @@ public class LoaderManager {
                 if (entryName.endsWith(".class")) {
                     String classNameFromEntry = entryName.replace('/', '.').replace(".class", "");
                     try {
+                        // Use reflection to load the class dynamically
                         Class<?> cls = urlClassLoader.loadClass(classNameFromEntry);
+                        // Use reflection to check if the class implements FileConverter
                         if (FileConverter.class.isAssignableFrom(cls) && !cls.isInterface() && !cls.isAnonymousClass()) {
-                            Object externalLoader = cls.getDeclaredConstructor().newInstance();
-                            if (externalLoader instanceof FileConverter converter) {
-                                addLoader(new LoaderAdapter(converter));
-                                System.out.println("Loader added support: " + converter.supportedExtension());
-                                return true;
-                            }
+                            // Use reflection to create an instance of the class
+                            FileConverter converter = (FileConverter) cls.getDeclaredConstructor().newInstance();
+                            addLoader(new LoaderAdapter(converter));
+                            System.out.println("Loader added support: " + converter.supportedExtension());
+                            return true;
                         }
                     } catch (ClassNotFoundException | NoClassDefFoundError e) {
                         // Log and ignore, continue checking other classes
                         System.err.println("Class not found or could not be loaded: " + classNameFromEntry);
+                    } catch (ReflectiveOperationException e) {
+                        // Log and continue checking other classes
+                        System.err.println("Error instantiating class: " + classNameFromEntry + " - " + e.getMessage());
                     }
                 }
             }
-        } catch (IOException | ReflectiveOperationException e) {
-            System.err.println("Error loading class: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error accessing JAR file: " + e.getMessage());
         }
         return false;
     }
