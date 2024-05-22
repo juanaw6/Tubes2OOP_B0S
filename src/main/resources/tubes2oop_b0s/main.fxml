@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -13,14 +14,14 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" stylesheets="@Main.css" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.MainController">
-   <HBox prefHeight="900.0" prefWidth="1110.0">
+<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" stylesheets="@main.css" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.MainController">
+   <HBox prefHeight="900.0" prefWidth="1120.0">
       <children>
-         <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent  #FFF6E9 transparent transparent; -fx-border-width: 0 4 0 0; -fx-background-color: #40A2E3;">
+         <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent #FFF6E9 transparent transparent; -fx-border-width: 0 4 0 0; -fx-background-color: #40A2E3;">
             <children>
                <AnchorPane prefHeight="60.0" prefWidth="870.0" style="-fx-font-size: 24px;">
                   <children>
-                     <HBox layoutY="30.0" prefHeight="30.0" spacing="10" alignment="CENTER_LEFT" style="-fx-border-color: transparent transparent #FFF6E9 transparent; -fx-border-width: 0 0 2 0; -fx-padding: 0 0 20 50;">
+                     <HBox layoutY="30.0" prefHeight="30.0" spacing="10" alignment="CENTER_LEFT" style="-fx-border-color: transparent transparent #FFF6E9 transparent; -fx-border-width: 0 0 3 0; -fx-padding: 0 0 20 50;">
                         <children>
                            <Button fx:id="btnMyFarm" mnemonicParsing="false" onAction="#HandleBackSwapField" text="My Farm" styleClass="button-default-farm" />
                            <Button fx:id="btnOpponentFarm" mnemonicParsing="false" onAction="#HandleSwapField" text="Opponent's Farm" styleClass="button-default" />
@@ -34,44 +35,47 @@
                      </HBox>
                   </children>
                </AnchorPane>
-               <AnchorPane prefHeight="576.0" prefWidth="870.0">
-                 
+               <VBox prefHeight="586.0" prefWidth="870.0">
                   <children>
-                      <TilePane fx:id="farm" hgap="30" layoutX="83.0" layoutY="26.0" prefHeight="499.0" prefWidth="759.0" vgap="15" />
+                     <AnchorPane prefHeight="576.0" prefWidth="870.0">
+                        <children>
+                           <TilePane fx:id="farm" hgap="30" layoutX="83.0" layoutY="26.0" prefHeight="499.0" prefWidth="759.0" vgap="15" />
+                        </children>
+                     </AnchorPane>
                   </children>
-               </AnchorPane>
-               <AnchorPane prefHeight="249.0" prefWidth="870.0">
-                   <children>
-                       <TilePane fx:id="deck" hgap="30" layoutX="25.0" layoutY="51.0" prefHeight="160.0" prefWidth="820.0" vgap="15" />
-                     <Button layoutX="39.0" layoutY="19.0" mnemonicParsing="false" text="Deck" />
-                     <Button layoutX="760.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="33/40" />
-                   </children>
-               </AnchorPane>
+                  <VBox.margin>
+                     <Insets bottom="20.0"/>
+                  </VBox.margin>
+               </VBox>
+               <VBox alignment="CENTER" prefHeight="259.0" prefWidth="870.0" spacing="10" style="-fx-padding: 10 0 0 0; -fx-border-color: #FFF6E9 transparent transparent transparent; -fx-border-width: 3 0 0 0;">
+                  <AnchorPane prefHeight="249.0" prefWidth="870.0">
+                     <children>
+                        <TilePane fx:id="deck" hgap="30" layoutX="25.0" layoutY="51.0" prefHeight="160.0" prefWidth="820.0" vgap="15" />
+                        <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="6.0">
+                           <Label text="DECK" styleClass="button-secondary" />
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="20" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="6.0">
+                           <Label text="33/40" styleClass="button-secondary" />
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </VBox>
             </children>
          </VBox>
-         <AnchorPane prefHeight="900.0" prefWidth="280.0">
+         <AnchorPane prefHeight="900.0" prefWidth="280.0" style="-fx-background-color: #40A2E3;">
             <children>
-              
-               <Circle layoutX="138.0" layoutY="128.0" radius="100.0" stroke="BLACK" strokeType="INSIDE">
-                  <fill>
-                     <LinearGradient endX="1.0" endY="1.0">
-                        <stops>
-                           <Stop>
-                              <color>
-                                 <Color red="0.42105263471603394" green="0.42105263471603394" blue="0.42105263471603394" />
-                              </color>
-                           </Stop>
-                           <Stop offset="1.0">
-                              <color>
-                                 <Color red="1.0" green="1.0" blue="1.0" />
-                              </color>
-                           </Stop>
-                        </stops>
-                     </LinearGradient>
-                  </fill></Circle>
-               <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="42.0" prefWidth="194.0" text="NEXT TURN" fx:id="nextButton" />
-               <Button layoutX="23.0" layoutY="777.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 2" />
-               <Button layoutX="23.0" layoutY="713.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 1" />
+
+               <VBox alignment="CENTER" prefHeight="265.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+                  <children>
+                     <StackPane>
+                        <Circle fx:id="circle" radius="70.0" styleClass="styled-circle"/>
+<!--                        <Label text="Sample" styleClass="styled-text"/>-->
+                     </StackPane>
+                  </children>
+               </VBox>
+               <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="40.0" prefWidth="194.0" text="Next Turn" fx:id="nextButton" styleClass="button-next-turn"/>
+               <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="115.0" text="Player 2" styleClass="player-label" />
+               <Label layoutX="23.0" layoutY="713.0" prefHeight="42.0" prefWidth="115.0" text="Player 1" styleClass="player-label" />
                
                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1" fx:id="turn">
                   <font>

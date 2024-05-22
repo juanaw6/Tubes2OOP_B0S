@@ -8,20 +8,20 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="CENTER"  prefHeight="130.0" prefWidth="110.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141"  style="-fx-background-color: #e0e0e0"  fx:controller="tubes2oop_b0s.CardController"  fx:id="card">
+<VBox alignment="CENTER" stylesheets="@main.css" prefHeight="130.0" prefWidth="110.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" style="-fx-background-color: #BBE2EC; -fx-border-color: #1B425B; -fx-border-width: 3px; -fx-background-radius: 10px; -fx-border-radius: 8px;" fx:controller="tubes2oop_b0s.CardController" fx:id="card">
    <children>
-      <ImageView fitHeight="110.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" fx:id="cardImage">
+      <ImageView fitHeight="90.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" fx:id="cardImage">
          <image>
             <Image url="@../public/Accelerate.png" fx:id="ImageView"/>
          </image>
          <VBox.margin>
-            <Insets bottom="10.0" />
+            <Insets bottom="5.0" />
          </VBox.margin>
       </ImageView>
-      <Label text="clock" fx:id="cardLabel">
-         <font>
-            <Font name="Clarendon BT Bold" size="16.0" />
-         </font>
+      <Label text="clock" fx:id="cardLabel" style="-fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: 700;">
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
       </Label>
    </children>
 </VBox>
