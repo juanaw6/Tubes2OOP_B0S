@@ -19,9 +19,10 @@ public class StartController {
     @FXML
     protected void handleStartGame(ActionEvent event) {
         try {
+            MainData mainData = MainData.getInstance();
+            mainData.NextTurn(event);
             Parent mainRoot = FXMLLoader.load(getClass().getResource("main.fxml"));
             Scene mainScene = new Scene(mainRoot, 1150, 900);
-
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(mainScene);
             window.setResizable(false);
@@ -32,9 +33,7 @@ public class StartController {
             window.setY((screenBounds.getHeight() - mainScene.getHeight()) / 2);
 
             window.show();
-            
-            MainData mainData = MainData.getInstance();
-            mainData.NextTurn();
+
         } catch (IOException e) {
             e.printStackTrace();
             // Handle exceptions possibly with a dialog or logging

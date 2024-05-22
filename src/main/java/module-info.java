@@ -14,6 +14,7 @@ module tubes2oop_b0s {
     requires annotations;
     requires javafx.media;
     requires org.yaml.snakeyaml;
+    requires net.bytebuddy;
 
     opens tubes2oop_b0s to javafx.fxml;
 
