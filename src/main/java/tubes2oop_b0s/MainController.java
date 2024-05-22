@@ -34,10 +34,10 @@ public class MainController {
     private TilePane farm;
     @FXML
     private TilePane deck;
-    
+
     @FXML
     private AnchorPane timerPlace;
-    
+
     @FXML
     private Button farmButton;
     @FXML
@@ -52,7 +52,7 @@ public class MainController {
     private Button oponentButton;
     @FXML
     private Button nextButton;
-    
+
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -67,7 +67,7 @@ public class MainController {
         return instance;
     }
 
-    private void reload() throws IOException{
+    private void reload() throws IOException {
         farm.getChildren().clear();
         deck.getChildren().clear();
         MainData data = MainData.getInstance();
@@ -81,7 +81,7 @@ public class MainController {
             deck.getChildren().add(deckNodes.get(i));
         }
     }
-    
+
     public void bearAttack() {
         javafx.application.Platform.runLater(() -> {
             try {
@@ -97,7 +97,7 @@ public class MainController {
                 timerPlace.getChildren().add(root);
                 controller.timerCompletedProperty().addListener((obs, wasCompleted, isCompleted) -> {
                     if (isCompleted) {
-        
+
                         shopButton.setDisable(false);
                         farmButton.setDisable(false);
                         oponentButton.setDisable(false);
@@ -112,7 +112,7 @@ public class MainController {
                 e.printStackTrace();
             }
         });
-        
+
     }
 
     @FXML
@@ -134,7 +134,7 @@ public class MainController {
     @FXML
     protected void HandleNextTurn(ActionEvent event) throws IOException {
         MainData mainData = MainData.getInstance();
-        mainData.NextTurn();
+        mainData.NextTurn(event);
         reload();
     }
 

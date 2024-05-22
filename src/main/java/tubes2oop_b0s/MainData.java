@@ -1,5 +1,6 @@
 package tubes2oop_b0s;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import tubes2oop_b0s.state.Player;
@@ -22,8 +23,8 @@ public class MainData {
     private MainData() {
         farmNodes = new ArrayList<>(20);
         deckNodes = new ArrayList<>(6);
-//         player1 = new Player("Player 1");
-//         player2 = new Player("Player 2");
+        // player1 = new Player("Player 1");
+        // player2 = new Player("Player 2");
         currentPLayer = "Player 1";
         currentDeck = "Player 1";
     }
@@ -40,7 +41,7 @@ public class MainData {
         return instance;
     }
 
-    public void NextTurn() {
+    public void NextTurn(ActionEvent event) {
         // change player
         if (currentPLayer.equals("Player 1")) {
             currentPLayer = "Player 2";
@@ -107,11 +108,20 @@ public class MainData {
             e.printStackTrace();
         }
         turn++;
-        MainApplication.getInstance().showCardShufflePopup();
+        MainApplication.getInstance().showCardShufflePopup(event, getShuffleCards());
         int random = (int) (Math.random() * 6);
-        if (random ==3){
-                MainController.getInstance().bearAttack();
+        if (random == 3) {
+            MainController.getInstance().bearAttack();
         }
+    }
+
+    public ArrayList<String> getShuffleCards() {
+        ArrayList<String> shuffleCards = new ArrayList<>();
+        // shuffleCards.add("Card1,Accelerate.png");
+        shuffleCards.add("Card2,Accelerate.png");
+        shuffleCards.add("Card3,Accelerate.png");
+        // shuffleCards.add("Card4,Accelerate.png");
+        return shuffleCards;
     }
 
     public void SwapField() {
