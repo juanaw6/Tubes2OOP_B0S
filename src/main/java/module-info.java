@@ -13,6 +13,7 @@ module tubes2oop_b0s {
     requires com.fasterxml.jackson.databind;
     requires annotations;
     requires javafx.media;
+    requires org.yaml.snakeyaml;
 
     opens tubes2oop_b0s to javafx.fxml;
 

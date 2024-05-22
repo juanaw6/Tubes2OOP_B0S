@@ -10,6 +10,9 @@ import tubes2oop_b0s.loader.LoaderManager;
 import tubes2oop_b0s.state.GameState;
 import tubes2oop_b0s.state.Player;
 import tubes2oop_b0s.store.Store;
+import yamlplugin.YamlConverter;
+
+import java.io.File;
 
 public class GameApplication {
     public static void main(String[] args) {
@@ -20,8 +23,11 @@ public class GameApplication {
         System.out.println("Current player gulden: " + gs.getCurrentPlayer().getGulden());
         System.out.println("Current player gulden: " + gs.getCurrentPlayer().getDeckRef().toString());
 
+
+        String folder = "C:/Users/LENOVO/OneDrive/Desktop/Tubes2OOP_B0S/src/main/resources/test_json";
         FileConverter cv = new JsonConverter();
-        cv.convertToTxt("C:/Users/LENOVO/OneDrive/Desktop/Tubes2OOP_B0S/src/main/resources/test_json");
+//        FileConverter cv = new YamlConverter();
+        cv.convertFromTxt(folder);
     }
 
 }

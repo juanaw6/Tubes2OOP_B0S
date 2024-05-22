@@ -100,11 +100,11 @@ public class Deck {
     public ArrayList<Card> getRandomShuffled() {
         ArrayList<Card> drawnCards = new ArrayList<>();
         int neededCards = MAX_ACTIVE_DECK_SIZE - (int) activeDeck.stream().filter(Objects::nonNull).count();
+        neededCards = Math.min(4, neededCards);
+        neededCards = Math.min(shuffledDeck.size(), neededCards);
         for (int i = 0; i < neededCards; i++) {
-            if (!shuffledDeck.isEmpty()) {
-                Card card = shuffledDeck.remove(0);
-                drawnCards.add(card);
-            }
+            Card card = shuffledDeck.get(i);
+            drawnCards.add(card);
         }
         return drawnCards;
     }

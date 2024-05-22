@@ -1,10 +1,11 @@
 package jsonplugin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.*;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 import api.FileConverter;
 
@@ -33,6 +34,28 @@ public class JsonConverter implements FileConverter {
     }
 
     @Override
+    public void cleanSupportedExtensionFiles(String folderPath) {
+        cleanFilesByNames(folderPath, supportedExtension());
+    }
+
+    @Override
+    public void cleanTxtFiles(String folderPath) {
+        cleanFilesByNames(folderPath, "txt");
+    }
+
+    private void cleanFilesByNames(String folderPath, String extension) {
+        List<String> fileNames = Arrays.asList("gamestate", "player1", "player2");
+        fileNames.forEach(fileName -> {
+            String filePath = folderPath + "/" + fileName + "." + extension;
+            try {
+                Files.deleteIfExists(Paths.get(filePath));
+            } catch (IOException e) {
+                System.err.println("Error deleting file: " + filePath + " - " + e.getMessage());
+            }
+        });
+    }
+
+    @Override
     public String supportedExtension() {
         return "json";
     }
@@ -40,13 +63,11 @@ public class JsonConverter implements FileConverter {
     private void convertGamestateToTxt(String filePath, String outputFilePath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        // Read JSON content from the file
         Map<String, Object> jsonData = mapper.readValue(new File(filePath), Map.class);
 
         int turn = (int) jsonData.get("turn");
         List<Map<String, Object>> store = (List<Map<String, Object>>) jsonData.get("store");
 
-        // Write content to the TXT file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
             writer.write(String.valueOf(turn));
             writer.newLine();
@@ -57,7 +78,6 @@ public class JsonConverter implements FileConverter {
                 String name = (String) item.get("name");
                 int quantity = (int) item.get("quantity");
                 writer.write(name + " " + quantity);
-                System.out.println(name + " " + quantity);
                 writer.newLine();
             }
         }
@@ -66,7 +86,6 @@ public class JsonConverter implements FileConverter {
     private void convertPlayerToTxt(String filePath, String outputFilePath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        // Read JSON content from the file
         Map<String, Object> jsonData = mapper.readValue(new File(filePath), Map.class);
 
         int gulden = (int) jsonData.get("gulden");
@@ -107,10 +126,92 @@ public class JsonConverter implements FileConverter {
     }
 
     private void convertGamestateFromTxt(String filePath, String outputFilePath) throws IOException {
-        // Implement the conversion from TXT to JSON if needed
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        Map<String, Object> jsonData = new HashMap<>();
+        List<Map<String, Object>> store = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line = reader.readLine();
+            int turn = Integer.parseInt(line);
+            jsonData.put("turn", turn);
+
+            line = reader.readLine();
+            int storeSize = Integer.parseInt(line);
+
+            for (int i = 0; i < storeSize; i++) {
+                line = reader.readLine();
+                String[] parts = line.split(" ");
+                String name = parts[0];
+                int quantity = Integer.parseInt(parts[1]);
+                Map<String, Object> item = new HashMap<>();
+                item.put("name", name);
+                item.put("quantity", quantity);
+                store.add(item);
+            }
+        }
+
+        jsonData.put("store", store);
+        mapper.writeValue(new File(outputFilePath), jsonData);
     }
 
     private void convertPlayerFromTxt(String filePath, String outputFilePath) throws IOException {
-        // Implement the conversion from TXT to JSON if needed
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        Map<String, Object> jsonData = new HashMap<>();
+        List<Map<String, Object>> activeDeck = new ArrayList<>();
+        List<Map<String, Object>> field = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line = reader.readLine();
+            int gulden = Integer.parseInt(line);
+            jsonData.put("gulden", gulden);
+
+            line = reader.readLine();
+            int deck = Integer.parseInt(line);
+            jsonData.put("deck", deck);
+
+            line = reader.readLine();
+            int activeDeckSize = Integer.parseInt(line);
+
+            for (int i = 0; i < activeDeckSize; i++) {
+                line = reader.readLine();
+                String[] parts = line.split(" ");
+                String location = parts[0];
+                String cardType = parts[1];
+                Map<String, Object> card = new HashMap<>();
+                card.put("location", location);
+                card.put("card_type", cardType);
+                activeDeck.add(card);
+            }
+
+            line = reader.readLine();
+            int fieldSize = Integer.parseInt(line);
+
+            for (int i = 0; i < fieldSize; i++) {
+                line = reader.readLine();
+                String[] parts = line.split(" ");
+                String location = parts[0];
+                String cardType = parts[1];
+                int ageOrWeight = Integer.parseInt(parts[2]);
+                int effectsSize = Integer.parseInt(parts[3]);
+                List<String> effects = new ArrayList<>();
+                for (int j = 0; j < effectsSize; j++) {
+                    effects.add(parts[4 + j]);
+                }
+                Map<String, Object> card = new HashMap<>();
+                card.put("location", location);
+                card.put("card_type", cardType);
+                card.put("age_or_weight", ageOrWeight);
+                card.put("effects", effects);
+                field.add(card);
+            }
+        }
+
+        jsonData.put("active_deck", activeDeck);
+        jsonData.put("field", field);
+        mapper.writeValue(new File(outputFilePath), jsonData);
     }
 }

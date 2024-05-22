@@ -1,17 +1,13 @@
 {
-  "turn": 2,
-  "store": [
-    {
-      "name": "JAGUNG",
-      "quantity": 3
-    },
-    {
-      "name": "DAGING_KUDA",
-      "quantity": 5
-    },
-    {
-      "name": "SUSU",
-      "quantity": 4
-    }
-  ]
+  "turn" : 2,
+  "store" : [ {
+    "quantity" : 3,
+    "name" : "JAGUNG"
+  }, {
+    "quantity" : 5,
+    "name" : "DAGING_KUDA"
+  }, {
+    "quantity" : 4,
+    "name" : "SUSU"
+  } ]
 }
