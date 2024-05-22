@@ -115,8 +115,36 @@
     -fx-background-color: #112c39;
 }
 
+.button-back-hover {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-size: 14px;
+    -fx-background-color: #1B425B;
+    -fx-text-fill: #FFF6E9;
+    -fx-font-family: 'Inter';
+    -fx-font-weight: 700;
+}
+
+.button-back-hover:hover {
+    -fx-background-color: #112c39;
+}
+
 .player-label {
     -fx-background-color: #FFF6E9;
+    -fx-text-fill: #1B425B;
+    -fx-font-family: 'Inter';
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+    -fx-border-color: #1B425B;
+    -fx-border-width: 5px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 8px;
+    -fx-alignment: center;
+    -fx-padding: 8px;
+}
+
+.golden-label {
+    -fx-background-color: #BBE2EC;
     -fx-text-fill: #1B425B;
     -fx-font-family: 'Inter';
     -fx-font-size: 15px;

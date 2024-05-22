@@ -14,14 +14,8 @@
         <children>
             <VBox prefHeight="900.0" prefWidth="1164.0" style="-fx-border-color: transparent  #E0E0E0 transparent transparent; -fx-border-width: 0 0 0 0;">
                 <children>
-                    <AnchorPane prefHeight="80.0" prefWidth="1150.0" style="-fx-font-size: 30px; -fx-border-style: solid; -fx-border-color: transparent transparent #FFF6E9 transparent; -fx-border-width: 0 0 4px 0;" layoutY="-20.0">
+                    <AnchorPane prefHeight="80.0" prefWidth="1164.0" style="-fx-font-size: 30px; -fx-border-style: solid; -fx-border-color: transparent transparent #FFF6E9 transparent; -fx-border-width: 0 0 4px 0;" >
                         <children>
-                            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1150.0">
-                                <children>
-                                    <Region prefWidth="50.0"/>
-                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="86.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 14px; -fx-background-color: #1B425B; -fx-text-fill: #FFF6E9; -fx-font-family: 'Inter'; -fx-font-weight: 700;" text="Back" onAction="#HandleBackToMain"/>
-                                </children>
-                            </HBox>
                             <HBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="80.0" prefWidth="1150.0">
                                 <children>
                                     <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="SHOP" wrappingWidth="150.32421875" style="-fx-fill: #FFF6E9; -fx-font-weight: 900;">
@@ -29,6 +23,12 @@
                                             <Font name="Inter" size="48.0"/>
                                         </font>
                                     </Text>
+                                </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1150.0">
+                                <children>
+                                    <Region prefWidth="50.0"/>
+                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="86.0" styleClass="button-back-hover" text="Back" onAction="#HandleBackToMain"/>
                                 </children>
                             </HBox>
                         </children>
