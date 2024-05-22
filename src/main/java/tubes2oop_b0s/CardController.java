@@ -20,6 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
 
 import java.util.spi.CalendarDataProvider;
 
@@ -38,6 +40,15 @@ public class CardController {
     public void initialize() {
         // Uncomment if needed to make the card draggable immediately
         // makeDraggable();
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.web("#0000001A"));
+        dropShadow.setOffsetX(2);
+        dropShadow.setOffsetY(6);
+        dropShadow.setRadius(10);
+        dropShadow.setSpread(0.5);
+
+        // Apply the effect to the VBox
+        card.setEffect(dropShadow);
     }
 
     public ImageView getCardImage() {

@@ -69,13 +69,14 @@
                   <children>
                      <StackPane>
                         <Circle fx:id="circle" radius="70.0" styleClass="styled-circle"/>
-<!--                        <Label text="Sample" styleClass="styled-text"/>-->
                      </StackPane>
                   </children>
                </VBox>
                <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="40.0" prefWidth="194.0" text="Next Turn" fx:id="nextButton" styleClass="button-next-turn"/>
                <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="115.0" text="Player 2" styleClass="player-label" />
+               <!-- <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="115.0" text="10000" styleClass="player-label" /> -->
                <Label layoutX="23.0" layoutY="713.0" prefHeight="42.0" prefWidth="115.0" text="Player 1" styleClass="player-label" />
+               <!-- <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="115.0" text="10000" styleClass="player-label" /> -->
                
                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1" fx:id="turn">
                   <font>
