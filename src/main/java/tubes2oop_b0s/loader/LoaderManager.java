@@ -1,8 +1,11 @@
 package tubes2oop_b0s.loader;
 
+import api.FileConverter;
+
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoaderManager {
@@ -31,14 +34,10 @@ public class LoaderManager {
         try (URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{jarFile.toURI().toURL()}, getClass().getClassLoader())) {
             Class<?> cls = urlClassLoader.loadClass(className);
             Object externalLoader = cls.getDeclaredConstructor().newInstance();
-            if (externalLoader instanceof GameStateLoader loader) {
-                loaders.put(loader.getSupportedFileExtension(), loader);
-                System.out.println("Loader added: " + className);
-                return true;
-            } else {
-                GameStateLoader adapter = new ExternalGameStateLoaderAdapter(externalLoader);
+            if (externalLoader instanceof FileConverter converter) {
+                GameStateLoader adapter = new LoaderAdapter(converter);
                 loaders.put(adapter.getSupportedFileExtension(), adapter);
-                System.out.println("Adapter for external loader added: " + className);
+                System.out.println("Loader added support: " + adapter.getSupportedFileExtension());
                 return true;
             }
         } catch (Exception e) {
@@ -63,5 +62,9 @@ public class LoaderManager {
         } else {
             System.err.println("No loader registered for extension: " + extension);
         }
+    }
+
+    public ArrayList<String> getSupportedFileExtensions() {
+        return new ArrayList<>(loaders.keySet());
     }
 }
