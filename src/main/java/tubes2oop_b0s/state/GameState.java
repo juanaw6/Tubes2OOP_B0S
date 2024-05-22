@@ -12,8 +12,8 @@ public class GameState {
 
     private GameState() {
         players = new ArrayList<>();
-//        players.add(new Player("Player 1"));
-//        players.add(new Player("Player 2"));
+        players.add(new Player("Player 1"));
+        players.add(new Player("Player 2"));
         turn = 0;
         currentPlayerIndex = 0;
     }
