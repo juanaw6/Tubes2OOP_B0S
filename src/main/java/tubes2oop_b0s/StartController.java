@@ -23,7 +23,6 @@ public class StartController {
             mainData.NextTurn(event);
             Parent mainRoot = FXMLLoader.load(getClass().getResource("main.fxml"));
             Scene mainScene = new Scene(mainRoot, 1150, 900);
-
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(mainScene);
             window.setResizable(false);

@@ -92,12 +92,12 @@ public class MainData {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        turn++;
         MainApplication.getInstance().showCardShufflePopup(event, getShuffleCards());
         int random = (int) (Math.random() * 6);
-        if (random == 0) {
+        if (random == 0 && turn > 0) {
             MainController.getInstance().bearAttack();
         }
+        turn++;
     }
 
     public ArrayList<String> getShuffleCards() {
