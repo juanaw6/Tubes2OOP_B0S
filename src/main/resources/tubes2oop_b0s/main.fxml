@@ -22,12 +22,12 @@
                   <children>
                      <HBox layoutX="83.0" layoutY="30.0" prefHeight="42.0" prefWidth="573.0" spacing="20">
                         <children>
-                           <Button mnemonicParsing="false" onAction="#HandleBackSwapField" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm" />
-                           <Button mnemonicParsing="false" onAction="#showPluginDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Plugin" />
-                           <Button mnemonicParsing="false" onAction="#showSaveDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Save" />
-                           <Button mnemonicParsing="false" onAction="#showLoadDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Load" />
-                           <Button mnemonicParsing="false" onAction="#HandleOpenStore" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" />
-                           <Button mnemonicParsing="false" onAction="#HandleSwapField" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" />
+                           <Button mnemonicParsing="false" onAction="#HandleBackSwapField" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm" fx:id="farmButton"/>
+                           <Button mnemonicParsing="false" onAction="#showPluginDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Plugin" fx:id="pluginButton"/>
+                           <Button mnemonicParsing="false" onAction="#showSaveDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Save" fx:id="saveButton"/>
+                           <Button mnemonicParsing="false" onAction="#showLoadDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Load" fx:id="loadButton"/>
+                           <Button mnemonicParsing="false" onAction="#HandleOpenStore" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" fx:id="shopButton"/>
+                           <Button mnemonicParsing="false" onAction="#HandleSwapField" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" fx:id="oponentButton"/>
                         </children>
                      </HBox>
                   </children>
@@ -67,7 +67,7 @@
                         </stops>
                      </LinearGradient>
                   </fill></Circle>
-               <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="42.0" prefWidth="194.0" text="NEXT TURN" />
+               <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="42.0" prefWidth="194.0" text="NEXT TURN" fx:id="nextButton" />
                <Button layoutX="23.0" layoutY="777.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 2" />
                <Button layoutX="23.0" layoutY="713.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 1" />
                

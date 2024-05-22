@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainController {
+    private static MainController instance;
     @FXML
     private Label welcomeText;
 
@@ -34,33 +35,42 @@ public class MainController {
     @FXML
     private TilePane deck;
     
-   @FXML
+    @FXML
     private AnchorPane timerPlace;
+    
+    @FXML
+    private Button farmButton;
+    @FXML
+    private Button pluginButton;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button shopButton;
+    @FXML
+    private Button loadButton;
+    @FXML
+    private Button oponentButton;
+    @FXML
+    private Button nextButton;
+    
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
     public void initialize() throws IOException {
-        
+        instance = this;
         reload();
+    }
+
+    public static MainController getInstance() {
+        return instance;
     }
 
     private void reload() throws IOException{
         farm.getChildren().clear();
         deck.getChildren().clear();
         MainData data = MainData.getInstance();
-        if (data.getTurn() ==3){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Timer.fxml"));
-            Node root = loader.load();
-            TimerController controller = loader.getController();
-            timerPlace.getChildren().add(root);
-            controller.timerCompletedProperty().addListener((obs, wasCompleted, isCompleted) -> {
-                if (isCompleted) {
-                    timerPlace.getChildren().clear();// Call method to handle post-timer completion
-                }
-            });
-        }
         ArrayList<Node> farmNodes = data.getFarmNodes();
         System.out.println(data.getTurn());
         for (int i = 0; i < farmNodes.size(); i++) {
@@ -70,6 +80,39 @@ public class MainController {
         for (int i = 0; i < deckNodes.size(); i++) {
             deck.getChildren().add(deckNodes.get(i));
         }
+    }
+    
+    public void bearAttack() {
+        javafx.application.Platform.runLater(() -> {
+            try {
+                shopButton.setDisable(true);
+                farmButton.setDisable(true);
+                oponentButton.setDisable(true);
+                loadButton.setDisable(true);
+                pluginButton.setDisable(true);
+                nextButton.setDisable(true);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Timer.fxml"));
+                Node root = loader.load();
+                TimerController controller = loader.getController();
+                timerPlace.getChildren().add(root);
+                controller.timerCompletedProperty().addListener((obs, wasCompleted, isCompleted) -> {
+                    if (isCompleted) {
+        
+                        shopButton.setDisable(false);
+                        farmButton.setDisable(false);
+                        oponentButton.setDisable(false);
+                        loadButton.setDisable(false);
+                        pluginButton.setDisable(false);
+                        nextButton.setDisable(false);
+                        timerPlace.getChildren().clear();// Call method to handle post-timer completion
+                    }
+                });
+            } catch (Exception e) {
+                System.err.println("Error loading FXML");
+                e.printStackTrace();
+            }
+        });
+        
     }
 
     @FXML

@@ -2,7 +2,9 @@ package tubes2oop_b0s;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import tubes2oop_b0s.state.Player;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainData {
@@ -13,11 +15,15 @@ public class MainData {
     private String currentPLayer;
     private String currentDeck;
     private int turn;
+    private Player player1;
+    private Player player2;
 
     // Private constructor to prevent instantiation from other classes
     private MainData() {
         farmNodes = new ArrayList<>(20);
         deckNodes = new ArrayList<>(6);
+//         player1 = new Player("Player 1");
+//         player2 = new Player("Player 2");
         currentPLayer = "Player 1";
         currentDeck = "Player 1";
     }
@@ -56,7 +62,7 @@ public class MainData {
                     // appropriately
                     card.setId("farm-" + i);
                     CardController controller = loader.getController();
-                    controller.setCardInfo("farm-" + i, "Accelerate.png", "Delay", false);
+                    controller.setCardInfo("farm-" + i, "Empty.png", "Delay", false);
 
                     farmNodes.add(card);
                 }
@@ -67,7 +73,7 @@ public class MainData {
                     // appropriately
                     card.setId("deck-" + i);
                     CardController controller = loader.getController();
-                    controller.setCardInfo("deck-" + i, "Delay.png", "Accelerate", false);
+                    controller.setCardInfo("deck-" + i, "Empty.png", "Accelerate", false);
 
                     deckNodes.add(card);
                 }
@@ -81,7 +87,7 @@ public class MainData {
                     // appropriately
                     card.setId("farm-" + i);
                     CardController controller = loader.getController();
-                    controller.setCardInfo("farm-" + i, "Delay.png", "Delay", false);
+                    controller.setCardInfo("farm-" + i, "Empty.png", "Delay", false);
 
                     farmNodes.add(card);
                 }
@@ -92,7 +98,7 @@ public class MainData {
                     // appropriately
                     card.setId("deck-" + i);
                     CardController controller = loader.getController();
-                    controller.setCardInfo("deck-" + i, "Accelerate.png", "Accelerate", false);
+                    controller.setCardInfo("deck-" + i, "Empty.png", "Accelerate", false);
 
                     deckNodes.add(card);
                 }
@@ -102,6 +108,10 @@ public class MainData {
         }
         turn++;
         MainApplication.getInstance().showCardShufflePopup();
+        int random = (int) (Math.random() * 6);
+        if (random ==3){
+                MainController.getInstance().bearAttack();
+        }
     }
 
     public void SwapField() {
@@ -229,5 +239,21 @@ public class MainData {
 
     public void setTurn(int turn) {
         this.turn = turn;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
     }
 }

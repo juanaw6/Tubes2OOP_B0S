@@ -32,6 +32,9 @@ public class StartController {
             window.setY((screenBounds.getHeight() - mainScene.getHeight()) / 2);
 
             window.show();
+            
+            MainData mainData = MainData.getInstance();
+            mainData.NextTurn();
         } catch (IOException e) {
             e.printStackTrace();
             // Handle exceptions possibly with a dialog or logging

@@ -24,6 +24,7 @@ public class MainApplication extends Application {
         primaryStage.show();
 
         // Load multiple cards - example task after the stage is shown
+
         loadCards();
     }
 
@@ -32,6 +33,7 @@ public class MainApplication extends Application {
     }
 
     private void loadCards() {
+//        for create all element card for first time
         try {
             MainData mainData = MainData.getInstance();
             ArrayList<Node> farmNodes = new ArrayList<>();
@@ -43,7 +45,7 @@ public class MainApplication extends Application {
                 // appropriately
                 card.setId("farm-" + i);
                 CardController controller = loader.getController();
-                controller.setCardInfo("farm-" + i, "Delay.png", "Delay", false);
+                controller.setCardInfo("farm-" + i, "Empty.png", "", false);
 
                 farmNodes.add(card);
             }
@@ -54,7 +56,7 @@ public class MainApplication extends Application {
                 // appropriately
                 card.setId("deck-" + i);
                 CardController controller = loader.getController();
-                controller.setCardInfo("deck-" + i, "Accelerate.png", "Accelerate", false);
+                controller.setCardInfo("deck-" + i, "Empty.png", "", false);
 
                 deckNodes.add(card);
             }
