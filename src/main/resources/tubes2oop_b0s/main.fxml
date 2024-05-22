@@ -64,7 +64,6 @@
          </VBox>
          <AnchorPane prefHeight="900.0" prefWidth="280.0" style="-fx-background-color: #40A2E3;">
             <children>
-
                <VBox alignment="CENTER" prefHeight="265.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
                   <children>
                      <StackPane>
@@ -73,17 +72,16 @@
                   </children>
                </VBox>
                <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="40.0" prefWidth="194.0" text="Next Turn" fx:id="nextButton" styleClass="button-next-turn"/>
-               <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="115.0" text="Player 2" styleClass="player-label" />
-               <!-- <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="115.0" text="10000" styleClass="player-label" /> -->
-               <Label layoutX="23.0" layoutY="713.0" prefHeight="42.0" prefWidth="115.0" text="Player 1" styleClass="player-label" />
-               <!-- <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="115.0" text="10000" styleClass="player-label" /> -->
-               
+               <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="140.0" text="Player 2" styleClass="player-label"/>
+               <Label layoutX="173.0" layoutY="777.0" prefHeight="42.0" prefWidth="80.0" text="0" styleClass="golden-label"/>
+               <Label layoutX="23.0" layoutY="713.0" prefHeight="42.0" prefWidth="140.0" text="Player 1" styleClass="player-label"/>
+               <Label layoutX="173.0" layoutY="713.0" prefHeight="42.0" prefWidth="80.0" text="10000" styleClass="golden-label"/>
                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1" fx:id="turn">
                   <font>
-                     <Font size="69.0" />
+                     <Font size="69.0"/>
                   </font>
                </Label>
-               <AnchorPane fx:id="timerPlace" layoutY="305.0" prefHeight="200.0" prefWidth="200.0" />
+               <AnchorPane fx:id="timerPlace" layoutY="305.0" prefHeight="200.0" prefWidth="200.0"/>
             </children>
          </AnchorPane>
       </children>
