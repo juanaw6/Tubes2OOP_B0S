@@ -29,4 +29,8 @@ public abstract class Animal extends PlaceableCard {
     }
 
     public abstract void consume(ConsumableCard consumableCard) throws Exception;
+
+    public int getHarvestWeight() {
+        return harvestWeight;
+    }
 }

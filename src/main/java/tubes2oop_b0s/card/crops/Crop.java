@@ -29,4 +29,8 @@ public class Crop extends PlaceableCard {
     public void incrementAge() {
         this.age++;
     }
+
+    public int getHarvestAge() {
+        return harvestAge;
+    }
 }

@@ -22,12 +22,13 @@ public class GameApplication {
         LoaderManager lm = LoaderManager.getInstance();
         FileConverter jsoncv = new JsonConverter();
         FileConverter yamlcv = new YamlConverter();
-        lm.addLoader(new LoaderAdapter(jsoncv));
-        lm.addLoader(new LoaderAdapter(yamlcv));
+//        lm.addLoader(new LoaderAdapter(jsoncv));
+//        lm.addLoader(new LoaderAdapter(yamlcv));
+        lm.loadLoaderFromJar("C:\\Users\\LENOVO\\OneDrive\\Desktop\\Tubes2OOP_B0S\\src\\main\\java\\tubes2oop_b0s\\loader\\YamlConverter.jar");
+        lm.loadLoaderFromJar("C:\\Users\\LENOVO\\OneDrive\\Desktop\\Tubes2OOP_B0S\\src\\main\\java\\tubes2oop_b0s\\loader\\JsonConverter.jar");
+        String folder = "C:/Users/LENOVO/OneDrive/Desktop/Tubes2OOP_B0S/src/main/resources/test_yaml";
 
-        String folder = "C:/Users/LENOVO/OneDrive/Desktop/Tubes2OOP_B0S/src/main/resources/test_json";
-
-        lm.loadGameState(folder, "json");
+        lm.loadGameState(folder, "yaml");
         System.out.println("Current player gulden: " + gs.getCurrentPlayer().getGulden());
         System.out.println("Current player gulden: " + gs.getCurrentPlayer().getDeckRef().toString());
 

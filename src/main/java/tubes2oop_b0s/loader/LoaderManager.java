@@ -3,10 +3,15 @@ package tubes2oop_b0s.loader;
 import api.FileConverter;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public class LoaderManager {
     private static LoaderManager instance = null;
@@ -24,22 +29,39 @@ public class LoaderManager {
         return instance;
     }
 
-    public boolean loadLoaderFromJar(String jarFilePath, String className) {
+    public boolean loadLoaderFromJar(String jarFilePath) {
         File jarFile = new File(jarFilePath);
         if (!jarFile.exists() || !jarFile.isFile()) {
             System.err.println("Invalid JAR file path: " + jarFilePath);
             return false;
         }
 
-        try (URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{jarFile.toURI().toURL()}, getClass().getClassLoader())) {
-            Class<?> cls = urlClassLoader.loadClass(className);
-            Object externalLoader = cls.getDeclaredConstructor().newInstance();
-            if (externalLoader instanceof FileConverter converter) {
-                addLoader(new LoaderAdapter(converter));
-                System.out.println("Loader added support: " + converter.supportedExtension());
-                return true;
+        try (URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{jarFile.toURI().toURL()}, getClass().getClassLoader());
+             JarFile jar = new JarFile(jarFile)) {
+
+            Enumeration<JarEntry> entries = jar.entries();
+            while (entries.hasMoreElements()) {
+                JarEntry entry = entries.nextElement();
+                String entryName = entry.getName();
+                if (entryName.endsWith(".class")) {
+                    String classNameFromEntry = entryName.replace('/', '.').replace(".class", "");
+                    try {
+                        Class<?> cls = urlClassLoader.loadClass(classNameFromEntry);
+                        if (FileConverter.class.isAssignableFrom(cls) && !cls.isInterface() && !cls.isAnonymousClass()) {
+                            Object externalLoader = cls.getDeclaredConstructor().newInstance();
+                            if (externalLoader instanceof FileConverter converter) {
+                                addLoader(new LoaderAdapter(converter));
+                                System.out.println("Loader added support: " + converter.supportedExtension());
+                                return true;
+                            }
+                        }
+                    } catch (ClassNotFoundException | NoClassDefFoundError e) {
+                        // Log and ignore, continue checking other classes
+                        System.err.println("Class not found or could not be loaded: " + classNameFromEntry);
+                    }
+                }
             }
-        } catch (Exception e) {
+        } catch (IOException | ReflectiveOperationException e) {
             System.err.println("Error loading class: " + e.getMessage());
         }
         return false;
