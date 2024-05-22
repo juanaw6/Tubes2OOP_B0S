@@ -4,19 +4,19 @@ import tubes2oop_b0s.card.*;
 import tubes2oop_b0s.card.animals.*;
 import tubes2oop_b0s.card.crops.*;
 import tubes2oop_b0s.card.effects.*;
+import tubes2oop_b0s.loader.LoaderManager;
+import tubes2oop_b0s.state.GameState;
 import tubes2oop_b0s.state.Player;
+import tubes2oop_b0s.store.Store;
 
 public class GameApplication {
     public static void main(String[] args) {
-        Player player = new Player("hello");
-//        Card myCarnivore = new Carnivore("Lion", "A strong carnivore");
-//        myCarnivore.play();
-//
-//        Card myCrop = new Crop("Corn", "A nutritious crop");
-//        myCrop.play();
-//
-//        Card mySuperCard = new Delay("Time Stop", "Delays all opponents");
-//        mySuperCard.play();
+        GameState gs = GameState.getInstance();
+        Store store = Store.getInstance();
+        LoaderManager lm = LoaderManager.getInstance();
+        lm.loadGameState("C:/Users/LENOVO/OneDrive/Desktop/Tubes2OOP_B0S/src/main/resources/saves", "txt");
+        System.out.println("Current player gulden: " + gs.getCurrentPlayer().getGulden());
+        System.out.println("Current player gulden: " + gs.getCurrentPlayer().getDeckRef().toString());
     }
 
 }

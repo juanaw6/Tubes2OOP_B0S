@@ -31,8 +31,10 @@ public class TxtLoader implements GameStateLoader {
 
             int numberOfItems = Integer.parseInt(gameReader.readLine().trim());
             for (int i = 0; i < numberOfItems; i++) {
-                String itemName = gameReader.readLine().trim();
-                store.addItem(StringFormatter.formatString(itemName));
+                String[] itemName = gameReader.readLine().trim().split(" ");
+                for (int j = 0; j < Integer.parseInt(itemName[1]); j++) {
+                    store.addItem(StringFormatter.formatString(itemName[0]));
+                }
             }
             gameReader.close();
 
