@@ -17,14 +17,14 @@ public class StoreController {
 
     public void initialize() throws IOException {
         for (int i = 0; i < 20; i++) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreCard.fxml"));
             Node card = loader.load();
 
-            CardController controller = loader.getController();
-            controller.setCardInfo("store-"+i, "Delay.png", "Delay", false);
+            StoreCardController controller = loader.getController();
+            controller.setCardInfo("store-"+i, "Delay.png", "Delay", 0, 0,false);
             store.getChildren().add(card);
         }
-       
+
     }
 
     @FXML
