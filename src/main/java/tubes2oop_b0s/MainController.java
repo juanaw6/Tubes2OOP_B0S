@@ -61,7 +61,7 @@ public class MainController {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
-    public void initialize()  {
+    public void initialize() {
         instance = this;
         reload();
     }
@@ -70,7 +70,7 @@ public class MainController {
         return instance;
     }
 
-    public void reload()  {
+    public void reload() {
         MainData data = MainData.getInstance();
         turn.setText(String.valueOf(data.getTurn()));
         farm.getChildren().clear();
@@ -168,6 +168,7 @@ public class MainController {
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initStyle(StageStyle.UNDECORATED);
             dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             dialog.getDialogPane().setContent(dialogContent);
             dialog.showAndWait();
         } catch (IOException e) {
@@ -183,6 +184,7 @@ public class MainController {
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initStyle(StageStyle.UNDECORATED);
             dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             dialog.getDialogPane().setContent(dialogContent);
             dialog.showAndWait();
         } catch (IOException e) {
@@ -198,6 +200,7 @@ public class MainController {
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initStyle(StageStyle.UNDECORATED);
             dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add(getClass().getResource("main.css").toExternalForm());
             dialog.getDialogPane().setContent(dialogContent);
             dialog.showAndWait();
         } catch (IOException e) {

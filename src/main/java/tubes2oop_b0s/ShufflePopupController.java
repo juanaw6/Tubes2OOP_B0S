@@ -50,7 +50,7 @@ public class ShufflePopupController {
 
     private void addCardToGrid(Card cardData, int colIndex, int rowIndex, int colSpan) {
         String cardName = cardData.getName();
-        String imageName = cardData.getName() +".png";
+        String imageName = cardData.getName() + ".png";
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("card.fxml"));

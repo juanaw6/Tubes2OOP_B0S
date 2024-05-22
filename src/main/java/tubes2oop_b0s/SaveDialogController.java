@@ -45,9 +45,12 @@ public class SaveDialogController {
     protected void handleSave() {
         String fileType = fileTypeComboBox.getValue();
         String folder = folderField.getText();
-        if (fileType == null || folder.isEmpty()) {
+        if (folder.isEmpty()) {
             statusLabel.setText("Failed: Please select a file type and folder.");
             return;
+        }
+        if (fileType == null) {
+            fileTypeComboBox.setValue(".txt");
         }
 
         String filePath = folder + "/" + "savefile" + fileType;
