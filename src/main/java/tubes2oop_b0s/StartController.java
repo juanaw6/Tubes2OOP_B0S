@@ -19,6 +19,8 @@ public class StartController {
     @FXML
     protected void handleStartGame(ActionEvent event) {
         try {
+            MainData mainData = MainData.getInstance();
+            mainData.NextTurn(event);
             Parent mainRoot = FXMLLoader.load(getClass().getResource("main.fxml"));
             Scene mainScene = new Scene(mainRoot, 1150, 900);
 
@@ -33,8 +35,6 @@ public class StartController {
 
             window.show();
 
-            MainData mainData = MainData.getInstance();
-            mainData.NextTurn(event);
         } catch (IOException e) {
             e.printStackTrace();
             // Handle exceptions possibly with a dialog or logging

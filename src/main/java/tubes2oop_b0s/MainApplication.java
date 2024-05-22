@@ -24,51 +24,10 @@ public class MainApplication extends Application {
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.setResizable(false);
         primaryStage.show();
-
-        // Load multiple cards - example task after the stage is shown
-
-        loadCards();
     }
 
     public static MainApplication getInstance() {
         return instance;
-    }
-
-    private void loadCards() {
-        // for create all element card for first time
-        try {
-            MainData mainData = MainData.getInstance();
-            ArrayList<Node> farmNodes = new ArrayList<>();
-            ArrayList<Node> deckNodes = new ArrayList<>();
-            for (int i = 0; i < 20; i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
-                Node card = loader.load(); // Assuming you'll use it or add to some container
-                // Here you should add 'card' to a visible UI container or manage it
-                // appropriately
-                card.setId("farm-" + i);
-                CardController controller = loader.getController();
-                controller.setCardInfo("farm-" + i, "Empty.png", "", false);
-
-                farmNodes.add(card);
-            }
-            for (int i = 0; i < 6; i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
-                Node card = loader.load(); // Assuming you'll use it or add to some container
-                // Here you should add 'card' to a visible UI container or manage it
-                // appropriately
-                card.setId("deck-" + i);
-                CardController controller = loader.getController();
-                controller.setCardInfo("deck-" + i, "Empty.png", "", false);
-
-                deckNodes.add(card);
-            }
-            mainData.setFarmNodes(farmNodes);
-            mainData.setDeckNodes(deckNodes);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void showCardShufflePopup(ActionEvent event, ArrayList<String> shuffleCards) {
@@ -95,8 +54,8 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
-        SongPlayer songPlayer = new SongPlayer();
-        songPlayer.start();
+        SongPlayer songPlayer = new SongPlayer("song1.mp3", 2);
+        songPlayer.play();
         launch(args);
     }
 }

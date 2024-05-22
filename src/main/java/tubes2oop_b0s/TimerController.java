@@ -15,9 +15,13 @@ public class TimerController {
     private Circle timerFrame;
 
     private TimerThread timerThread;
+    private  SongPlayer songPlayer;
+    
     private BooleanProperty timerCompleted = new SimpleBooleanProperty(false);
 
     public void initialize() {
+        songPlayer = new SongPlayer("bear.mp3", 50);
+        songPlayer.play();
         timerThread = new TimerThread(30);
         timerThread.start();
         timerLabel.setVisible(true);
@@ -29,6 +33,7 @@ public class TimerController {
             if (isCompleted) {
                 timerCompleted.set(true);
                 onTimerComplete();
+                songPlayer.stop();
             }
         });
     }

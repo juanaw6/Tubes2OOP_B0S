@@ -1,22 +1,38 @@
 package tubes2oop_b0s;
 
+import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 
-public class SongPlayer extends Thread {
+public class SongPlayer {
+    private MediaPlayer mediaPlayer;
 
-    public void run() {
-        String path = "src/main/resources/songs/song1.mp3";
-    
-        //Instantiating Media class  
-        Media media = new Media(new File(path).toURI().toString());
-    
-        //Instantiating MediaPlayer class   
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-    
-        //by setting this property to true, the audio will be played   
-            mediaPlayer.setAutoPlay(true);
+    public SongPlayer(String filePath, double volume) {
+        // Initialize Media and MediaPlayer on JavaFX Thread
+        Platform.runLater(() -> {
+            String path = "src/main/resources/songs/" + filePath;
+            Media media = new Media(new File(path).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setVolume(volume);
+        });
+    }
+
+    public void play() {
+        Platform.runLater(() -> {
+            if (mediaPlayer != null) {
+                mediaPlayer.setVolume(10);
+                mediaPlayer.play();
+            }
+        });
+    }
+
+    public void stop() {
+        Platform.runLater(() -> {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+            }
+        });
     }
 }
