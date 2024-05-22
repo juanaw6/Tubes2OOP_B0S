@@ -22,7 +22,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
+import tubes2oop_b0s.state.GameState;
 
+import java.util.IllegalFormatCodePointException;
 import java.util.spi.CalendarDataProvider;
 
 public class CardController {
@@ -60,9 +62,9 @@ public class CardController {
         cardImage.setImage(image);
         cardLabel.setText(cardName);
         card.setId(id);
+        card.setOnDragDropped(this::onDragDropped);
+        card.setOnDragOver(this::onDragOver);
         if(!isView) {
-            card.setOnDragOver(this::onDragOver);
-            card.setOnDragDropped(this::onDragDropped);
             card.setOnDragDetected(this::onDragDetected);
         }
         this.isView = isView;
@@ -96,6 +98,7 @@ public class CardController {
     protected void onDragDropped(DragEvent event) {
         Dragboard db = event.getDragboard();
         boolean success = false;
+        MainData maindata = MainData.getInstance();
 
         if (db.hasString()) {
             VBox sourceVBox = (VBox) event.getGestureSource();
@@ -103,8 +106,8 @@ public class CardController {
 
             System.out.println("Dragged from: " + sourceVBox.getId());
             System.out.println("Dropped on: " + targetVBox.getId());
-
-
+            maindata.DragDropCard(sourceVBox.getId(), targetVBox.getId());
+            
             success = true;
         }
 

@@ -2,6 +2,7 @@ package tubes2oop_b0s.deck;
 
 import org.jetbrains.annotations.NotNull;
 import tubes2oop_b0s.card.Card;
+import tubes2oop_b0s.card.ConsumableCard;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -106,6 +107,7 @@ public class Deck {
             Card card = shuffledDeck.get(i);
             drawnCards.add(card);
         }
+        reshuffleDeck();
         return drawnCards;
     }
 
@@ -125,6 +127,9 @@ public class Deck {
 
     public void removeFromActiveDeck(Card card) {
         for (int i = 0; i < activeDeck.size(); i++) {
+            if (activeDeck.get(i) == null){
+                continue;
+            }
             if (activeDeck.get(i).equals(card)) {
                 activeDeck.set(i, null);
                 break;

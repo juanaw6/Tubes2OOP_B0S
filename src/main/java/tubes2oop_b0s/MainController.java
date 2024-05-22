@@ -52,13 +52,15 @@ public class MainController {
     private Button oponentButton;
     @FXML
     private Button nextButton;
+    @FXML
+    private Label turn;
 
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
-    public void initialize() throws IOException {
+    public void initialize()  {
         instance = this;
         reload();
     }
@@ -67,10 +69,11 @@ public class MainController {
         return instance;
     }
 
-    private void reload() throws IOException {
+    public void reload()  {
+        MainData data = MainData.getInstance();
+        turn.setText(String.valueOf(data.getTurn()));
         farm.getChildren().clear();
         deck.getChildren().clear();
-        MainData data = MainData.getInstance();
         ArrayList<Node> farmNodes = data.getFarmNodes();
         System.out.println(data.getTurn());
         for (int i = 0; i < farmNodes.size(); i++) {

@@ -1,10 +1,12 @@
 package tubes2oop_b0s;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import tubes2oop_b0s.card.Card;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class ShufflePopupController {
     @FXML
     private GridPane cardGrid;
 
-    public void setShuffleCards(ArrayList<String> shuffleCards) {
+    public void setShuffleCards(ArrayList<Card> shuffleCards) {
         cardGrid.getChildren().clear();
         int numCards = shuffleCards.size();
 
@@ -42,14 +44,13 @@ public class ShufflePopupController {
         }
     }
 
-    private void addCardToGrid(String cardData, int colIndex, int rowIndex) {
+    private void addCardToGrid(Card cardData, int colIndex, int rowIndex) {
         addCardToGrid(cardData, colIndex, rowIndex, 1);
     }
 
-    private void addCardToGrid(String cardData, int colIndex, int rowIndex, int colSpan) {
-        String[] data = cardData.split(",");
-        String cardName = data[0];
-        String imageName = data[1];
+    private void addCardToGrid(Card cardData, int colIndex, int rowIndex, int colSpan) {
+        String cardName = cardData.getName();
+        String imageName = cardData.getName() +".png";
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("card.fxml"));
@@ -63,12 +64,18 @@ public class ShufflePopupController {
     }
 
     @FXML
-    private void handleReshuffle() {
+    private void handleReshuffle(ActionEvent event) {
+        Stage stage = (Stage) cardGrid.getScene().getWindow();
+        stage.close();
+        MainData mainData = MainData.getInstance();
+        mainData.showShuffleCards(event);
         System.out.println("Reshuffle button clicked");
     }
 
     @FXML
-    private void handleAccept() {
+    private void handleAccept(ActionEvent event) {
+        MainData mainData = MainData.getInstance();
+        mainData.acceptShuffleCards();
         Stage stage = (Stage) cardGrid.getScene().getWindow();
         stage.close();
     }

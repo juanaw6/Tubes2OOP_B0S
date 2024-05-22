@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Modality;
+import tubes2oop_b0s.card.Card;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class MainApplication extends Application {
         return instance;
     }
 
-    public void showCardShufflePopup(ActionEvent event, ArrayList<String> shuffleCards) {
+    public void showCardShufflePopup(ActionEvent event, ArrayList<Card> shuffleCards) {
         javafx.application.Platform.runLater(() -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Shuffle.fxml"));

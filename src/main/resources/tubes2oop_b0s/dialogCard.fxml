@@ -32,9 +32,9 @@
                                      <Font size="12.0" />
                                  </font>
                              </Label>
-                            <ImageView fitHeight="141.0" fitWidth="139.0" layoutX="288.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                            <ImageView fitHeight="141.0" fitWidth="139.0" layoutX="288.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" fx:id="detailCardImage">
                                 <image>
-                                    <Image url="@../public/Accelerate.png" fx:id="detailCardImage"/>
+                                    <Image url="@../public/Accelerate.png" />
                                 </image>
                             </ImageView>
                         <Button layoutX="146.0" layoutY="177.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="101.0" text="Button" fx:id="buttonAction" onAction="#OnClickButton">

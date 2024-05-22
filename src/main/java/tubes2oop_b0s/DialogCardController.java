@@ -6,10 +6,14 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tubes2oop_b0s.card.Card;
+import tubes2oop_b0s.state.GameState;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DialogCardController {
     @FXML
@@ -23,7 +27,7 @@ public class DialogCardController {
     @FXML
     private Label detailCardEffect;
     @FXML
-    private Image detailCardImage;
+    private ImageView detailCardImage;
     @FXML
     private Button buttonAction;
     
@@ -40,35 +44,53 @@ public class DialogCardController {
         });
         
     }
+    public String convertMapToString(HashMap<String, Integer> map) {
+        StringBuilder builder = new StringBuilder();
+
+        // Iterate over the map entries
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (!builder.isEmpty()) {
+                builder.append(", ");  // append a comma only after the first entry
+            }
+            builder.append(entry.getKey())        // append the key
+                    .append("(")
+                    .append(entry.getValue())     // append the value
+                    .append(")");
+        }
+
+        return builder.toString();
+    }
     
     public void setDialogCardPaneId(String id, boolean isView) {
+        GameState gameState = GameState.getInstance();
         dialogCardPane.setId(id);
         String input = id;
 
         String[] parts = input.split("-");
         int number = 0;
         try {
-            // Attempt to parse the third part as an integer
             number = Integer.parseInt(parts[2]);
         } catch (NumberFormatException e) {
             System.out.println("The third part of the string is not a valid integer.");
         }
+        String name = gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getName();
+        Image image = new Image(getClass().getResourceAsStream("/public/" + name + ".png"));
+        detailCardImage.setImage(image);
+        detailCardLabel.setText(name);
         
 //        get index and get the type
         if (!isView) {
             System.out.println(input);
             switch (parts[1]) {
                 case "farm" -> {
+                    detailCardEffect.setText(convertMapToString(gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
                     buttonAction.setDisable(true);
                     buttonAction.setText("Harvest");
                 }
                 case "deck" -> {
+//                    detailCardEffect.setText(convertMapToString(gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).);
                     buttonAction.setDisable(true);
                     buttonAction.setText("Sell");
-                }
-                case "store" -> {
-                    buttonAction.setDisable(false);
-                    buttonAction.setText("Buy");
                 }
             }
         }else {
