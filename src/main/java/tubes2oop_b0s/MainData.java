@@ -13,7 +13,6 @@ public class MainData {
     private String currentPLayer;
     private String currentDeck;
     private int turn;
-    
 
     // Private constructor to prevent instantiation from other classes
     private MainData() {
@@ -35,61 +34,65 @@ public class MainData {
         return instance;
     }
 
-    public  void  NextTurn(){
-//        change player
-        if (currentPLayer.equals("Player 1")){
+    public void NextTurn() {
+        // change player
+        if (currentPLayer.equals("Player 1")) {
             currentPLayer = "Player 2";
             currentDeck = "Player 2";
-        }else if (currentPLayer.equals("Player 2")){
+        } else if (currentPLayer.equals("Player 2")) {
             currentPLayer = "Player 1";
             currentDeck = "Player 1";
         }
-        
-//        change data deck and farm
-        try{
-            if (currentPLayer.equals("Player 1")){
+
+        // change data deck and farm
+        try {
+            if (currentPLayer.equals("Player 1")) {
                 farmNodes = new ArrayList<>();
                 deckNodes = new ArrayList<>();
                 for (int i = 0; i < 20; i++) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
                     Node card = loader.load(); // Assuming you'll use it or add to some container
-                    // Here you should add 'card' to a visible UI container or manage it appropriately
+                    // Here you should add 'card' to a visible UI container or manage it
+                    // appropriately
                     card.setId("farm-" + i);
                     CardController controller = loader.getController();
-                    controller.setCardInfo("farm-"+i, "Accelerate.png", "Delay", false);
-    
-                    farmNodes.add(card);
-                }
-                for (int i = 0; i < 6; i++) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
-                    Node card = loader.load(); // Assuming you'll use it or add to some container
-                    // Here you should add 'card' to a visible UI container or manage it appropriately
-                    card.setId("deck-" + i);
-                    CardController controller = loader.getController();
-                    controller.setCardInfo("deck-"+i, "Delay.png", "Accelerate", false);
-    
-                    deckNodes.add(card);
-                }
-            }else {
-                farmNodes = new ArrayList<>();
-                deckNodes = new ArrayList<>();
-                for (int i = 0; i < 20; i++) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
-                    Node card = loader.load(); // Assuming you'll use it or add to some container
-                    // Here you should add 'card' to a visible UI container or manage it appropriately
-                    card.setId("farm-" + i);
-                    CardController controller = loader.getController();
-                    controller.setCardInfo("farm-"+i, "Delay.png", "Delay", false);
+                    controller.setCardInfo("farm-" + i, "Accelerate.png", "Delay", false);
 
                     farmNodes.add(card);
                 }
                 for (int i = 0; i < 6; i++) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
                     Node card = loader.load(); // Assuming you'll use it or add to some container
-                    // Here you should add 'card' to a visible UI container or manage it appropriately
+                    // Here you should add 'card' to a visible UI container or manage it
+                    // appropriately
                     card.setId("deck-" + i);
                     CardController controller = loader.getController();
-                    controller.setCardInfo("deck-"+i, "Accelerate.png", "Accelerate", false);
+                    controller.setCardInfo("deck-" + i, "Delay.png", "Accelerate", false);
+
+                    deckNodes.add(card);
+                }
+            } else {
+                farmNodes = new ArrayList<>();
+                deckNodes = new ArrayList<>();
+                for (int i = 0; i < 20; i++) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
+                    Node card = loader.load(); // Assuming you'll use it or add to some container
+                    // Here you should add 'card' to a visible UI container or manage it
+                    // appropriately
+                    card.setId("farm-" + i);
+                    CardController controller = loader.getController();
+                    controller.setCardInfo("farm-" + i, "Delay.png", "Delay", false);
+
+                    farmNodes.add(card);
+                }
+                for (int i = 0; i < 6; i++) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
+                    Node card = loader.load(); // Assuming you'll use it or add to some container
+                    // Here you should add 'card' to a visible UI container or manage it
+                    // appropriately
+                    card.setId("deck-" + i);
+                    CardController controller = loader.getController();
+                    controller.setCardInfo("deck-" + i, "Accelerate.png", "Accelerate", false);
 
                     deckNodes.add(card);
                 }
@@ -98,74 +101,79 @@ public class MainData {
             e.printStackTrace();
         }
         turn++;
+        MainApplication.getInstance().showCardShufflePopup();
     }
 
-    public  void  SwapField(){
-//        change player
-        if (currentPLayer.equals("Player 1")){
+    public void SwapField() {
+        // change player
+        if (currentPLayer.equals("Player 1")) {
             currentDeck = "Player 2";
-        }else {
+        } else {
             currentDeck = "Player 1";
         }
 
-//        change data deck and farm
-        try{
-                farmNodes = new ArrayList<>();
-                deckNodes = new ArrayList<>();
-                for (int i = 0; i < 20; i++) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
-                    Node card = loader.load(); // Assuming you'll use it or add to some container
-                    // Here you should add 'card' to a visible UI container or manage it appropriately
-                    card.setId("farm-" + i);
-                    CardController controller = loader.getController();
-                    controller.setCardInfo("farm-"+i, "Delay.png", "Delay", true);
-
-                    farmNodes.add(card);
-                }
-                
-//                use old data only
-                for (int i = 0; i < 6; i++) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
-                    Node card = loader.load(); // Assuming you'll use it or add to some container
-                    // Here you should add 'card' to a visible UI container or manage it appropriately
-                    card.setId("deck-" + i);
-                    CardController controller = loader.getController();
-                    controller.setCardInfo("deck-"+i, "Accelerate.png", "Accelerate", true);
-
-                    deckNodes.add(card);
-                }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public  void  BackSwapField(){
-//        change player
-        currentDeck = currentPLayer;
-//        change data deck and farm
-        try{
+        // change data deck and farm
+        try {
             farmNodes = new ArrayList<>();
             deckNodes = new ArrayList<>();
             for (int i = 0; i < 20; i++) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
                 Node card = loader.load(); // Assuming you'll use it or add to some container
-                // Here you should add 'card' to a visible UI container or manage it appropriately
+                // Here you should add 'card' to a visible UI container or manage it
+                // appropriately
                 card.setId("farm-" + i);
                 CardController controller = loader.getController();
-                controller.setCardInfo("farm-"+i, "Accelerate.png", "Delay", false);
+                controller.setCardInfo("farm-" + i, "Delay.png", "Delay", true);
 
                 farmNodes.add(card);
             }
 
-//                use old data only
+            // use old data only
             for (int i = 0; i < 6; i++) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
                 Node card = loader.load(); // Assuming you'll use it or add to some container
-                // Here you should add 'card' to a visible UI container or manage it appropriately
+                // Here you should add 'card' to a visible UI container or manage it
+                // appropriately
                 card.setId("deck-" + i);
                 CardController controller = loader.getController();
-                controller.setCardInfo("deck-"+i, "Accelerate.png", "Accelerate", false);
+                controller.setCardInfo("deck-" + i, "Accelerate.png", "Accelerate", true);
+
+                deckNodes.add(card);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BackSwapField() {
+        // change player
+        currentDeck = currentPLayer;
+        // change data deck and farm
+        try {
+            farmNodes = new ArrayList<>();
+            deckNodes = new ArrayList<>();
+            for (int i = 0; i < 20; i++) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
+                Node card = loader.load(); // Assuming you'll use it or add to some container
+                // Here you should add 'card' to a visible UI container or manage it
+                // appropriately
+                card.setId("farm-" + i);
+                CardController controller = loader.getController();
+                controller.setCardInfo("farm-" + i, "Accelerate.png", "Delay", false);
+
+                farmNodes.add(card);
+            }
+
+            // use old data only
+            for (int i = 0; i < 6; i++) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Card.fxml"));
+                Node card = loader.load(); // Assuming you'll use it or add to some container
+                // Here you should add 'card' to a visible UI container or manage it
+                // appropriately
+                card.setId("deck-" + i);
+                CardController controller = loader.getController();
+                controller.setCardInfo("deck-" + i, "Accelerate.png", "Accelerate", false);
 
                 deckNodes.add(card);
             }
@@ -223,4 +231,3 @@ public class MainData {
         this.turn = turn;
     }
 }
-
