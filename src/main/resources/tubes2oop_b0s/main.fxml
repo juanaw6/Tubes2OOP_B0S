@@ -13,22 +13,24 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.MainController">
+<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" stylesheets="@Main.css" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.MainController">
    <HBox prefHeight="900.0" prefWidth="1110.0">
       <children>
-         <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent  #E0E0E0 transparent transparent; -fx-border-width: 0 2 0 0;">
+         <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent  #FFF6E9 transparent transparent; -fx-border-width: 0 4 0 0; -fx-background-color: #40A2E3;">
             <children>
-               <AnchorPane prefHeight="149.0" prefWidth="870.0" style="-fx-font-size: 24px;">
+               <AnchorPane prefHeight="60.0" prefWidth="870.0" style="-fx-font-size: 24px;">
                   <children>
-                     <HBox layoutX="83.0" layoutY="30.0" prefHeight="42.0" prefWidth="573.0" spacing="20">
+                     <HBox layoutY="30.0" prefHeight="30.0" spacing="10" alignment="CENTER_LEFT" style="-fx-border-color: transparent transparent #FFF6E9 transparent; -fx-border-width: 0 0 2 0; -fx-padding: 0 0 20 50;">
                         <children>
-                           <Button mnemonicParsing="false" onAction="#HandleBackSwapField" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="My Farm" fx:id="farmButton"/>
-                           <Button mnemonicParsing="false" onAction="#showPluginDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Plugin" fx:id="pluginButton"/>
-                           <Button mnemonicParsing="false" onAction="#showSaveDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Save" fx:id="saveButton"/>
-                           <Button mnemonicParsing="false" onAction="#showLoadDialog" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Load" fx:id="loadButton"/>
-                           <Button mnemonicParsing="false" onAction="#HandleOpenStore" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Shop" fx:id="shopButton"/>
-                           <Button mnemonicParsing="false" onAction="#HandleSwapField" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;" text="Opponent's Farm" fx:id="oponentButton"/>
+                           <Button fx:id="btnMyFarm" mnemonicParsing="false" onAction="#HandleBackSwapField" text="My Farm" styleClass="button-default-farm" />
+                           <Button fx:id="btnOpponentFarm" mnemonicParsing="false" onAction="#HandleSwapField" text="Opponent's Farm" styleClass="button-default" />
+                           <Button fx:id="btnShop" mnemonicParsing="false" onAction="#HandleOpenStore" text="Shop" styleClass="button-default" />
+                           <Button fx:id="btnSave" mnemonicParsing="false" onAction="#showSaveDialog" text="Save State" styleClass="button-default" />
+                           <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#showLoadDialog" text="Load State" styleClass="button-default" />
+                           <Button fx:id="btnPlugin" mnemonicParsing="false" onAction="#showPluginDialog" text="Plugin" styleClass="button-default" />
                         </children>
+                        <AnchorPane.leftAnchor>0.0</AnchorPane.leftAnchor>
+                        <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
                      </HBox>
                   </children>
                </AnchorPane>
@@ -71,7 +73,7 @@
                <Button layoutX="23.0" layoutY="777.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 2" />
                <Button layoutX="23.0" layoutY="713.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="115.0" text="PLAYER 1" />
                
-               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1">
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1" fx:id="turn">
                   <font>
                      <Font size="69.0" />
                   </font>
