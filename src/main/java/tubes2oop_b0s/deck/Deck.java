@@ -3,6 +3,7 @@ package tubes2oop_b0s.deck;
 import org.jetbrains.annotations.NotNull;
 import tubes2oop_b0s.card.Card;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
@@ -160,5 +161,13 @@ public class Deck {
         for (Card card : cards) {
             this.addToActiveDeck(card);
         }
+    }
+
+    public ArrayList<Card> getActiveDeckRef() {
+        return activeDeck;
+    }
+
+    public ArrayList<Card> getActiveDeckCopy() {
+        return new ArrayList<>(activeDeck);
     }
 }

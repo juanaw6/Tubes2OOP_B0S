@@ -2,11 +2,7 @@ package jsonplugin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 
@@ -45,18 +41,7 @@ public class JsonConverter implements FileConverter {
         ObjectMapper mapper = new ObjectMapper();
 
         // Read JSON content from the file
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-        }
-
-        String jsonString = sb.toString().trim(); // Remove leading/trailing whitespace
-
-        // Parse the JSON string into a Java object (Map in this case)
-        Map jsonData = mapper.readValue(jsonString, Map.class);
+        Map<String, Object> jsonData = mapper.readValue(new File(filePath), Map.class);
 
         int turn = (int) jsonData.get("turn");
         List<Map<String, Object>> store = (List<Map<String, Object>>) jsonData.get("store");
@@ -72,20 +57,60 @@ public class JsonConverter implements FileConverter {
                 String name = (String) item.get("name");
                 int quantity = (int) item.get("quantity");
                 writer.write(name + " " + quantity);
+                System.out.println(name + " " + quantity);
                 writer.newLine();
             }
         }
     }
 
     private void convertPlayerToTxt(String filePath, String outputFilePath) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
 
+        // Read JSON content from the file
+        Map<String, Object> jsonData = mapper.readValue(new File(filePath), Map.class);
+
+        int gulden = (int) jsonData.get("gulden");
+        int deck = (int) jsonData.get("deck");
+        List<Map<String, Object>> activeDeck = (List<Map<String, Object>>) jsonData.get("active_deck");
+        List<Map<String, Object>> field = (List<Map<String, Object>>) jsonData.get("field");
+
+        // Write content to the TXT file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
+            writer.write(String.valueOf(gulden));
+            writer.newLine();
+            writer.write(String.valueOf(deck));
+            writer.newLine();
+
+            writer.write(String.valueOf(activeDeck.size()));
+            writer.newLine();
+            for (Map<String, Object> card : activeDeck) {
+                String location = (String) card.get("location");
+                String cardType = (String) card.get("card_type");
+                writer.write(location + " " + cardType);
+                writer.newLine();
+            }
+
+            writer.write(String.valueOf(field.size()));
+            writer.newLine();
+            for (Map<String, Object> card : field) {
+                String location = (String) card.get("location");
+                String cardType = (String) card.get("card_type");
+                int ageOrWeight = (int) card.get("age_or_weight");
+                List<String> effects = (List<String>) card.get("effects");
+                writer.write(location + " " + cardType + " " + ageOrWeight + " " + effects.size());
+                for (String effect : effects) {
+                    writer.write(" " + effect);
+                }
+                writer.newLine();
+            }
+        }
     }
 
     private void convertGamestateFromTxt(String filePath, String outputFilePath) throws IOException {
-
+        // Implement the conversion from TXT to JSON if needed
     }
 
     private void convertPlayerFromTxt(String filePath, String outputFilePath) throws IOException {
-
+        // Implement the conversion from TXT to JSON if needed
     }
 }
