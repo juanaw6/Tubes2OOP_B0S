@@ -25,7 +25,7 @@ public class MainApplication extends Application {
         instance = this;
         Parent root = FXMLLoader.load(getClass().getResource("start.fxml"));
         primaryStage.setTitle("Welcome to the Game!");
-        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

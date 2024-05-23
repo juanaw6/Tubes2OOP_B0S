@@ -17,6 +17,12 @@ import java.io.IOException;
 public class StartController {
 
     @FXML
+    private Button startButton;
+
+    @FXML
+    private Button exitButton;
+
+    @FXML
     protected void handleStartGame(ActionEvent event) {
         try {
             MainData mainData = MainData.getInstance();

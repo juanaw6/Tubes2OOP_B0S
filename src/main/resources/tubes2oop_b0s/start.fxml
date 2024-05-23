@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tubes2oop_b0s.StartController" >
-    <padding>
-        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
-    </padding>
-    <Text text="Welcome to the Game!" style="-fx-font-size: 24px;"/>
-    <Button text="Start Game" fx:id="startButton" onAction="#handleStartGame"/>
-    <Button text="Exit" fx:id="exitButton" onAction="#handleExit"/>
-</VBox>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tubes2oop_b0s.StartController" style="-fx-background-color: #1B425B;" stylesheets="@shuffle.css">
+    <VBox alignment="TOP_LEFT" style="-fx-padding: 20px;">
+        <Text text="IF2210 Object Oriented Programming" style="-fx-font-size: 14px;" fill="#FFF6E9"/>
+    </VBox>
+    <HBox alignment="BOTTOM_CENTER" style="-fx-padding: 0px;">
+        <ImageView fitWidth="800.0" preserveRatio="true">
+            <image>
+                <Image url="@../public/farm.png" />
+            </image>
+        </ImageView>
+        <ImageView fitWidth="800.0" preserveRatio="true">
+            <image>
+                <Image url="@../public/farm_1.png"/>
+            </image>
+        </ImageView>
+    </HBox>
+    <VBox alignment="CENTER" spacing="20.0">
+        <HBox alignment="CENTER" spacing="10.0" style="-fx-padding: 10px;">
+            <Text text="10023640" fill="#FFF6E9" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Text text="13522047" fill="#FFF6E9" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Text text="13522063" fill="#FFF6E9" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Text text="13522073" fill="#FFF6E9" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Text text="13522077" fill="#FFF6E9" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Text text="13522081" fill="#FFF6E9" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </HBox>
+        <Text text="Farm Card Game" style="-fx-font-size: 64px; -fx-font-weight: bold;" fill="#FFF6E9"/>
+        <Text text="Welcome to our game." style="-fx-font-size: 24px;" fill="#FFF6E9"/>
+        <Button text="Start" fx:id="startButton" onAction="#handleStartGame" styleClass="custom-button"/>
+        <Button text="Exit" fx:id="exitButton" onAction="#handleExit" styleClass="custom-button"/>
+    </VBox>
+</StackPane>
