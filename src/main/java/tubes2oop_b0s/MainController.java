@@ -21,6 +21,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import tubes2oop_b0s.state.GameState;
 
 import java.io.Console;
 import java.io.IOException;
@@ -50,11 +51,15 @@ public class MainController {
     @FXML
     private Button loadButton;
     @FXML
-    private Button oponentButton;
+    private Button opponentButton;
     @FXML
     private Button nextButton;
     @FXML
     private Label turn;
+    @FXML
+    private Label player2gold;
+    @FXML
+    private Label player1gold;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -72,6 +77,7 @@ public class MainController {
 
     public void reload() {
         MainData data = MainData.getInstance();
+        GameState gs = GameState.getInstance();
         turn.setText(String.valueOf(data.getTurn()));
         farm.getChildren().clear();
         deck.getChildren().clear();
@@ -84,6 +90,8 @@ public class MainController {
         for (int i = 0; i < deckNodes.size(); i++) {
             deck.getChildren().add(deckNodes.get(i));
         }
+        player1gold.setText(String.valueOf(gs.getPlayer1().getGulden()));
+        player2gold.setText(String.valueOf(gs.getPlayer2().getGulden()));
     }
 
     public void bearAttack() {
@@ -92,7 +100,7 @@ public class MainController {
             try {
                 shopButton.setDisable(true);
                 farmButton.setDisable(true);
-                oponentButton.setDisable(true);
+                opponentButton.setDisable(true);
                 loadButton.setDisable(true);
                 pluginButton.setDisable(true);
                 nextButton.setDisable(true);
@@ -108,7 +116,7 @@ public class MainController {
                         shopButton.setDisable(false);
                         shopButton.setDisable(false);
                         farmButton.setDisable(false);
-                        oponentButton.setDisable(false);
+                        opponentButton.setDisable(false);
                         loadButton.setDisable(false);
                         pluginButton.setDisable(false);
                         nextButton.setDisable(false);
@@ -144,6 +152,12 @@ public class MainController {
         MainData mainData = MainData.getInstance();
         mainData.NextTurn(event);
         reload();
+
+        opponentButton.getStyleClass().clear();
+        opponentButton.getStyleClass().add("button-default");
+
+        farmButton.getStyleClass().clear();
+        farmButton.getStyleClass().add("button-default-farm");
     }
 
     @FXML
@@ -151,6 +165,12 @@ public class MainController {
         MainData mainData = MainData.getInstance();
         mainData.SwapField();
         reload();
+
+        opponentButton.getStyleClass().clear();
+        opponentButton.getStyleClass().add("button-default-farm");
+
+        farmButton.getStyleClass().clear();
+        farmButton.getStyleClass().add("button-default");
     }
 
     @FXML
@@ -158,6 +178,12 @@ public class MainController {
         MainData mainData = MainData.getInstance();
         mainData.BackSwapField();
         reload();
+
+        opponentButton.getStyleClass().clear();
+        opponentButton.getStyleClass().add("button-default");
+
+        farmButton.getStyleClass().clear();
+        farmButton.getStyleClass().add("button-default-farm");
     }
 
     @FXML

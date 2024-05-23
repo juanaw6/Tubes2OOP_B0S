@@ -1,11 +1,13 @@
 package tubes2oop_b0s;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -23,7 +25,6 @@ import javafx.stage.StageStyle;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 
-import java.awt.event.ActionEvent;
 import java.util.spi.CalendarDataProvider;
 
 public class StoreCardController {
@@ -40,6 +41,8 @@ public class StoreCardController {
     private Label priceLabel;
     @FXML
     private Label stockLabel;
+    @FXML
+    private Button buyButton;
 
     @FXML
     public void initialize() {
@@ -54,7 +57,15 @@ public class StoreCardController {
 
         // Apply the effect to the VBox
         card.setEffect(dropShadow);
+        buyButton.setOnAction(this::onBuy);
     }
+
+    private void onBuy(ActionEvent actionEvent) {
+        MainData mainData = MainData.getInstance();
+        String[] targetparts = card.getId().split("-");
+        mainData.onBuy(targetparts[1], actionEvent);
+    }
+
 
     public ImageView getCardImage() {
         return cardImage;
@@ -68,11 +79,9 @@ public class StoreCardController {
         stockLabel.setText("Stock: " + stock);
         card.setId(id);
     }
-    public  void  onBuy(ActionEvent event) {
-        MainData mainData = MainData.getInstance();
-        String[] targetparts = card.getId().split("-");
-        mainData.onBuy(targetparts[1]);
-    }
+
+
+
 }
 
 

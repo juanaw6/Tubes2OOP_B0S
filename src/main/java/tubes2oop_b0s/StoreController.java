@@ -23,6 +23,7 @@ public class StoreController {
     private TilePane store;
 
     public void initialize() throws IOException {
+        instance = this;
         MainData mainData = MainData.getInstance();
         mainData.reloadStore();
         ArrayList<Node> nodes = mainData.getStoreNodes();
@@ -31,7 +32,15 @@ public class StoreController {
         }
     }
     
-    
+    public void reload(){
+        MainData mainData = MainData.getInstance();
+        store.getChildren().clear();
+        mainData.reloadStore();
+        ArrayList<Node> nodes = mainData.getStoreNodes();
+        for (int i = 0; i < nodes.size(); i++) {
+            store.getChildren().add(nodes.get(i));
+        }
+    }
 
     @FXML
     protected void HandleBackToMain(ActionEvent event) {

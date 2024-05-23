@@ -5,10 +5,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
 
 
-<VBox alignment="CENTER" stylesheets="@main.css" prefHeight="150.0" prefWidth="130.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" style="-fx-background-color: #BBE2EC; -fx-border-color: #1B425B; -fx-border-width: 3px; -fx-background-radius: 10px; -fx-border-radius: 8px;" fx:controller="tubes2oop_b0s.StoreCardController" fx:id="card">
+<VBox alignment="CENTER" stylesheets="@main.css" prefHeight="180.0" prefWidth="130.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" style="-fx-background-color: #BBE2EC; -fx-border-color: #1B425B; -fx-border-width: 3px; -fx-background-radius: 10px; -fx-border-radius: 8px;" fx:controller="tubes2oop_b0s.StoreCardController" fx:id="card">
     <children>
         <ImageView fitHeight="90.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" fx:id="cardImage">
             <image>
@@ -21,5 +21,10 @@
         <Label text="clock" fx:id="cardLabel" style="-fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: 700;"/>
         <Label text="Price:" fx:id="priceLabel" style="-fx-font-family: 'Inter'; -fx-font-size: 12px; -fx-font-weight: 700;"/>
         <Label text="Stock:" fx:id="stockLabel" style="-fx-font-family: 'Inter'; -fx-font-size: 12px; -fx-font-weight: 700;"/>
+        <Button text="Buy" styleClass="button-buy"  fx:id="buyButton">
+            <VBox.margin>
+                <Insets top="3.0" />
+            </VBox.margin>
+        </Button>
     </children>
 </VBox>

@@ -1,9 +1,11 @@
 package tubes2oop_b0s;
 
+import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.input.DragEvent;
 import net.bytebuddy.asm.MemberSubstitution;
 import net.bytebuddy.description.field.FieldDescription;
 import tubes2oop_b0s.card.Card;
@@ -49,7 +51,7 @@ public class MainData {
         GameState gs = GameState.getInstance();
         Store store = Store.getInstance();
         LoaderManager lm = LoaderManager.getInstance();
-        lm.loadGameState("C:/Coding/Tubes/Tubes2OOP_B0S/src/main/resources/saves", "txt");
+        lm.loadGameState("D:/Coding/TUBES-OOP-2/src/main/resources/saves", "txt");
         turn = 0;
     }
 
@@ -65,18 +67,18 @@ public class MainData {
 
             int subgridRows = 2;
             int subgridCols = 3;
-            
+
             Random random = new Random();
             int startRow = random.nextInt(rows - subgridRows + 1); // 0 or 1 or 2
             int startCol = random.nextInt(cols - subgridCols + 1); // 0 or 1 or 2
-            
+
             attacked = new ArrayList<>();
             for (int i = 0; i < subgridRows; i++) {
                 for (int j = 0; j < subgridCols; j++) {
                     attacked.add(grid[startRow + i][startCol + j]);
                 }
             }
-        
+
     }
     public static MainData getInstance() {
         if (instance == null) { // First check (no locking)
@@ -89,12 +91,12 @@ public class MainData {
         return instance;
     }
     // Public method to provide global access to the instance
-    
+
     public void setAttackCard(){
         bearAttack = true;
         genRandomSubGrid(4, 5);
     }
-    
+
     public void finishAttackCard(){
         GameState gs = GameState.getInstance();
         ArrayList<PlaceableCard> field = gs.getCurrentPlayer().getFieldRef().getFieldRef();
@@ -125,13 +127,13 @@ public class MainData {
 //          ArrayList<ConsumableCard> consumableCards = store.getItemsRef();
             ArrayList<String> stringsUniq = store.getItemsUniqueStr();
             for (int i = 0; i < stringsUniq.size(); i++) {
-                
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreCard.fxml"));
                 Node card = loader.load();
 
                 CardFactory factory = new CardFactory();
                 ConsumableCard card1 = (ConsumableCard) factory.createCard(stringsUniq.get(i));
-    
+
                 StoreCardController controller = loader.getController();
                 controller.setCardInfo("store-"+stringsUniq.get(i), stringsUniq.get(i)+".png", stringsUniq.get(i), card1.getPrice(), store.getQuantity(stringsUniq.get(i)));
                 storeNodes.add(card);
@@ -141,7 +143,7 @@ public class MainData {
             e.printStackTrace();
         }
     }
-    
+
     public void NextTurn(ActionEvent event) {
         // change player
         GameState gs = GameState.getInstance();
@@ -169,7 +171,7 @@ public class MainData {
 
                 card.setId("farm-" + i);
                 CardController controller = loader.getController();
-                
+
                 if (field.get(i) instanceof Crop){
                     Crop crop = (Crop) field.get(i);
                     if (crop.isReadyToHarvest()) {
@@ -206,9 +208,9 @@ public class MainData {
             MainController.getInstance().bearAttack();
         }
         turn++;
-        
+
     }
-    
+
     public void showShuffleCards(ActionEvent event){
         MainApplication.getInstance().showCardShufflePopup(event, getShuffleCards());
     }
@@ -260,8 +262,8 @@ public class MainData {
 
                 String name = deck.get(i) == null ? "" : deck.get(i).getName();
                 String path = deck.get(i) == null ? "Empty" : deck.get(i).getName();
-                boolean isView = !name.equals("Delay") && !name.equals("Destroy");
                 card.setId("deck-" + i);
+                boolean isView = name.isEmpty();
                 CardController controller = loader.getController();
                 controller.setCardInfo("deck-" + i, path + ".png", name, isView);
 
@@ -324,35 +326,66 @@ public class MainData {
             e.printStackTrace();
         }
     }
-    
+
     public void acceptShuffleCards(){
         GameState gs = GameState.getInstance();
         Player player = gs.getCurrentPlayer();
         player.getDeckRef().addToActiveDeck(shuffleCards);
         player.getDeckRef().removeFromShuffled(shuffleCards);
-        
+
         BackSwapField();
         MainController.getInstance().reload();
     }
 
-    public void onBuy(String name){
+    public void onBuy(String name, ActionEvent event){
+        CardFactory cf = new CardFactory();
+        Card card = cf.createCard(name);
+        GameState gs = GameState.getInstance();
+        Store store = Store.getInstance();
+        if (card instanceof ConsumableCard){
+            int price = ((ConsumableCard) card).getPrice();
+            Player current = gs.getCurrentPlayer();
+            if (price>gs.getCurrentPlayer().getGulden()){
+                MainApplication.getInstance().showInvalidMovePopup(event);
+            } else {
+                int count= 0;
+                for (int i = 0; i < gs.getCurrentPlayer().getDeckRef().getActiveDeckRef().size(); i++) {
+                    if (gs.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(i)==null){
+                        count++;
+                    }
+                }
+                if (count==0){
+                    MainApplication.getInstance().showInvalidMovePopup(event);
+                } else {
+                    current.setGulden(current.getGulden()-price);
+                    store.removeItem(name);
+                    gs.getCurrentPlayer().getDeckRef().addToActiveDeck(card);
+                }
+            }
+        }
+        BackSwapField();
+        MainController.getInstance().reload();
+        StoreController.getInstance().reload();
+
+    }
+
+    public void onSell(int id){
+        GameState gs = GameState.getInstance();
+        String name = gs.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(id).getName();
+        gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(id);
         CardFactory cf = new CardFactory();
         Card card = cf.createCard(name);
         Store store = Store.getInstance();
-        store.removeItem(name);
-        GameState gs = GameState.getInstance();
-        gs.getCurrentPlayer().getDeckRef().addToActiveDeck(card);
-    }
-    
-    public void onSell(int id){
-        GameState gameState = GameState.getInstance();
-        String name = gameState.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(id).getName();
-        gameState.getCurrentPlayer().getDeckRef().getActiveDeckRef().remove(id);
-        Store store = Store.getInstance();
+        if (card instanceof ConsumableCard){
+            int price = ((ConsumableCard) card).getPrice();
+            Player current = gs.getCurrentPlayer();
+            current.setGulden(current.getGulden()+price);
+        }
         store.addItem(name);
         BackSwapField();
         MainController.getInstance().reload();
     }
+
     public void onHarvest(int id){
         GameState gs = GameState.getInstance();
         PlaceableCard cs = gs.getCurrentPlayer().getFieldRef().getFieldRef().get(id);
@@ -369,34 +402,41 @@ public class MainData {
             }else if (cs.getName().equals("Ayam")) {
                 name = "Telur";
             }
-            
+
             gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(name));
         }
         gs.getCurrentPlayer().getFieldRef().removeCard(id);
         BackSwapField();
         MainController.getInstance().reload();
     }
-    
-    public void DragDropCard(String source, String target){
+
+    public void DragDropCard(String source, String target, DragEvent event){
         String[] sourceparts = source.split("-");
         String[] targetparts = target.split("-");
-        
+
         GameState gs = GameState.getInstance();
         Player player = gs.getCurrentPlayer();
 
-        int sourceIndex = Integer.parseInt(sourceparts[1]);  // 
+        int sourceIndex = Integer.parseInt(sourceparts[1]);  //
         int targetIndex = Integer.parseInt(targetparts[1]);  //
-        
+
         if (sourceparts[0].equals(targetparts[0])) {
             if (sourceparts[0].equals("farm")){
                 PlaceableCard card = player.getFieldRef().getFieldRef().get(sourceIndex);
+                if (player.getFieldRef().getFieldRef().get(targetIndex) == null){
                 player.getFieldRef().removeCard(sourceIndex);
                 player.getFieldRef().addPlaceableCard(targetIndex, card);
-                
+            }
+
+
             }else if (sourceparts[0].equals("deck")){
                 Card card = player.getDeckRef().getActiveDeckRef().get(sourceIndex);
+                if (player.getDeckRef().getActiveDeckRef().get(targetIndex) == null){
+
+
                 player.getDeckRef().removeFromActiveDeck(sourceIndex);
                 player.getDeckRef().addToActiveDeck(targetIndex, card);
+                }
             }
             BackSwapField();
         }else{
@@ -432,6 +472,7 @@ public class MainData {
                         } catch (Exception e) {
 //                            create popup invalid action
                             e.printStackTrace();
+                            MainApplication.getInstance().showInvalidMovePopup(event);
                         }
                     } else if (sourceCard instanceof EffectCard) {
                         if (sourceCard instanceof Accelerate) {
@@ -449,6 +490,8 @@ public class MainData {
                             targetCard.addEffect(sourceCard.getName());
                             gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
                             BackSwapField();
+                        }else{
+                            MainApplication.getInstance().showInvalidMovePopup(event);
                         }
                     }
                 } else if (sourceCard instanceof PlaceableCard) {
@@ -460,6 +503,7 @@ public class MainData {
                 } else {
 //                give pop up invalid act
                     System.out.println(sourceCard.getName() + "invalid act");
+                    MainApplication.getInstance().showInvalidMovePopup(event);
                 }
             }
         }

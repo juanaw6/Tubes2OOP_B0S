@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.DragEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Modality;
@@ -97,6 +98,22 @@ public class MainApplication extends Application {
     }
 
     public void showInvalidMovePopup(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("invalid.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.initStyle(StageStyle.UNDECORATED);
+            popupStage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            popupStage.setTitle("Invalid Move");
+            popupStage.setScene(new Scene(root, 450, 100));
+            popupStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void showInvalidMovePopup(DragEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("invalid.fxml"));
             Parent root = loader.load();

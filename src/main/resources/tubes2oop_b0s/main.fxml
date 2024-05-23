@@ -24,7 +24,7 @@
                      <HBox layoutY="30.0" prefHeight="30.0" spacing="10" alignment="CENTER_LEFT" style="-fx-border-color: transparent transparent #FFF6E9 transparent; -fx-border-width: 0 0 3 0; -fx-padding: 0 0 20 50;">
                         <children>
                            <Button fx:id="farmButton" mnemonicParsing="false" onAction="#HandleBackSwapField" text="My Farm" styleClass="button-default-farm" />
-                           <Button fx:id="oponentButton" mnemonicParsing="false" onAction="#HandleSwapField" text="Opponent's Farm" styleClass="button-default" />
+                           <Button fx:id="opponentButton" mnemonicParsing="false" onAction="#HandleSwapField" text="Opponent's Farm" styleClass="button-default" />
                            <Button fx:id="shopButton" mnemonicParsing="false" onAction="#HandleOpenStore" text="Shop" styleClass="button-default" />
                            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#showSaveDialog" text="Save State" styleClass="button-default" />
                            <Button fx:id="loadButton" mnemonicParsing="false" onAction="#showLoadDialog" text="Load State" styleClass="button-default" />
@@ -73,9 +73,9 @@
                </VBox>
                <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="40.0" prefWidth="194.0" text="Next Turn" fx:id="nextButton" styleClass="button-next-turn"/>
                <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="140.0" text="Player 2" styleClass="player-label"/>
-               <Label layoutX="173.0" layoutY="777.0" prefHeight="42.0" prefWidth="80.0" text="0" styleClass="golden-label"/>
+               <Label layoutX="173.0" layoutY="777.0" prefHeight="42.0" prefWidth="80.0" text="0" styleClass="golden-label" fx:id="player2gold"/>
                <Label layoutX="23.0" layoutY="713.0" prefHeight="42.0" prefWidth="140.0" text="Player 1" styleClass="player-label"/>
-               <Label layoutX="173.0" layoutY="713.0" prefHeight="42.0" prefWidth="80.0" text="10000" styleClass="golden-label"/>
+               <Label layoutX="173.0" layoutY="713.0" prefHeight="42.0" prefWidth="80.0" text="10000" styleClass="golden-label" fx:id="player1gold"/>
                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1" fx:id="turn">
                   <font>
                      <Font size="69.0"/>

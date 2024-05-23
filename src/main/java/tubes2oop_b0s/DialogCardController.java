@@ -109,7 +109,6 @@ public class DialogCardController {
                     detailCardImage.setImage(image);
                     detailCardLabel.setText(name);
                     detailCard.setText("Price: "+String.valueOf(((ConsumableCard) gameState.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(number)).getPrice()));
-                    buttonAction.setDisable(true);
                     buttonAction.setText("Sell");
                 }
             }

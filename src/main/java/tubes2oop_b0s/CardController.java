@@ -91,7 +91,10 @@ public class CardController {
             card.setOnDragDetected(this::onDragDetected);
         }
         this.isView = isView;
-        card.setOnMouseClicked(this::handleCardClick);
+        if (id.contains("farm")||id.contains("deck")){
+            card.setOnMouseClicked(this::handleCardClick);
+
+        }
     }
 
     @FXML
@@ -129,7 +132,7 @@ public class CardController {
 
             System.out.println("Dragged from: " + sourceVBox.getId());
             System.out.println("Dropped on: " + targetVBox.getId());
-            maindata.DragDropCard(sourceVBox.getId(), targetVBox.getId());
+            maindata.DragDropCard(sourceVBox.getId(), targetVBox.getId(), event);
             
             success = true;
         }
