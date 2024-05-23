@@ -13,6 +13,8 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" stylesheets="@main.css" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.MainController">
    <HBox prefHeight="900.0" prefWidth="1120.0">
@@ -72,9 +74,23 @@
                   </children>
                </VBox>
                <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#HandleNextTurn" prefHeight="40.0" prefWidth="194.0" text="Next Turn" fx:id="nextButton" styleClass="button-next-turn"/>
-               <Label layoutX="23.0" layoutY="777.0" prefHeight="42.0" prefWidth="140.0" text="Player 2" styleClass="player-label"/>
+               <HBox layoutX="23.0" layoutY="777.0" spacing="5" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="200.0">
+                  <ImageView fitHeight="30.0" fitWidth="30.0">
+                     <image>
+                        <Image url="@../public/coin.png"/>
+                     </image>
+                  </ImageView>
+                  <Label text="Player 2" styleClass="player-label"/>
+               </HBox>
                <Label layoutX="173.0" layoutY="777.0" prefHeight="42.0" prefWidth="80.0" text="0" styleClass="golden-label" fx:id="player2gold"/>
-               <Label layoutX="23.0" layoutY="713.0" prefHeight="42.0" prefWidth="140.0" text="Player 1" styleClass="player-label"/>
+               <HBox layoutX="23.0" layoutY="713.0" spacing="5" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="200.0">
+                  <ImageView fitHeight="30.0" fitWidth="30.0">
+                     <image>
+                        <Image url="@../public/coin.png"/>
+                     </image>
+                  </ImageView>
+                  <Label text="Player 1" styleClass="player-label"/>
+               </HBox>
                <Label layoutX="173.0" layoutY="713.0" prefHeight="42.0" prefWidth="80.0" text="10000" styleClass="golden-label" fx:id="player1gold"/>
                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="60.0" prefHeight="136.0" prefWidth="184.0" text="1" fx:id="turn">
                   <font>
