@@ -169,8 +169,33 @@
     -fx-font-family: 'Inter';
     -fx-font-weight: 700;
     -fx-font-size: 14px;
+    -fx-background-radius: 10;
 }
 
 .button-buy:hover {
     -fx-background-color: #07513f;
+}
+
+.button-close-dialog {
+    -fx-background-color: #40A2E3;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-font-weight: 700;
+    -fx-padding: 7px 15px;
+}
+
+.button-close-dialog:hover {
+    -fx-background-color: #215C85FF;
+}
+
+.button-action {
+    -fx-background-color: #40A2E3;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
+
+.button-action:hover {
+    -fx-background-color: #215C85FF;
 }
