@@ -21,5 +21,5 @@
         <Label fx:id="detailCardEffect" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <ImageView fx:id="detailCardImage" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="3" />
     </GridPane>
-    <Button fx:id="buttonAction" text="Action" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-padding: 10;" maxWidth="Infinity"/>
+    <Button fx:id="buttonAction" onAction="#OnClickButton" text="Action" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-padding: 10;" maxWidth="Infinity"/>
 </VBox>

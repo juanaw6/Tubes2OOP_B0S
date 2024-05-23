@@ -100,7 +100,7 @@ public class DialogCardController {
                         }
                         buttonAction.setDisable(!crop.isReadyToHarvest());
                     }
-                    detailCardEffect.setText("Item aktif: "+convertMapToString(gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
+                    detailCardEffect.setText(convertMapToString(gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
                     buttonAction.setText("Harvest");
                 }
                 case "deck" -> {
@@ -113,8 +113,29 @@ public class DialogCardController {
                 }
             }
         }else {
+            if (id.contains("enemy")) {
+                String name = gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number).getName();
+                Image image = new Image(getClass().getResourceAsStream("/public/" + name + ".png"));
+                detailCardImage.setImage(image);
+                detailCardLabel.setText(name);
+                if (gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number) instanceof Animal) {
+                    Animal animal = ((Animal) gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number));
+                    detailCard.setText("Weight: "+animal.getWeight() + " ("+ animal.getHarvestWeight() + ")");
+
+                }else if (gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number) instanceof Crop){
+                    Crop crop = (Crop) gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number);
+                    detailCard.setText("Age: "+crop.getAge() + " ("+ crop.getHarvestAge() + ")");
+                    if (crop.isReadyToHarvest()) {
+                        image = new Image(getClass().getResourceAsStream("/public/" + name.replace("Biji ", "") + ".png"));
+                        detailCardImage.setImage(image);
+                    }
+                }
+                detailCardEffect.setText(convertMapToString(gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
+                buttonAction.setText("Harvest");
+            }
             buttonAction.setVisible(false);
         }
+        
     }
     
     @FXML

@@ -256,7 +256,7 @@ public class MainData {
                         path = path.replace("Biji ", "");
                     }
                 }
-                controller.setCardInfo("farm-" + i, path + ".png", name, true);
+                controller.setCardInfo("farm-" + i + "-enemy", path + ".png", name, true);
 
                 farmNodes.add(card);
             }
@@ -428,18 +428,20 @@ public class MainData {
             if (sourceparts[0].equals("farm")){
                 PlaceableCard card = player.getFieldRef().getFieldRef().get(sourceIndex);
                 if (player.getFieldRef().getFieldRef().get(targetIndex) == null){
-                player.getFieldRef().removeCard(sourceIndex);
-                player.getFieldRef().addPlaceableCard(targetIndex, card);
-            }
+                    player.getFieldRef().removeCard(sourceIndex);
+                    player.getFieldRef().addPlaceableCard(targetIndex, card);
+                }else {
+                    MainApplication.getInstance().showInvalidMovePopup(event);
+                }
 
 
             }else if (sourceparts[0].equals("deck")){
                 Card card = player.getDeckRef().getActiveDeckRef().get(sourceIndex);
                 if (player.getDeckRef().getActiveDeckRef().get(targetIndex) == null){
-
-
-                player.getDeckRef().removeFromActiveDeck(sourceIndex);
-                player.getDeckRef().addToActiveDeck(targetIndex, card);
+                    player.getDeckRef().removeFromActiveDeck(sourceIndex);
+                    player.getDeckRef().addToActiveDeck(targetIndex, card);
+                }else {
+                    MainApplication.getInstance().showInvalidMovePopup(event);
                 }
             }
             BackSwapField();
@@ -461,6 +463,8 @@ public class MainData {
                         gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
                         SwapField();
                     }
+                }else {
+                    MainApplication.getInstance().showInvalidMovePopup(event);
                 }
             }else {
                 if ((targetCard != null)) {
@@ -497,8 +501,12 @@ public class MainData {
                         }else{
                             MainApplication.getInstance().showInvalidMovePopup(event);
                         }
+                    }else {
+//                        menaruh bukan efek bukan makanan ke ladang isi itu nggk boleh
+                        MainApplication.getInstance().showInvalidMovePopup(event);
                     }
-                } else if (sourceCard instanceof PlaceableCard) {
+                } 
+                else if (sourceCard instanceof PlaceableCard) {
                     System.out.println(sourceCard.getName());
                     gs.getCurrentPlayer().getFieldRef().addPlaceableCard(targetIndex, (PlaceableCard) sourceCard);
                     gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
