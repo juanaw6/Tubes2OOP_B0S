@@ -160,7 +160,7 @@ public class DialogCardController {
                 stage.close();
             }
             case "Sell" -> {
-                mainData.onSell(numberId);
+                mainData.onSell(numberId, event);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.close();
             }

@@ -35,6 +35,7 @@ public class CardFactory implements ICardFactory {
             case "Delay" -> new Delay(type);
             case "Instant harvest" -> new InstantHarvest(type);
             case "Destroy" -> new Destroy(type);
+            case "Layout" -> new Layout(type);
             case "Protect" -> new Protect(type);
             case "Trap" -> new Trap(type);
             default -> throw new IllegalArgumentException("Unknown card type: " + type);

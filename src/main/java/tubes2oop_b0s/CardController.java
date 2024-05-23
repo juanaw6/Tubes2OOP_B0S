@@ -52,6 +52,7 @@ public class CardController {
         dropShadow.setOffsetY(6);
         dropShadow.setRadius(10);
         dropShadow.setSpread(0.5);
+        
 
         // Apply the effect to the VBox
         card.setEffect(dropShadow);
@@ -69,16 +70,14 @@ public class CardController {
         dropShadow.setOffsetY(6);
         dropShadow.setRadius(10);
         dropShadow.setSpread(0.5);
-
-        // Set background color to red
-//        BackgroundFill backgroundFill = new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY);
-//        Background background = new Background(backgroundFill);
-//        card.setBackground(background);
-
+        
         // Apply the drop shadow effect
         card.setEffect(dropShadow);
     }
 
+    public void setSmallCard(){
+        card.setPrefSize(86,67);
+    }
 
     public void setCardInfo(String id, String imageName, String cardName, boolean isView ) {
         Image image = new Image(getClass().getResourceAsStream("/public/" + imageName));
