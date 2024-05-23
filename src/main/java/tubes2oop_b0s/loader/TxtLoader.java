@@ -68,10 +68,8 @@ public class TxtLoader implements GameStateLoader {
             }
             gameWriter.close();
 
-            // Save player 1 state
             savePlayer(new BufferedWriter(new FileWriter(folderPath + "/player1.txt")), gameState.getPlayer1());
 
-            // Save player 2 state
             savePlayer(new BufferedWriter(new FileWriter(folderPath + "/player2.txt")), gameState.getPlayer2());
 
         } catch (IOException e) {
@@ -159,7 +157,7 @@ public class TxtLoader implements GameStateLoader {
         ArrayList<PlaceableCard> fieldArray = field.getFieldRef();
         writer.write(String.valueOf(field.getCardInFieldCount()));
         writer.newLine();
-        for (int i = 0; i < fieldArray.size(); i++) {
+        for (int i = 0; i < field.getNORMAL_FIELD_CARD_COUNT(); i++) {
             PlaceableCard placeableCard = fieldArray.get(i);
             if (placeableCard != null) {
                 int ageOrWeight = 0;

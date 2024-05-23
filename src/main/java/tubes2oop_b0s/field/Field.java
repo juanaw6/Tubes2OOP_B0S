@@ -85,11 +85,15 @@ public class Field {
 
     public int getCardInFieldCount() {
         int count = 0;
-        for (PlaceableCard card : field) {
-            if (card != null) {
+        for (int i = 0; i < NORMAL_FIELD_CARD_COUNT; i++) {
+            if (field.get(i) != null) {
                 count++;
             }
         }
         return count;
+    }
+
+    public int getNORMAL_FIELD_CARD_COUNT() {
+        return NORMAL_FIELD_CARD_COUNT;
     }
 }
