@@ -6,10 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import tubes2oop_b0s.loader.LoaderManager;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SaveDialogController {
     @FXML
@@ -18,6 +20,10 @@ public class SaveDialogController {
     private TextField folderField;
     @FXML
     private Label statusLabel;
+
+    public void initialize() {
+        populateFileTypeComboBox();
+    }
 
     @FXML
     protected void handleChooseFolder() {
@@ -29,37 +35,31 @@ public class SaveDialogController {
         }
     }
 
-    // @FXML
-    // protected void handleSave() {
-    // String fileType = fileTypeComboBox.getValue();
-    // String folder = folderField.getText();
-    // String filePath = folder + "/" + "savefile" + fileType;
-    // // Implement your file saving logic here
-    // System.out.println("File saved to: " + filePath);
-    // statusLabel.setText("Success!");
-    // // Close the dialog after saving
-    // ((Stage) statusLabel.getScene().getWindow()).close();
-    // }
+    @FXML
+    public void populateFileTypeComboBox() {
+        LoaderManager lm = LoaderManager.getInstance();
+        ArrayList<String> supportedExtensions = lm.getSupportedFileExtensions();
+        fileTypeComboBox.getItems().addAll(supportedExtensions);
+    }
 
     @FXML
     protected void handleSave() {
         String fileType = fileTypeComboBox.getValue();
         String folder = folderField.getText();
         if (folder.isEmpty()) {
-            statusLabel.setText("Failed: Please select a file type and folder.");
+            statusLabel.setText("Failed: Please select a folder.");
             return;
         }
         if (fileType == null) {
-            fileTypeComboBox.setValue(".txt");
+            fileType = ".txt";
         }
 
-        String filePath = folder + "/" + "savefile" + fileType;
-        try (FileWriter fileWriter = new FileWriter(new File(filePath))) {
-            // Dummy content to save in the file
-            String dummyContent = "This is a dummy content for the save file.";
-            fileWriter.write(dummyContent);
+        try {
+            LoaderManager lm = LoaderManager.getInstance();
+            lm.saveGameState(folder, fileType);
             statusLabel.setText("Success!");
-        } catch (IOException e) {
+            ((Stage) statusLabel.getScene().getWindow()).close();
+        } catch (Exception e) {
             e.printStackTrace();
             statusLabel.setText("Failed: Error saving file.");
         }

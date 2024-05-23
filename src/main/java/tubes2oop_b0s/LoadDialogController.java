@@ -6,8 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import tubes2oop_b0s.loader.LoaderManager;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class LoadDialogController {
     @FXML
@@ -16,6 +18,17 @@ public class LoadDialogController {
     private TextField folderField;
     @FXML
     private Label statusLabel;
+
+    public void initialize() {
+        populateFileTypeComboBox();
+    }
+
+    @FXML
+    public void populateFileTypeComboBox() {
+        LoaderManager lm = LoaderManager.getInstance();
+        ArrayList<String> supportedExtensions = lm.getSupportedFileExtensions();
+        fileTypeComboBox.getItems().addAll(supportedExtensions);
+    }
 
     @FXML
     protected void handleChooseFile() {
@@ -29,14 +42,26 @@ public class LoadDialogController {
 
     @FXML
     protected void handleLoad() {
-        String fileType = fileTypeComboBox.getValue();
         String folder = folderField.getText();
-        String filePath = folder + "/" + "savefile" + fileType;
-        // Implement your file loading logic here
-        System.out.println("File loaded from: " + filePath);
-        statusLabel.setText("Success!");
-        // Close the dialog after loading
-        ((Stage) statusLabel.getScene().getWindow()).close();
+        String fileType = fileTypeComboBox.getValue();
+
+        if (folder.isEmpty() || fileType == null) {
+            statusLabel.setText("Failed: Please select a folder and file type.");
+            return;
+        }
+
+        try {
+            // Implement your file loading logic here
+            System.out.println("File loaded from: " + folder);
+            LoaderManager lm = LoaderManager.getInstance();
+            lm.loadGameState(folder, fileType);
+            statusLabel.setText("Success!");
+            // Close the dialog after loading
+            ((Stage) statusLabel.getScene().getWindow()).close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Failed: Error loading file.");
+        }
     }
 
     @FXML
