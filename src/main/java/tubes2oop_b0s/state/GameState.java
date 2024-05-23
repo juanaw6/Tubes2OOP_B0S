@@ -55,11 +55,8 @@ public class GameState {
     }
 
     public void nextTurn() {
-        currentPlayerIndex = (currentPlayerIndex + 1);
-        if (currentPlayerIndex == 2) {
-            turn++;
-            currentPlayerIndex %= 2;
-        }
+        currentPlayerIndex = (currentPlayerIndex + 1) % 2;
+        turn++;
     }
 
     public int getWinner() {

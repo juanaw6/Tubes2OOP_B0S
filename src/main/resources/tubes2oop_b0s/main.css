@@ -159,8 +159,10 @@
 
 .dialog-pane {
     -fx-background-color: #FEF5E7; /* Adjust the color to match your design */
-    -fx-border-radius: 20;
+    -fx-border-radius: 0;
     -fx-background-radius: 20;
+    -fx-border-color: #0D9276;
+    -fx-border-width: 5; 
 }
 
 .button-buy {

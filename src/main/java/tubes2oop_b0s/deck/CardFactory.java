@@ -33,7 +33,7 @@ public class CardFactory implements ICardFactory {
             case "Stroberi" -> new ConsumableCard(type, 5, 350);
             case "Accelerate" -> new Accelerate(type);
             case "Delay" -> new Delay(type);
-            case "Instant harvest" -> new InstantHarvest(type);
+            case "Instant Harvest" -> new InstantHarvest(type);
             case "Destroy" -> new Destroy(type);
             case "Layout" -> new Layout(type);
             case "Protect" -> new Protect(type);

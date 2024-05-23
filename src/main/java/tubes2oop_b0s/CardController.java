@@ -34,9 +34,9 @@ import java.util.spi.CalendarDataProvider;
 public class CardController {
     @FXML
     private VBox card;
-    
+
     private boolean isView;
-    
+
     @FXML
     private ImageView cardImage;
     @FXML
@@ -52,7 +52,6 @@ public class CardController {
         dropShadow.setOffsetY(6);
         dropShadow.setRadius(10);
         dropShadow.setSpread(0.5);
-        
 
         // Apply the effect to the VBox
         card.setEffect(dropShadow);
@@ -65,34 +64,33 @@ public class CardController {
     public void setAttackedCard() {
         // Set drop shadow
         DropShadow dropShadow = new DropShadow();
-        dropShadow.setColor(Color.web("#FF0000"));  // Red color for the shadow
+        dropShadow.setColor(Color.web("#FF0000")); // Red color for the shadow
         dropShadow.setOffsetX(2);
         dropShadow.setOffsetY(6);
         dropShadow.setRadius(10);
         dropShadow.setSpread(0.5);
-        
+
         // Apply the drop shadow effect
         card.setEffect(dropShadow);
     }
 
-    public void setSmallCard(){
-        card.setPrefSize(86,67);
+    public void setSmallCard() {
+        card.setPrefSize(86, 56);
     }
 
-    public void setCardInfo(String id, String imageName, String cardName, boolean isView ) {
+    public void setCardInfo(String id, String imageName, String cardName, boolean isView) {
         Image image = new Image(getClass().getResourceAsStream("/public/" + imageName));
         cardImage.setImage(image);
         cardLabel.setText(cardName);
         card.setId(id);
         card.setOnDragDropped(this::onDragDropped);
         card.setOnDragOver(this::onDragOver);
-        if(!isView) {
+        if (!isView) {
             card.setOnDragDetected(this::onDragDetected);
         }
         this.isView = isView;
-        if (id.contains("farm")||id.contains("deck")){
+        if ((id.contains("farm") || id.contains("deck")) && !cardName.isEmpty()) {
             card.setOnMouseClicked(this::handleCardClick);
-
         }
     }
 
@@ -132,14 +130,14 @@ public class CardController {
             System.out.println("Dragged from: " + sourceVBox.getId());
             System.out.println("Dropped on: " + targetVBox.getId());
             maindata.DragDropCard(sourceVBox.getId(), targetVBox.getId(), event);
-            
+
             success = true;
         }
 
         event.setDropCompleted(success);
         event.consume();
     }
-    
+
     @FXML
     private void handleCardClick(MouseEvent event) {
         try {
@@ -149,13 +147,12 @@ public class CardController {
             Scene scene = new Scene(dialog);
             DialogCardController controller = loader.getController();
             controller.setDialogCardPaneId("detail-" + card.getId(), isView);
-            
-            
+
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Card Details");
             dialogStage.initStyle(StageStyle.UNDECORATED);
             dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.initOwner(((Node)event.getSource()).getScene().getWindow());
+            dialogStage.initOwner(((Node) event.getSource()).getScene().getWindow());
             dialogStage.setScene(scene);
             dialogStage.show();
         } catch (Exception e) {

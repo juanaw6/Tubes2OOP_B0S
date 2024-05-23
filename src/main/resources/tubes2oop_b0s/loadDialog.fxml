@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<VBox alignment="CENTER" spacing="20.0" prefWidth="400.0" prefHeight="200.0" stylesheets="@SaveDialog.css, @main.csss" style="-fx-background-color: #FEF5E7; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 20;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.LoadDialogController">
+<VBox alignment="CENTER" spacing="20.0" prefWidth="400.0" prefHeight="200.0" stylesheets="@SaveDialog.css, @main.css" style="-fx-background-color: #FEF5E7; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 20;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tubes2oop_b0s.LoadDialogController">
     <HBox alignment="CENTER_LEFT" spacing="10.0">
         <Button text="Back" onAction="#handleBack" styleClass="button-back"/>
     </HBox>

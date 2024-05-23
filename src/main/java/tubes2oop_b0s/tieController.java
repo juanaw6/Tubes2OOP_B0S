@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-public class WinPopUpController {
+public class tieController {
 
     @FXML
     private ImageView trophyImageView;

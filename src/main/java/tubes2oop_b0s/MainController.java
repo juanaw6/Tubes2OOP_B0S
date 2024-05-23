@@ -119,12 +119,12 @@ public class MainController {
                     if (isCompleted) {
                         data.finishAttackCard();
                         shopButton.setDisable(false);
-                        shopButton.setDisable(false);
                         farmButton.setDisable(false);
                         opponentButton.setDisable(false);
                         loadButton.setDisable(false);
                         pluginButton.setDisable(false);
                         nextButton.setDisable(false);
+                        saveButton.setDisable(false);
                         timerPlace.getChildren().clear();// Call method to handle post-timer completion
                     }
                 });

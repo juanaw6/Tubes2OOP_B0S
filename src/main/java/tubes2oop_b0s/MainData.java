@@ -53,8 +53,6 @@ public class MainData {
         storeNodes = new ArrayList<>();
         GameState gs = GameState.getInstance();
         Store store = Store.getInstance();
-        LoaderManager lm = LoaderManager.getInstance();
-        lm.loadGameState("C:/Coding/Tubes/Tubes2OOP_B0S/src/main/resources/saves", "txt");
         turn = 0;
     }
 
@@ -169,10 +167,8 @@ public class MainData {
         // change player
         GameState gs = GameState.getInstance();
         if (expandCount > 0) {
-            System.out.println("aaa");
             expandCount--;
             if (expandCount == 0) {
-                System.out.println("aaabb");
                 gs.getCurrentPlayer().getFieldRef().shrinkField();
             }
         }
@@ -180,10 +176,14 @@ public class MainData {
             if (turn >= 20) {
                 int player1Gold = gs.getCurrentPlayer().getGulden();
                 int player2Gold = gs.getEnemyPlayer().getGulden();
-                if (player1Gold >= player2Gold) {
-                    MainApplication.getInstance().showWinPopup(event);
+                if (player1Gold == player2Gold) {
+                    MainApplication.getInstance().showTiePopup(event, "TIE", 0);
+                } else if (player1Gold > player2Gold) {
+                    MainApplication.getInstance().showWinPopup(event, gs.getCurrentPlayer().getName(),
+                            gs.getCurrentPlayer().getGulden());
                 } else {
-                    MainApplication.getInstance().showWinPopup(event);
+                    MainApplication.getInstance().showWinPopup(event, gs.getEnemyPlayer().getName(),
+                            gs.getEnemyPlayer().getGulden());
                 }
                 return;
             }
@@ -245,17 +245,22 @@ public class MainData {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        boolean getShuffle = false;
         for (int i = 0; i < gs.getCurrentPlayer().getDeckRef().getActiveDeckRef().size(); i++) {
             if (gs.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(i) == null) {
                 showShuffleCards(event);
+                getShuffle = true;
                 break;
             }
         }
-        int random = (int) (Math.random() * 3);
-        if (random % 3 == 0) {
-            MainApplication.getInstance().showBearAttackPopup(event);
-            MainController.getInstance().bearAttack();
+        if (!getShuffle) {
+            int random = (int) (Math.random() * 5);
+            if (random == 0 && gs.getTurn() > 1) {
+                MainApplication.getInstance().showBearAttackPopup(event);
+                MainController.getInstance().bearAttack();
+            }
         }
+
         turn++;
 
     }
@@ -499,7 +504,7 @@ public class MainData {
                 }
             }
             BackSwapField();
-        } else {
+        } else if (sourceparts[0].equals("deck")) {
             PlaceableCard targetCard = player.getFieldRef().getFieldRef().get(targetIndex);
             Card sourceCard = player.getDeckRef().getActiveDeckRef().get(sourceIndex);
             if (!currentField.equals(gs.getCurrentPlayer().getName())) {
