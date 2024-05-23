@@ -100,16 +100,20 @@ public class MainData {
     public void finishAttackCard(){
         GameState gs = GameState.getInstance();
         ArrayList<PlaceableCard> field = gs.getCurrentPlayer().getFieldRef().getFieldRef();
+        boolean cancelAttack = false;
         for (int i = 0; i < field.size(); i++) {
             if (attacked.contains(i+1)) {
-//                do something about bear attack
                 if (field.get(i) != null) {
                     if (field.get(i).hasTrap()) {
-                        CardFactory factory = new CardFactory();
-                        Card db = factory.createCard("Beruang");
-                        gs.getCurrentPlayer().getDeckRef().addToActiveDeck(db);
-                        break;
-                    }else {
+                        cancelAttack = true;
+                    }
+                }
+            }
+        }
+        if (!cancelAttack){
+            for (int i = 0; i < field.size(); i++) {
+                if (attacked.contains(i+1)) {
+                    if (field.get(i) != null) {
                         gs.getCurrentPlayer().getFieldRef().removeCard(i);
                     }
                 }
@@ -482,8 +486,8 @@ public class MainData {
                             BackSwapField();
                         } else if (sourceCard instanceof InstantHarvest) {
                             ConsumableCard consumableCard = targetCard.harvest();
-                            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(consumableCard);
                             gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
+                            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(consumableCard);
                             gs.getCurrentPlayer().getFieldRef().removeCard(targetIndex);
                             BackSwapField();
                         } else if (!(sourceCard instanceof Destroy) && !(sourceCard instanceof Delay)){
