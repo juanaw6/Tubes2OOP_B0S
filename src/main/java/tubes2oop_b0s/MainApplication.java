@@ -48,7 +48,7 @@ public class MainApplication extends Application {
                 popupStage.initStyle(StageStyle.UNDECORATED);
                 popupStage.initOwner(((Node) event.getSource()).getScene().getWindow());
                 popupStage.setTitle("Card Shuffle");
-                popupStage.setScene(new Scene(root, 600, 400));
+                popupStage.setScene(new Scene(root, 400, 400));
                 popupStage.showAndWait();
             } catch (Exception e) {
                 System.err.println("Error loading FXML or setting up the popup");

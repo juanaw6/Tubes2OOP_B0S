@@ -1,0 +1,25 @@
+.root {
+    -fx-background-color: #1B425B;
+}
+
+.title-text {
+    -fx-font-size: 48px;
+    -fx-fill: #FFFFFF;
+}
+
+.subtitle-text {
+    -fx-font-size: 24px;
+    -fx-fill: #FFFFFF;
+}
+
+.footer-text {
+    -fx-font-size: 18px;
+    -fx-fill: #FFFFFF;
+}
+
+.button {
+    -fx-background-color: #FFF6E9;
+    -fx-text-fill: #1B425B;
+    -fx-font-size: 18px;
+    -fx-pref-width: 100px;
+}

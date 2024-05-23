@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tubes2oop_b0s.card.Card;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +16,12 @@ public class ShufflePopupController {
 
     @FXML
     private GridPane cardGrid;
+
+    @FXML
+    private Button reshuffleButton;
+
+    @FXML
+    private Button acceptButton;
 
     public void setShuffleCards(ArrayList<Card> shuffleCards) {
         cardGrid.getChildren().clear();
