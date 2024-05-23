@@ -99,9 +99,9 @@ public class MainData {
     public void setAttackCard() {
         bearAttack = true;
         GameState gameState = GameState.getInstance();
-        if (gameState.getCurrentPlayer().getFieldRef().getFieldRef().size() == 30){
+        if (gameState.getCurrentPlayer().getFieldRef().getFieldRef().size() == 30) {
             genRandomSubGrid(5, 6);
-        }else {
+        } else {
             genRandomSubGrid(4, 5);
         }
         BackSwapField();
@@ -172,7 +172,7 @@ public class MainData {
             System.out.println("aaa");
             expandCount--;
             if (expandCount == 0) {
-            System.out.println("aaabb");
+                System.out.println("aaabb");
                 gs.getCurrentPlayer().getFieldRef().shrinkField();
             }
         }
@@ -194,7 +194,7 @@ public class MainData {
             gs.getEnemyPlayer().getFieldRef().activateAllEffects();
             currentField = gs.getCurrentPlayer().getName();
         }
-        
+
         // change data deck and farm
         try {
             farmNodes = new ArrayList<>();
@@ -224,7 +224,7 @@ public class MainData {
                         controller.setAttackedCard();
                     }
                 }
-                if(field.size() > 20) {
+                if (field.size() > 20) {
                     controller.setSmallCard();
                 }
                 farmNodes.add(card);
@@ -251,8 +251,9 @@ public class MainData {
                 break;
             }
         }
-        int random = (int) (Math.random() * 6);
-        if (turn == 4) {
+        int random = (int) (Math.random() * 3);
+        if (random % 3 == 0) {
+            MainApplication.getInstance().showBearAttackPopup(event);
             MainController.getInstance().bearAttack();
         }
         turn++;
@@ -301,7 +302,7 @@ public class MainData {
                     }
                 }
                 controller.setCardInfo("farm-" + i + "-enemy", path + ".png", name, true);
-                if(field.size() > 20) {
+                if (field.size() > 20) {
                     controller.setSmallCard();
                 }
                 farmNodes.add(card);
@@ -329,6 +330,7 @@ public class MainData {
         // change player
         GameState gs = GameState.getInstance();
         currentField = gs.getCurrentPlayer().getName();
+        turn = gs.getTurn();
         // change data deck and farm
         try {
             farmNodes = new ArrayList<>();
@@ -357,7 +359,7 @@ public class MainData {
                         controller.setAttackedCard();
                     }
                 }
-                if(field.size() > 20) {
+                if (field.size() > 20) {
                     controller.setSmallCard();
                 }
                 farmNodes.add(card);
@@ -524,8 +526,7 @@ public class MainData {
                     gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
                     expandCount = 5;
                     BackSwapField();
-                }
-                else if ((targetCard != null)) {
+                } else if ((targetCard != null)) {
                     // aksi dalam ladang sendiri
                     if (sourceCard instanceof ConsumableCard && targetCard instanceof Animal) {
                         // consume something

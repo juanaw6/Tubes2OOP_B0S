@@ -13,7 +13,7 @@
     </HBox>
     <Label text="SAVE" style="-fx-font-size: 32px; -fx-text-fill: #2C3E50; -fx-font-family: 'Inter';"/>
     <!-- <Label text="Input Folder" style="-fx-font-size: 12px; -fx-text-fill: #2C3E50;"/> -->
-    <ComboBox promptText=".txt" fx:id="fileTypeComboBox" prefWidth="500.0">
+    <ComboBox promptText="txt" fx:id="fileTypeComboBox" prefWidth="500.0">
   </ComboBox>
     <HBox alignment="CENTER" spacing="16.0">
         <TextField fx:id="folderField" promptText="Destination path" prefWidth="265.0"/>

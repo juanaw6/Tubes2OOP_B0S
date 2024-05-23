@@ -36,7 +36,7 @@ public class Deck {
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
                 "Sirip Hiu", "Susu", "Daging Domba", "Daging Kuda", "Telur", "Daging Beruang",
                 "Jagung", "Labu", "Stroberi",
-                "Accelerate", "Delay", "Instant harvest", "Destroy", "Protect", "Trap"
+                "Accelerate", "Delay", "Instant harvest", "Destroy", "Protect", "Trap", "Layout"
         };
         String[] mustHaveCards = {
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
@@ -75,7 +75,7 @@ public class Deck {
         };
         String[] mustHaveCards = {
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
-                "Accelerate", "Protect", "Instant harvest", "Trap", "Layout"
+                "Accelerate", "Protect", "Instant harvest", "Trap"
         };
         // int remainingCards = MAX_SHUFFLED_DECK_SIZE - turn * 4;
         int remainingCards = n;
@@ -127,7 +127,7 @@ public class Deck {
 
     public void removeFromActiveDeck(Card card) {
         for (int i = 0; i < activeDeck.size(); i++) {
-            if (activeDeck.get(i) == null){
+            if (activeDeck.get(i) == null) {
                 continue;
             }
             if (activeDeck.get(i).equals(card)) {

@@ -57,7 +57,7 @@
                            <Label text="DECK" styleClass="button-secondary" />
                         </VBox>
                         <VBox alignment="CENTER" spacing="20" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="6.0">
-                           <Label text="33/40" styleClass="button-secondary" />
+                           <Label text="33/40" styleClass="button-secondary" fx:id="numDeck"/>
                         </VBox>
                      </children>
                   </AnchorPane>

@@ -60,6 +60,8 @@ public class MainController {
     private Label player2gold;
     @FXML
     private Label player1gold;
+    @FXML
+    private Label numDeck;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -78,6 +80,9 @@ public class MainController {
     public void reload() {
         MainData data = MainData.getInstance();
         GameState gs = GameState.getInstance();
+
+        numDeck.setText(String.valueOf(gs.getCurrentPlayer().getDeckRef().getShuffledDeckSize()) + "/40");
+
         turn.setText(String.valueOf(data.getTurn()));
         farm.getChildren().clear();
         deck.getChildren().clear();
