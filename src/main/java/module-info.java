@@ -17,6 +17,7 @@ module tubes2oop_b0s {
     requires net.bytebuddy;
     requires jdk.compiler;
     requires java.desktop;
+    requires javafx.graphics;
 
     opens tubes2oop_b0s to javafx.fxml;
 

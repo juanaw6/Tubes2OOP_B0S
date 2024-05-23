@@ -1,3 +1,4 @@
+
 package tubes2oop_b0s;
 
 import javafx.application.Application;
@@ -12,6 +13,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.Modality;
 import tubes2oop_b0s.card.Card;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.almasb.fxgl.multiplayer.ActionBeginReplicationEvent;
@@ -77,24 +79,24 @@ public class MainApplication extends Application {
         });
     }
 
-    public void showWinPopup(ActionEvent event) {
-        javafx.application.Platform.runLater(() -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("win.fxml"));
-                Parent root = loader.load();
+    public void showWinPopup(ActionEvent event, String playerName, int score) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Win.fxml"));
+            Parent root = loader.load();
 
-                Stage popupStage = new Stage();
-                popupStage.initModality(Modality.APPLICATION_MODAL);
-                popupStage.initOwner(((Node) event.getSource()).getScene().getWindow());
-                popupStage.initStyle(StageStyle.UNDECORATED);
-                popupStage.initOwner(((Node) event.getSource()).getScene().getWindow());
-                popupStage.setTitle("You Win!");
-                popupStage.setScene(new Scene(root, 500, 500));
-                popupStage.showAndWait();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+            WinPopUpController controller = loader.getController();
+            controller.setWinnerDetails(playerName, score);
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.initStyle(StageStyle.UNDECORATED);
+            popupStage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            popupStage.setTitle("You Win!");
+            popupStage.setScene(new Scene(root, 400, 500));
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showInvalidMovePopup(ActionEvent event) {
@@ -113,6 +115,7 @@ public class MainApplication extends Application {
             e.printStackTrace();
         }
     }
+
     public void showInvalidMovePopup(DragEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("invalid.fxml"));
