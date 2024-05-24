@@ -18,6 +18,8 @@ import app.state.Player;
 import app.store.Store;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class MainData {
@@ -30,17 +32,18 @@ public class MainData {
     private boolean bearAttack;
     private ArrayList<Integer> attacked;
     private int turn;
-    private int expandCount;
+    private Map<String, Integer> expandCount = new HashMap<>();
 
     // Private constructor to prevent instantiation from other classes
     private MainData() {
-        expandCount = 0;
         farmNodes = new ArrayList<>(20);
         deckNodes = new ArrayList<>(6);
         shuffleCards = new ArrayList<>();
         storeNodes = new ArrayList<>();
         GameState gs = GameState.getInstance();
         Store store = Store.getInstance();
+        expandCount.put(gs.getPlayer1().getName(), 0);
+        expandCount.put(gs.getPlayer2().getName(), 0);
         turn = 0;
     }
 
@@ -154,10 +157,20 @@ public class MainData {
     public void NextTurn(ActionEvent event) {
         // change player
         GameState gs = GameState.getInstance();
-        if (expandCount > 0) {
-            expandCount--;
-            if (expandCount == 0) {
-                gs.getCurrentPlayer().getFieldRef().shrinkField();
+        int expandCount1 = expandCount.get(gs.getPlayer1().getName());
+        int expandCount2 = expandCount.get(gs.getPlayer2().getName());
+        if (expandCount1 > 0) {
+            expandCount1--;
+            expandCount.put(gs.getPlayer1().getName(), expandCount1);
+            if (expandCount1 == 0) {
+                gs.getPlayer1().getFieldRef().shrinkField();
+            }
+        }
+        if (expandCount2 > 0) {
+            expandCount2--;
+            expandCount.put(gs.getPlayer2().getName(), expandCount2);
+            if (expandCount2 == 0) {
+                gs.getPlayer2().getFieldRef().shrinkField();
             }
         }
         if (turn > 0) {
@@ -527,7 +540,7 @@ public class MainData {
                 if (sourceCard instanceof Layout) {
                     gs.getCurrentPlayer().getFieldRef().expandField();
                     gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
-                    expandCount = 5;
+                    expandCount.put(gs.getCurrentPlayer().getName(), 5);
                     BackSwapField();
                 } else if ((targetCard != null)) {
                     // aksi dalam ladang sendiri
