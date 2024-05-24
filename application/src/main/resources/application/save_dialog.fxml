@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<VBox alignment="CENTER" spacing="10.0" prefWidth="400.0" prefHeight="100.0" stylesheets="@SaveDialog.css, @Main.css" style="-fx-background-color: #FFF6E9; -fx-border-radius: 20; -fx-background-radius: 10; -fx-padding: 25;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SaveDialogController" >
+
+<VBox alignment="CENTER" spacing="10.0" prefWidth="400.0" prefHeight="100.0" stylesheets="@save_dialog.css, @main.css" style="-fx-background-color: #FFF6E9; -fx-border-radius: 20; -fx-background-radius: 10; -fx-padding: 25;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SaveDialogController" >
     <HBox alignment="CENTER_LEFT" spacing="10.0">
         <Button text="Back" onAction="#handleBack" styleClass="button-back " style="-fx-font-family: 'Inter';"/>
     </HBox>

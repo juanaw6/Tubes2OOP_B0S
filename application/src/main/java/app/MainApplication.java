@@ -27,6 +27,9 @@ public class MainApplication extends Application {
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        SongPlayer songPlayer = new SongPlayer("song1.mp3", 20);
+        songPlayer.play();
     }
 
     public static MainApplication getInstance() {
@@ -156,8 +159,6 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
-        SongPlayer songPlayer = new SongPlayer("song1.mp3", 20);
-        songPlayer.play();
         launch(args);
     }
 }
