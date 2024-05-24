@@ -22,8 +22,7 @@ public class TimerController {
         songPlayer = new SongPlayer("bear.mp3", 50);
         songPlayer.play();
         int low = 30;
-        int high = 61; // The upper bound is exclusive, hence 61 instead of 60
-        int result = random.nextInt(high - low) + low;
+        int result =  (int) (Math.random() * 31) + low;
         timerThread = new TimerThread(result);
         timerThread.start();
         timerLabel.setVisible(true);
