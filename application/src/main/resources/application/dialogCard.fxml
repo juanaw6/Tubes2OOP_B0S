@@ -18,7 +18,7 @@
             <ColumnConstraints hgrow="ALWAYS" minWidth="50" />
         </columnConstraints>
         <Button fx:id="closeButton" text="Back" styleClass="button-close-dialog" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <Label fx:id="detailCardLabel" text="CARD NAME" style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #1B425B; -fx-text-transform: uppercase;" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
+        <Label fx:id="detailCardLabel" text="CARD NAME" style="-fx-font-size: 35px; -fx-font-weight: bold; -fx-text-fill: #1B425B; -fx-text-transform: uppercase;" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
     </GridPane>
 
     <GridPane hgap="5" vgap="10" prefWidth="450">
