@@ -12,7 +12,7 @@ public class SongPlayer {
     public SongPlayer(String filePath, double volume) {
         // Initialize Media and MediaPlayer on JavaFX Thread
         Platform.runLater(() -> {
-            String path = "application/src/main/resources/songs/" + filePath;
+            String path = "src/main/resources/songs/" + filePath;
             Media media = new Media(new File(path).toURI().toString());
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setVolume(volume);
