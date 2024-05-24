@@ -499,16 +499,26 @@ public class MainData {
                 PlaceableCard targetCardEnemy = gs.getEnemyPlayer().getFieldRef().getFieldRef().get(targetIndex);
                 if (targetCardEnemy != null) {
                     if (sourceCard instanceof Destroy) {
-                        if (!targetCardEnemy.isProtected()) {
-                            gs.getEnemyPlayer().getFieldRef().removeCard(targetIndex);
+                        if (targetCard == null) {
+                            MainApplication.getInstance().showInvalidMovePopup(event);
                         }
-                        gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
-                        SwapField();
+                        else {
+                            if (!targetCardEnemy.isProtected()) {
+                                gs.getEnemyPlayer().getFieldRef().removeCard(targetIndex);
+                            }
+                            gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
+                            SwapField();
+                        }
                     } else if (sourceCard instanceof Delay) {
-                        ((Delay) sourceCard).use(targetCardEnemy);
-                        targetCardEnemy.addEffect(sourceCard.getName());
-                        gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
-                        SwapField();
+                        if (targetCard == null) {
+                            MainApplication.getInstance().showInvalidMovePopup(event);
+                        }
+                        else {
+                            ((Delay) sourceCard).use(targetCardEnemy);
+                            targetCardEnemy.addEffect(sourceCard.getName());
+                            gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
+                            SwapField();
+                        }
                     }
                 } else {
                     MainApplication.getInstance().showInvalidMovePopup(event);
