@@ -58,13 +58,17 @@ public class LocationParser {
      * @return the parsed integer index.
      */
     private static int parseLocation(String location, int rowElementCount) {
-        if (location == null || location.length() < 2) {
+        if (location == null || location.length() < 3) {
             throw new IllegalArgumentException("Invalid location format");
         }
 
         char columnChar = location.charAt(0);
         int column = columnChar - 'A';
         int row = Integer.parseInt(location.substring(1)) - 1;
+
+        if (column < 0 || column >= rowElementCount || row < 0) {
+            throw new IllegalArgumentException("Invalid location format");
+        }
 
         return row * rowElementCount + column;
     }
@@ -77,6 +81,10 @@ public class LocationParser {
      * @return the location string.
      */
     private static String convertLocation(int index, int rowElementCount) {
+        if (index < 0) {
+            throw new IllegalArgumentException("Invalid index");
+        }
+
         int row = index / rowElementCount;
         int column = index % rowElementCount;
 

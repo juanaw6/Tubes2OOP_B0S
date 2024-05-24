@@ -25,4 +25,9 @@ module application {
     exports app.state;
     exports app.card;
     exports app.store;
+    exports app.card.animals;
+    exports app.card.crops;
+    exports app.card.effects;
+    exports app.field;
+    exports app.utils;
 }

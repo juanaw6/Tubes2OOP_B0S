@@ -6,7 +6,7 @@ public class StringFormatter {
      * Converts a string to a more readable format:
      * - Underscores are replaced with spaces.
      * - Each word starts with a capital letter followed by lower case letters.
-     * @param input The string to be formatted.
+     * @param input The string to be formatted (String can only contain alphabets).
      * @return The formatted string.
      * @implNote Converts "ABC_DEF" to "Abc Def".
      */
@@ -41,7 +41,7 @@ public class StringFormatter {
      * Converts a formatted string back to an all-uppercase string with underscores.
      * - Spaces are replaced with underscores.
      * - All characters are converted to uppercase.
-     * @param input The formatted string to be converted back.
+     * @param input The formatted string to be converted back (String can only contain alphabets).
      * @return The original uppercased underscored string.
      * @implNote Converts "Abc Def" back to "ABC_DEF".
      */
