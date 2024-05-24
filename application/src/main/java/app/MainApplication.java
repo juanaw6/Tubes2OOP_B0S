@@ -36,7 +36,7 @@ public class MainApplication extends Application {
     public void showCardShufflePopup(ActionEvent event, ArrayList<Card> shuffleCards) {
         javafx.application.Platform.runLater(() -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Shuffle.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/shuffle.fxml"));
                 Parent root = loader.load();
 
                 ShufflePopupController controller = loader.getController();
@@ -65,7 +65,7 @@ public class MainApplication extends Application {
     public void showBearAttackPopup(ActionEvent event) {
         javafx.application.Platform.runLater(() -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/BearPopup.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/bear_popup.fxml"));
                 Parent root = loader.load();
 
                 Stage popupStage = new Stage();

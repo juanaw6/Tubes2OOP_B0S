@@ -138,7 +138,7 @@ public class MainData {
             ArrayList<String> stringsUniq = store.getItemsUniqueStr();
             for (int i = 0; i < stringsUniq.size(); i++) {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/StoreCard.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/store_card.fxml"));
                 Node card = loader.load();
 
                 CardFactory factory = new CardFactory();
@@ -204,7 +204,7 @@ public class MainData {
             ArrayList<PlaceableCard> field = player.getFieldRef().getFieldCopy();
             ArrayList<Card> deck = player.getDeckRef().getActiveDeckRef();
             for (int i = 0; i < field.size(); i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/card.fxml"));
                 Node card = loader.load();
 
                 String name = field.get(i) == null ? "" : field.get(i).getName();
@@ -231,7 +231,7 @@ public class MainData {
                 farmNodes.add(card);
             }
             for (int i = 0; i < deck.size(); i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/card.fxml"));
                 Node card = loader.load();
 
                 String name = deck.get(i) == null ? "" : deck.get(i).getName();
@@ -293,7 +293,7 @@ public class MainData {
             ArrayList<PlaceableCard> field = player.getFieldRef().getFieldCopy();
             ArrayList<Card> deck = playerCurrent.getDeckRef().getActiveDeckRef();
             for (int i = 0; i < field.size(); i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/card.fxml"));
                 Node card = loader.load();
 
                 String name = field.get(i) == null ? "" : field.get(i).getName();
@@ -314,7 +314,7 @@ public class MainData {
                 farmNodes.add(card);
             }
             for (int i = 0; i < deck.size(); i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/card.fxml"));
                 Node card = loader.load();
 
                 String name = deck.get(i) == null ? "" : deck.get(i).getName();
@@ -345,7 +345,7 @@ public class MainData {
             ArrayList<PlaceableCard> field = player.getFieldRef().getFieldCopy();
             ArrayList<Card> deck = player.getDeckRef().getActiveDeckRef();
             for (int i = 0; i < field.size(); i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/card.fxml"));
                 Node card = loader.load();
 
                 String name = field.get(i) == null ? "" : field.get(i).getName();
@@ -371,7 +371,7 @@ public class MainData {
                 farmNodes.add(card);
             }
             for (int i = 0; i < deck.size(); i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/card.fxml"));
                 Node card = loader.load();
 
                 String name = deck.get(i) == null ? "" : deck.get(i).getName();

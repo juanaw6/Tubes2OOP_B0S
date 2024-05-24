@@ -4,10 +4,11 @@
     -fx-background-radius: 20;
     -fx-border-radius: 20;
     -fx-font-size: 15px;
+    -fx-font-weight: 700;
 }
 
 .button-back:hover {
-    -fx-background-color: #AB1E24; /* Lighter blue on hover */
+    -fx-background-color: #AB1E24;
 }
 
 .button-save {
@@ -16,10 +17,11 @@
     -fx-background-radius: 20;
     -fx-font-size: 23px;
     -fx-pref-width: 600px;
+    -fx-font-weight: 700;
 }
 
 .button-save:hover {
-    -fx-background-color: #AB1E24; /* Lighter green on hover */
+    -fx-background-color: #AB1E24;
 }
 
 

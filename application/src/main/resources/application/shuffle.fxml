@@ -10,7 +10,7 @@
         <!-- The cards will be dynamically added here -->
     </GridPane>
     <HBox spacing="10.0" alignment="CENTER">
-        <Button fx:id="reshuffleButton" text="Reshuffle" onAction="#handleReshuffle" styleClass="custom-button"/>
+        <Button fx:id="reshuffleButton" text="Shuffle" onAction="#handleReshuffle" styleClass="custom-button"/>
         <Button fx:id="acceptButton" text="Accept" onAction="#handleAccept" styleClass="custom-button"/>
     </HBox>
 </VBox>

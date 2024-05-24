@@ -129,7 +129,7 @@ public class CardController {
     private void handleCardClick(MouseEvent event) {
         try {
             System.out.println(card.getId());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/dialogCard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/dialog_card.fxml"));
             Parent dialog = loader.load();
             Scene scene = new Scene(dialog);
             DialogCardController controller = loader.getController();

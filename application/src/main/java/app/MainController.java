@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -105,7 +104,7 @@ public class MainController {
                 pluginButton.setDisable(true);
                 nextButton.setDisable(true);
                 saveButton.setDisable(true);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Timer.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/timer.fxml"));
                 Node root = loader.load();
                 TimerController controller = loader.getController();
                 timerPlace.getChildren().add(root);
@@ -189,7 +188,7 @@ public class MainController {
     @FXML
     private void showSaveDialog(ActionEvent event) {
         try {
-            VBox dialogContent = FXMLLoader.load(getClass().getResource("/application/SaveDialog.fxml"));
+            VBox dialogContent = FXMLLoader.load(getClass().getResource("/application/save_dialog.fxml"));
             Dialog<Void> dialog = new Dialog<>();
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initStyle(StageStyle.UNDECORATED);
@@ -205,7 +204,7 @@ public class MainController {
     @FXML
     private void showLoadDialog(ActionEvent event) {
         try {
-            VBox dialogContent = FXMLLoader.load(getClass().getResource("/application/LoadDialog.fxml"));
+            VBox dialogContent = FXMLLoader.load(getClass().getResource("/application/load_dialog.fxml"));
             Dialog<Void> dialog = new Dialog<>();
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initStyle(StageStyle.UNDECORATED);
@@ -221,7 +220,7 @@ public class MainController {
     @FXML
     private void showPluginDialog(ActionEvent event) {
         try {
-            VBox dialogContent = FXMLLoader.load(getClass().getResource("/application/PluginDialog.fxml"));
+            VBox dialogContent = FXMLLoader.load(getClass().getResource("/application/plugin_dialog.fxml"));
             Dialog<Void> dialog = new Dialog<>();
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initStyle(StageStyle.UNDECORATED);

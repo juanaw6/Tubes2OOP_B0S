@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="app.BearAttackPopupController" alignment="CENTER" spacing="20.0" style="-fx-background-color: white; -fx-padding: 30; -fx-border-color: #C72229; -fx-border-width: 5; -fx-background-radius: 0; -fx-border-radius: 0; -fx-font-weight: bold;" prefHeight="1500" minHeight="1200">
+    <Text text="The bear is attacking your farm!" style="-fx-font-size: 20px; -fx-fill: #C72229; -fx-font-weight: bold;" />
+    <ImageView fx:id="bearImage" fitHeight="300.0" fitWidth="300.0">
+        <image>
+            <Image url="@../public/Bear.png"/>
+        </image>
+    </ImageView>
+    <Text text="Defend your crops!" style="-fx-font-size: 18px; -fx-fill: #C72229;" />
+    <Button text="Defend!" onAction="#handleDefend" style="-fx-background-color: #C72229; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20 ; -fx-font-weight: bold;"/>
+</VBox>
