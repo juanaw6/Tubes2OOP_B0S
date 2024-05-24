@@ -85,5 +85,7 @@ public class ShufflePopupController {
         mainData.acceptShuffleCards();
         Stage stage = (Stage) cardGrid.getScene().getWindow();
         stage.close();
+        
+        mainData.getInstance().showBearAttack(event);
     }
 }

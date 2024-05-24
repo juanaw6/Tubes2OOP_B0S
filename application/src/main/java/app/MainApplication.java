@@ -49,12 +49,7 @@ public class MainApplication extends Application {
                 popupStage.setTitle("Card Shuffle");
                 popupStage.setScene(new Scene(root, 400, 400));
                 popupStage.showAndWait();
-                GameState gs = GameState.getInstance();
-                int random = (int) (Math.random() * 5);
-                if (random == 0 && gs.getTurn() > 1) {
-                    MainApplication.getInstance().showBearAttackPopup(event);
-                    MainController.getInstance().bearAttack();
-                }
+                
             } catch (Exception e) {
                 System.err.println("Error loading FXML or setting up the popup");
                 e.printStackTrace();

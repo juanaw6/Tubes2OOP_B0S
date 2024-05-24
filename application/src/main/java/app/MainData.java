@@ -269,6 +269,15 @@ public class MainData {
     public void showShuffleCards(ActionEvent event) {
         MainApplication.getInstance().showCardShufflePopup(event, getShuffleCards());
     }
+    
+    public void showBearAttack(ActionEvent event){
+        GameState gs = GameState.getInstance();
+        int random = (int) (Math.random() * 5);
+        if (random == 0 && gs.getTurn() > 1) {
+            MainApplication.getInstance().showBearAttackPopup(event);
+            MainController.getInstance().bearAttack();
+        }
+    }
 
     public ArrayList<Card> getShuffleCards() {
         GameState gs = GameState.getInstance();
