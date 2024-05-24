@@ -19,7 +19,7 @@ public class TimerController {
     private BooleanProperty timerCompleted = new SimpleBooleanProperty(false);
 
     public void initialize() {
-        songPlayer = new SongPlayer("bear.mp3", 50);
+        songPlayer = new SongPlayer("bear.mp3", 100);
         songPlayer.play();
         int low = 30;
         int result =  (int) (Math.random() * 31) + low;

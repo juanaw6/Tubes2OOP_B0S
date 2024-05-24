@@ -161,7 +161,7 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
-        SongPlayer songPlayer = new SongPlayer("song1.mp3", 2);
+        SongPlayer songPlayer = new SongPlayer("song1.mp3", 20);
         songPlayer.play();
         launch(args);
     }
