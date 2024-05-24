@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" stylesheets="@main.css" prefHeight="900.0" prefWidth="1150.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="app.StoreController" style="-fx-background-color: #40A2E3;">
+<VBox alignment="CENTER" stylesheets="@main.css" prefHeight="900.0" prefWidth="1150.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="app.StoreController" style="-fx-background-color: #E3BD7C;">
     <HBox prefHeight="900.0" prefWidth="1110.0">
         <children>
             <VBox prefHeight="900.0" prefWidth="1164.0" style="-fx-border-color: transparent  #E0E0E0 transparent transparent; -fx-border-width: 0 0 0 0;">

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Button?>
 
 
-<VBox alignment="CENTER" stylesheets="@main.css" prefHeight="190.0" prefWidth="130.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" style="-fx-background-color: #BBE2EC; -fx-border-color: #1B425B; -fx-border-width: 3px; -fx-background-radius: 10px; -fx-border-radius: 8px;" fx:controller="app.StoreCardController" fx:id="card">
+<VBox alignment="CENTER" stylesheets="@main.css" prefHeight="190.0" prefWidth="130.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" style="-fx-background-color: #FFF6E9; -fx-border-color: #C72229; -fx-border-width: 3px; -fx-background-radius: 10px; -fx-border-radius: 8px;" fx:controller="app.StoreCardController" fx:id="card">
     <children>
         <ImageView fitHeight="90.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" fx:id="cardImage">
             <image>

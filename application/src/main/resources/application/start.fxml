@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="app.StartController" style="-fx-background-color: #1B425B;" stylesheets="@shuffle.css">
+<StackPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="app.StartController" style="-fx-background-color: #E3BD7C;" stylesheets="@start.css">
     <VBox alignment="TOP_LEFT" style="-fx-padding: 20px;">
         <Text text="IF2210 Object Oriented Programming" style="-fx-font-size: 14px;" fill="#FFF6E9"/>
     </VBox>

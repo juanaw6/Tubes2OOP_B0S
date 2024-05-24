@@ -1,5 +1,5 @@
 .button-back {
-    -fx-background-color: #ADD8E6;
+    -fx-background-color: #C72229;
     -fx-text-fill: white;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
@@ -7,11 +7,11 @@
 }
 
 .button-back:hover {
-    -fx-background-color: #87CEEB; /* Lighter blue on hover */
+    -fx-background-color: #AB1E24; /* Lighter blue on hover */
 }
 
 .button-save {
-    -fx-background-color: #28B463;
+    -fx-background-color: #C72229;
     -fx-text-fill: white;
     -fx-background-radius: 20;
     -fx-font-size: 23px;
@@ -19,7 +19,7 @@
 }
 
 .button-save:hover {
-    -fx-background-color: #2ECC71; /* Lighter green on hover */
+    -fx-background-color: #AB1E24; /* Lighter green on hover */
 }
 
 

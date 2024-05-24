@@ -1,6 +1,6 @@
 .custom-button {
-    -fx-background-color: #BBE2EC; /* Button background color */
-    -fx-text-fill: #1B425B; /* Text color */
+    -fx-background-color: #C72229; /* Button background color */
+    -fx-text-fill: #F8F8F8; /* Text color */
     -fx-font-size: 14px; /* Font size */
     -fx-font-weight: bold; /* Font weight */
     -fx-padding: 8 16; /* Padding */

@@ -19,7 +19,7 @@
 <VBox alignment="CENTER" prefHeight="900.0" prefWidth="1150.0" stylesheets="@main.css" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
    <HBox prefHeight="900.0" prefWidth="1120.0">
       <children>
-         <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent #FFF6E9 transparent transparent; -fx-border-width: 0 4 0 0; -fx-background-color: #40A2E3;">
+         <VBox prefHeight="900.0" prefWidth="870.0" style="-fx-border-color: transparent #FFF6E9 transparent transparent; -fx-border-width: 0 4 0 0; -fx-background-color: #E3BD7C;">
             <children>
                <AnchorPane prefHeight="60.0" prefWidth="870.0" style="-fx-font-size: 24px;">
                   <children>
@@ -64,7 +64,7 @@
                </VBox>
             </children>
          </VBox>
-         <AnchorPane prefHeight="900.0" prefWidth="280.0" style="-fx-background-color: #40A2E3;">
+         <AnchorPane prefHeight="900.0" prefWidth="280.0" style="-fx-background-color: #E3BD7C;">
             <children>
                <VBox alignment="CENTER" prefHeight="265.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
                   <children>

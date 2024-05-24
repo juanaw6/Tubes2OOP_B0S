@@ -1,6 +1,6 @@
 .custom-button {
-    -fx-background-color: #BBE2EC; /* Button background color */
-    -fx-text-fill: #000000; /* Text color */
+    -fx-background-color: #C72229; /* Button background color */
+    -fx-text-fill: #F8F8F8; /* Text color */
     -fx-font-size: 14px; /* Font size */
     -fx-font-weight: bold; /* Font weight */
     -fx-padding: 8 16; /* Padding */
@@ -15,6 +15,19 @@
 }
 
 .custom-button:hover {
-    -fx-effect: dropshadow( gaussian , #FFF6E9 , 10,0.5,0,0 ); /* Glowing effect on hover with the specified color */
+    -fx-effect: dropshadow( gaussian , #AB1E24 , 10,0.5,0,0 ); /* Glowing effect on hover with the specified color */
+}
+
+
+/* tie */
+.button {
+    -fx-background-color: #C72229; /* Normal background color */
+    -fx-text-fill: #000000;       /* Normal text color */
+    -fx-font-size: 16px;
+    -fx-padding: 10px 20px;
+}
+
+.button:hover {
+    -fx-background-color: #AB1E24; /* Hover background color */
 }
 

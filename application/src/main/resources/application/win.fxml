@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="app.WinPopUpController" alignment="CENTER" spacing="20.0" style="-fx-background-color: #FFF6E9; -fx-padding: 30; -fx-border-color: #2E8B57; -fx-border-width: 8; -fx-background-radius: 30; -fx-border-radius: 1;" prefHeight="500" prefWidth="400">
-    <Text text="Winner" style="-fx-font-size: 24px; -fx-fill: #2E8B57; -fx-font-weight: bold;" />
-    <Text fx:id="playerName" text="Player 1" style="-fx-font-size: 36px; -fx-fill: #2E8B57; -fx-font-weight: bold;" />
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="app.WinPopUpController" alignment="CENTER" spacing="20.0" style="-fx-background-color: #F8F8F8; -fx-padding: 30; -fx-border-color: #C72229; -fx-border-width: 8; -fx-background-radius: 30; -fx-border-radius: 1;" prefHeight="500" prefWidth="400">
+    <Text text="Winner" style="-fx-font-size: 24px; -fx-fill: #000000; -fx-font-weight: bold;" />
+    <Text fx:id="playerName" text="Player 1" style="-fx-font-size: 36px; -fx-fill: #000000; -fx-font-weight: bold;" />
     <ImageView fx:id="trophyImageView" fitWidth="150.0" fitHeight="150.0" preserveRatio="true">
         <image>
             <Image url="@../public/Trophy.png"/>
@@ -22,7 +22,7 @@
                 <Image url="@../public/Coin.png"/>
             </image>
         </ImageView>
-        <Text fx:id="score" text="4000" style="-fx-font-size: 36px; -fx-fill: #2E8B57; -fx-font-weight: bold;" />
+        <Text fx:id="score" text="4000" style="-fx-font-size: 36px; -fx-fill: #000000; -fx-font-weight: bold;" />
     </HBox>
-    <Button text="Finish" onAction="#handleFinish" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px;"/>
+    <Button text="Finish" onAction="#handleFinish" style="-fx-background-color: #C72229; -fx-text-fill: #000000; -fx-font-size: 16px; -fx-padding: 10px 20px;"/>
 </VBox>

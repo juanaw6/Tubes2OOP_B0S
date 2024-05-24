@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="app.BearAttackPopupController" alignment="CENTER" spacing="20.0" style="-fx-background-color: #FFF6E9; -fx-padding: 30; -fx-border-color: #0D9276; -fx-border-width: 5; -fx-background-radius: 0; -fx-border-radius: 0;" prefHeight="1500" minHeight="1200">
-    <Text text="The bear is attacking your farm!" style="-fx-font-size: 20px; -fx-fill: #D82121;" />
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="app.BearAttackPopupController" alignment="CENTER" spacing="20.0" style="-fx-background-color: #E3BD7C; -fx-padding: 30; -fx-border-color: #C72229; -fx-border-width: 5; -fx-background-radius: 0; -fx-border-radius: 0;" prefHeight="1500" minHeight="1200">
+    <Text text="The bear is attacking your farm!" style="-fx-font-size: 20px; -fx-fill: #F8F8F8;" />
     <ImageView fx:id="bearImage" fitHeight="300.0" fitWidth="300.0">
         <image>
             <Image url="@../public/Bear.png"/>
         </image>
     </ImageView>
-    <Text text="Defend your crops!" style="-fx-font-size: 18px; -fx-fill: #D82121;" />
-    <Button text="Defend!" onAction="#handleDefend" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20;"/>
+    <Text text="Defend your crops!" style="-fx-font-size: 18px; -fx-fill: #F8F8F8;" />
+    <Button text="Defend!" onAction="#handleDefend" style="-fx-background-color: #C72229; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20;"/>
 </VBox>

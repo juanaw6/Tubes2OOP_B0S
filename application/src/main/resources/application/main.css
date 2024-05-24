@@ -65,7 +65,7 @@
 }
 
 .button-default:hover {
-    -fx-background-color: #0D9276;
+    -fx-background-color: #AB1E24;
     -fx-text-fill: #FFF6E9;
 }
 
@@ -73,8 +73,8 @@
     -fx-font-family: 'Inter';
     -fx-font-size: 15px;
     -fx-font-weight: 700;
-    -fx-background-color: #0D9276;
-    -fx-text-fill: #FFF6E9;
+    -fx-background-color: #C72229;
+    -fx-text-fill: #F8F8F8;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
     -fx-padding: 7px 15px;
@@ -90,20 +90,20 @@
     -fx-background-radius: 10px;
     -fx-border-radius: 8px;
     -fx-border-width: 3px;
-    -fx-border-color: #1B425B;
+    -fx-border-color: #C72229;
     -fx-padding: 7px 20px;
     -fx-alignment: center;
 }
 
 .styled-circle {
-    -fx-fill: #FFF6E9;
-    -fx-stroke: #0D9276;
+    -fx-fill: #F8F8F8;
+    -fx-stroke: #C72229;
     -fx-stroke-width: 12px;
 }
 
 .button-next-turn {
-    -fx-background-color: #1B425B;
-    -fx-text-fill: #FFF6E9;
+    -fx-background-color: #C72229;
+    -fx-text-fill: #F8F8F8;
     -fx-font-family: 'Inter';
     -fx-font-weight: 700;
     -fx-font-size: 16px;
@@ -112,30 +112,30 @@
 }
 
 .button-next-turn:hover {
-    -fx-background-color: #112c39;
+    -fx-background-color: #AB1E24;
 }
 
 .button-back-hover {
     -fx-background-radius: 20;
     -fx-border-radius: 20;
     -fx-font-size: 14px;
-    -fx-background-color: #1B425B;
+    -fx-background-color: #C72229;
     -fx-text-fill: #FFF6E9;
     -fx-font-family: 'Inter';
     -fx-font-weight: 700;
 }
 
 .button-back-hover:hover {
-    -fx-background-color: #112c39;
+    -fx-background-color: #AB1E24;
 }
 
 .player-label {
     -fx-background-color: #FFF6E9;
-    -fx-text-fill: #1B425B;
+    -fx-text-fill: #AB1E24;
     -fx-font-family: 'Inter';
     -fx-font-size: 15px;
     -fx-font-weight: 700;
-    -fx-border-color: #1B425B;
+    -fx-border-color: #AB1E24;
     -fx-border-width: 5px;
     -fx-background-radius: 10px;
     -fx-border-radius: 8px;
@@ -144,12 +144,12 @@
 }
 
 .golden-label {
-    -fx-background-color: #BBE2EC;
-    -fx-text-fill: #1B425B;
+    -fx-background-color: #FFF6E9;
+    -fx-text-fill: #AB1E24;
     -fx-font-family: 'Inter';
     -fx-font-size: 15px;
     -fx-font-weight: 700;
-    -fx-border-color: #1B425B;
+    -fx-border-color: #AB1E24;
     -fx-border-width: 5px;
     -fx-background-radius: 10px;
     -fx-border-radius: 8px;
@@ -158,16 +158,16 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #FEF5E7; /* Adjust the color to match your design */
+    -fx-background-color: #FFF6E9; /* Adjust the color to match your design */
     -fx-border-radius: 0;
     -fx-background-radius: 20;
-    -fx-border-color: #0D9276;
+    -fx-border-color: #AB1E24;
     -fx-border-width: 5; 
 }
 
 .button-buy {
-    -fx-background-color: #0D9276;
-    -fx-text-fill: #FFF6E9;
+    -fx-background-color: #C72229;
+    -fx-text-fill: #FFFFFF;
     -fx-font-family: 'Inter';
     -fx-font-weight: 700;
     -fx-font-size: 14px;
@@ -179,7 +179,7 @@
 }
 
 .button-close-dialog {
-    -fx-background-color: #40A2E3;
+    -fx-background-color: #C72229;
     -fx-text-fill: #FFFFFF;
     -fx-background-radius: 20;
     -fx-font-weight: 700;
@@ -187,11 +187,11 @@
 }
 
 .button-close-dialog:hover {
-    -fx-background-color: #215C85FF;
+    -fx-background-color: #AB1E24;
 }
 
 .button-action {
-    -fx-background-color: #40A2E3;
+    -fx-background-color: #C72229;
     -fx-text-fill: #FFFFFF;
     -fx-font-weight: 700;
     -fx-background-radius: 8;
@@ -199,5 +199,5 @@
 }
 
 .button-action:hover {
-    -fx-background-color: #215C85FF;
+    -fx-background-color: #AB1E24;
 }
