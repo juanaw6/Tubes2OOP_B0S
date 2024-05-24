@@ -30,9 +30,9 @@ public class Deck {
     public void initShuffledDeck() {
         ICardFactory factory = new CardFactory();
         String[] cardTypes = {
-                "Hiu Darat", "Domba", "Sapi", "Kuda", "Ayam", "Beruang",
+                "Hiu Darat", "Domba", "Sapi", "Kuda", "Ayam",
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
-                "Sirip Hiu", "Susu", "Daging Domba", "Daging Kuda", "Telur", "Daging Beruang",
+                "Sirip Hiu", "Susu", "Daging Domba", "Daging Kuda", "Telur",
                 "Jagung", "Labu", "Stroberi",
                 "Accelerate", "Delay", "Instant Harvest", "Destroy", "Protect", "Trap", "Layout"
         };
@@ -65,9 +65,9 @@ public class Deck {
         shuffledDeck.clear();
         java.util.Random rand = new java.util.Random();
         String[] cardTypes = {
-                "Hiu Darat", "Domba", "Sapi", "Kuda", "Ayam", "Beruang",
+                "Hiu Darat", "Domba", "Sapi", "Kuda", "Ayam",
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
-                "Sirip Hiu", "Susu", "Daging Domba", "Daging Kuda", "Telur", "Daging Beruang",
+                "Sirip Hiu", "Susu", "Daging Domba", "Daging Kuda", "Telur",
                 "Jagung", "Labu", "Stroberi",
                 "Accelerate", "Delay", "Instant Harvest", "Destroy", "Protect", "Trap", "Layout"
         };
