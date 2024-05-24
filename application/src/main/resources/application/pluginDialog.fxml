@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<VBox alignment="CENTER" spacing="20.0" prefWidth="400.0" prefHeight="200.0" stylesheets="@SaveDialog.css" style="-fx-background-color: #FEF5E7; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 20;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.PluginDialogController">
+    <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <Button text="Back" onAction="#handleBack" styleClass="button-back"/>
+    </HBox>
+    <Label text="PLUGIN" style="-fx-font-size: 32px; -fx-text-fill: #2C3E50; -fx-font-family: 'Inter';"/>
+    <Label text="Input Jar File" style="-fx-font-size: 12px; -fx-text-fill: #2C3E50;"/>
+    <HBox alignment="CENTER" spacing="10.0">
+        <TextField fx:id="folderField" promptText="Folder" prefWidth="250.0"/>
+        <Button text="Choose File" onAction="#handleChooseFile" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15px;"/>
+    </HBox>
+    <Button text="Upload" onAction="#handleUpload" styleClass="button-save"/>
+    <Label fx:id="statusLabel" style="-fx-font-size: 18px; -fx-text-fill: red;"/>
+</VBox>
