@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class MainApplication extends Application {
     private static MainApplication instance;
+    private SongPlayer songPlayer;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -28,7 +29,7 @@ public class MainApplication extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        SongPlayer songPlayer = new SongPlayer("song1.mp3", 20);
+        songPlayer = new SongPlayer("song1.mp3", 20);
         songPlayer.play();
     }
 
