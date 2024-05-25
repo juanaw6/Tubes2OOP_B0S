@@ -46,8 +46,8 @@ public class MainData {
         expandCount.put(gs.getPlayer2().getName(), 0);
         turn = 0;
     }
-    
-    public void UpdateMainData(){
+
+    public void UpdateMainData() {
         farmNodes = new ArrayList<>(20);
         deckNodes = new ArrayList<>(6);
         shuffleCards = new ArrayList<>();
@@ -478,22 +478,25 @@ public class MainData {
         GameState gs = GameState.getInstance();
         PlaceableCard cs = gs.getCurrentPlayer().getFieldRef().getFieldRef().get(id);
         CardFactory cf = new CardFactory();
-        if (cs instanceof Crop) {
-            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(cs.getName().replace("Biji ", "")));
-        } else if (cs instanceof Animal) {
-            String name = "Daging " + cs.getName();
-            if (cs.getName().equals("Hiu Darat")) {
-                name = "Sirip Hiu";
-            } else if (cs.getName().equals("Sapi")) {
-                name = "Susu";
-            } else if (cs.getName().equals("Ayam")) {
-                name = "Telur";
-            }
+        if (!gs.getCurrentPlayer().getDeckRef().isActiveDeckFull()) {
+            if (cs instanceof Crop) {
+                gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(cs.getName().replace("Biji ", "")));
+            } else if (cs instanceof Animal) {
+                String name = "Daging " + cs.getName();
+                if (cs.getName().equals("Hiu Darat")) {
+                    name = "Sirip Hiu";
+                } else if (cs.getName().equals("Sapi")) {
+                    name = "Susu";
+                } else if (cs.getName().equals("Ayam")) {
+                    name = "Telur";
+                }
 
-            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(name));
+                gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(name));
+            }
+            gs.getCurrentPlayer().getFieldRef().removeCard(id);
+        } else {
+            MainApplication.getInstance().showInvalidMovePopup(event);
         }
-        gs.getCurrentPlayer().getFieldRef().removeCard(id);
-        
         BackSwapField();
         MainController.getInstance().reload();
     }
@@ -587,14 +590,11 @@ public class MainData {
                             gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
                             BackSwapField();
                         } else if (sourceCard instanceof InstantHarvest) {
-                            if (!gs.getCurrentPlayer().getDeckRef().isActiveDeckFull()) {
-                                ConsumableCard consumableCard = targetCard.harvest();
-                                gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
-                                gs.getCurrentPlayer().getDeckRef().addToActiveDeck(consumableCard);
-                                gs.getCurrentPlayer().getFieldRef().removeCard(targetIndex);
-                            }else {
-                                MainApplication.getInstance().showInvalidMovePopup(event);
-                            }
+                            ConsumableCard consumableCard = targetCard.harvest();
+                            gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
+                            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(consumableCard);
+                            gs.getCurrentPlayer().getFieldRef().removeCard(targetIndex);
+
                             BackSwapField();
                         } else if (!(sourceCard instanceof Destroy) && !(sourceCard instanceof Delay)) {
                             targetCard.addEffect(sourceCard.getName());
