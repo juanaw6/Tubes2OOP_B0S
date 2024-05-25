@@ -51,6 +51,10 @@ public class GameState {
         return currentPlayerIndex;
     }
 
+    public void setCurrentPlayerIndex(int currentPlayerIndex) {
+        this.currentPlayerIndex = currentPlayerIndex;
+    }
+
     public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }

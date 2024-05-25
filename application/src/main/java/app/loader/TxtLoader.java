@@ -43,6 +43,8 @@ public class TxtLoader implements GameStateLoader {
             Player player2 = loadPlayer(new BufferedReader(new FileReader(folderPath + "/player2.txt")), "Player 2");
             gameState.setPlayer2(player2);
 
+            gameState.setCurrentPlayerIndex((currentTurn + 1) % 2);
+
         } catch (IOException e) {
             System.err.println("Error loading game state from files: " + e.getMessage());
         }
@@ -148,7 +150,8 @@ public class TxtLoader implements GameStateLoader {
         for (int i = 0; i < activeDeck.size(); i++) {
             Card card = activeDeck.get(i);
             if (card != null) {
-                writer.write(LocationParser.convertForActiveDeck(i) + " " + StringFormatter.unformatString(card.getName()));
+                writer.write(
+                        LocationParser.convertForActiveDeck(i) + " " + StringFormatter.unformatString(card.getName()));
                 writer.newLine();
             }
         }
@@ -166,7 +169,8 @@ public class TxtLoader implements GameStateLoader {
                 } else if (placeableCard instanceof Crop crop) {
                     ageOrWeight = crop.getAge();
                 }
-                writer.write(LocationParser.convertForField(i) + " " + StringFormatter.unformatString(placeableCard.getName()) + " " +
+                writer.write(LocationParser.convertForField(i) + " "
+                        + StringFormatter.unformatString(placeableCard.getName()) + " " +
                         ageOrWeight + " " + placeableCard.getEffectsAsListStr().size());
                 for (String effect : placeableCard.getEffectsAsListStr()) {
                     writer.write(" " + StringFormatter.unformatString(effect));
