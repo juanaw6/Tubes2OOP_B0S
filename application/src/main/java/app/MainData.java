@@ -141,7 +141,7 @@ public class MainData {
                 break;
         }
         for (int i = 0; i < positions.size(); i++) {
-            attacked.add((positions.get(i).get(0) * cols) + positions.get(i).get(1)-1);
+            attacked.add((positions.get(i).get(0) * cols) + positions.get(i).get(1)+1);
         }
     }
 
