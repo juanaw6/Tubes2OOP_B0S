@@ -20,10 +20,10 @@ import java.util.Map;
 public class DialogCardController {
     @FXML
     private VBox dialogCardPane;
-    
+
     @FXML
     private Label detailCardLabel;
-    
+
     @FXML
     private Label detailCard;
     @FXML
@@ -32,10 +32,11 @@ public class DialogCardController {
     private ImageView detailCardImage;
     @FXML
     private Button buttonAction;
-    
+
     @FXML
-    private Button closeButton;  // Ensure this button is linked if you are using Scene Builder or add the fx:id in the FXML.
-    
+    private Button closeButton; // Ensure this button is linked if you are using Scene Builder or add the fx:id
+                                // in the FXML.
+
     @FXML
     public void initialize() {
         closeButton.setOnMouseClicked(event -> {
@@ -44,25 +45,26 @@ public class DialogCardController {
             stage.close();
             // Your existing handler code
         });
-        
+
     }
+
     public String convertMapToString(HashMap<String, Integer> map) {
         StringBuilder builder = new StringBuilder();
 
         // Iterate over the map entries
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             if (!builder.isEmpty()) {
-                builder.append(", ");  // append a comma only after the first entry
+                builder.append(", "); // append a comma only after the first entry
             }
-            builder.append(entry.getKey())        // append the key
+            builder.append(entry.getKey()) // append the key
                     .append("(")
-                    .append(entry.getValue())     // append the value
+                    .append(entry.getValue()) // append the value
                     .append(")");
         }
 
         return builder.toString();
     }
-    
+
     public void setDialogCardPaneId(String id, boolean isView) {
         GameState gameState = GameState.getInstance();
         dialogCardPane.setId(id);
@@ -75,8 +77,8 @@ public class DialogCardController {
         } catch (NumberFormatException e) {
             System.out.println("The third part of the string is not a valid integer.");
         }
-        
-//        get index and get the type
+
+        // get index and get the type
         if (!isView) {
             System.out.println(input);
             switch (parts[1]) {
@@ -87,19 +89,21 @@ public class DialogCardController {
                     detailCardLabel.setText(name);
                     if (gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number) instanceof Animal) {
                         Animal animal = ((Animal) gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number));
-                        detailCard.setText("Weight: "+animal.getWeight() + " ("+ animal.getHarvestWeight() + ")");
+                        detailCard.setText("Weight: " + animal.getWeight() + " (" + animal.getHarvestWeight() + ")");
                         buttonAction.setDisable(!animal.isReadyToHarvest());
-                        
-                    }else if (gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number) instanceof Crop){
+
+                    } else if (gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number) instanceof Crop) {
                         Crop crop = (Crop) gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number);
-                        detailCard.setText("Age: "+crop.getAge() + " ("+ crop.getHarvestAge() + ")");
+                        detailCard.setText("Age: " + crop.getAge() + " (" + crop.getHarvestAge() + ")");
                         if (crop.isReadyToHarvest()) {
-                            image = new Image(getClass().getResourceAsStream("/public/" + name.replace("Biji ", "") + ".png"));
+                            image = new Image(
+                                    getClass().getResourceAsStream("/public/" + name.replace("Biji ", "") + ".png"));
                             detailCardImage.setImage(image);
                         }
                         buttonAction.setDisable(!crop.isReadyToHarvest());
                     }
-                    detailCardEffect.setText(convertMapToString(gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
+                    detailCardEffect.setText(convertMapToString(
+                            gameState.getCurrentPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
                     buttonAction.setText("Harvest");
                 }
                 case "deck" -> {
@@ -107,11 +111,13 @@ public class DialogCardController {
                     Image image = new Image(getClass().getResourceAsStream("/public/" + name + ".png"));
                     detailCardImage.setImage(image);
                     detailCardLabel.setText(name);
-                    detailCard.setText("Price: "+String.valueOf(((ConsumableCard) gameState.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(number)).getPrice()));
+                    detailCard.setText("Price: " + String.valueOf(
+                            ((ConsumableCard) gameState.getCurrentPlayer().getDeckRef().getActiveDeckRef().get(number))
+                                    .getPrice()));
                     buttonAction.setText("Sell");
                 }
             }
-        }else {
+        } else {
             if (id.contains("enemy")) {
                 String name = gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number).getName();
                 Image image = new Image(getClass().getResourceAsStream("/public/" + name + ".png"));
@@ -119,26 +125,28 @@ public class DialogCardController {
                 detailCardLabel.setText(name);
                 if (gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number) instanceof Animal) {
                     Animal animal = ((Animal) gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number));
-                    detailCard.setText("Weight: "+animal.getWeight() + " ("+ animal.getHarvestWeight() + ")");
+                    detailCard.setText("Weight: " + animal.getWeight() + " (" + animal.getHarvestWeight() + ")");
 
-                }else if (gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number) instanceof Crop){
+                } else if (gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number) instanceof Crop) {
                     Crop crop = (Crop) gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number);
-                    detailCard.setText("Age: "+crop.getAge() + " ("+ crop.getHarvestAge() + ")");
+                    detailCard.setText("Age: " + crop.getAge() + " (" + crop.getHarvestAge() + ")");
                     if (crop.isReadyToHarvest()) {
-                        image = new Image(getClass().getResourceAsStream("/public/" + name.replace("Biji ", "") + ".png"));
+                        image = new Image(
+                                getClass().getResourceAsStream("/public/" + name.replace("Biji ", "") + ".png"));
                         detailCardImage.setImage(image);
                     }
                 }
-                detailCardEffect.setText(convertMapToString(gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
+                detailCardEffect.setText(convertMapToString(
+                        gameState.getEnemyPlayer().getFieldRef().getFieldRef().get(number).getEffects()));
                 buttonAction.setText("Harvest");
             }
             buttonAction.setVisible(false);
         }
-        
+
     }
-    
+
     @FXML
-    protected void OnClickButton(ActionEvent event){
+    protected void OnClickButton(ActionEvent event) {
         String input = dialogCardPane.getId();
 
         String[] parts = input.split("-");
@@ -149,12 +157,12 @@ public class DialogCardController {
             System.out.println("The third part of the string is not a valid integer.");
         }
         MainData mainData = MainData.getInstance();
-//        do someting about the data
-            System.out.println(dialogCardPane.getId());
-            System.out.println(buttonAction.getText());
+        // do someting about the data
+        System.out.println(dialogCardPane.getId());
+        System.out.println(buttonAction.getText());
         switch (buttonAction.getText()) {
             case "Harvest" -> {
-                mainData.onHarvest(numberId);
+                mainData.onHarvest(numberId, event);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.close();
             }
@@ -163,8 +171,8 @@ public class DialogCardController {
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.close();
             }
-            
+
         }
     }
-    
+
 }

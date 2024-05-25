@@ -462,26 +462,29 @@ public class MainData {
         MainController.getInstance().reload();
     }
 
-    public void onHarvest(int id) {
+    public void onHarvest(int id, ActionEvent event) {
         GameState gs = GameState.getInstance();
         PlaceableCard cs = gs.getCurrentPlayer().getFieldRef().getFieldRef().get(id);
         CardFactory cf = new CardFactory();
-        if (cs instanceof Crop) {
+        if (!gs.getCurrentPlayer().getDeckRef().isActiveDeckFull()) {
+            if (cs instanceof Crop) {
+                gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(cs.getName().replace("Biji ", "")));
+            } else if (cs instanceof Animal) {
+                String name = "Daging " + cs.getName();
+                if (cs.getName().equals("Hiu Darat")) {
+                    name = "Sirip Hiu";
+                } else if (cs.getName().equals("Sapi")) {
+                    name = "Susu";
+                } else if (cs.getName().equals("Ayam")) {
+                    name = "Telur";
+                }
 
-            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(cs.getName().replace("Biji ", "")));
-        } else if (cs instanceof Animal) {
-            String name = "Daging " + cs.getName();
-            if (cs.getName().equals("Hiu Darat")) {
-                name = "Sirip Hiu";
-            } else if (cs.getName().equals("Sapi")) {
-                name = "Susu";
-            } else if (cs.getName().equals("Ayam")) {
-                name = "Telur";
+                gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(name));
             }
-
-            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(name));
+            gs.getCurrentPlayer().getFieldRef().removeCard(id);
+        } else {
+            MainApplication.getInstance().showInvalidMovePopup(event);
         }
-        gs.getCurrentPlayer().getFieldRef().removeCard(id);
         BackSwapField();
         MainController.getInstance().reload();
     }
@@ -575,10 +578,14 @@ public class MainData {
                             gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
                             BackSwapField();
                         } else if (sourceCard instanceof InstantHarvest) {
-                            ConsumableCard consumableCard = targetCard.harvest();
-                            gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
-                            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(consumableCard);
-                            gs.getCurrentPlayer().getFieldRef().removeCard(targetIndex);
+                            if (!gs.getCurrentPlayer().getDeckRef().isActiveDeckFull()) {
+                                ConsumableCard consumableCard = targetCard.harvest();
+                                gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
+                                gs.getCurrentPlayer().getDeckRef().addToActiveDeck(consumableCard);
+                                gs.getCurrentPlayer().getFieldRef().removeCard(targetIndex);
+                            }else {
+                                MainApplication.getInstance().showInvalidMovePopup(event);
+                            }
                             BackSwapField();
                         } else if (!(sourceCard instanceof Destroy) && !(sourceCard instanceof Delay)) {
                             targetCard.addEffect(sourceCard.getName());
