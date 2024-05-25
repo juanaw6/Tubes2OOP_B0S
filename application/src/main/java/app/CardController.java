@@ -97,8 +97,9 @@ public class CardController {
         ClipboardContent content = new ClipboardContent();
         content.putString(vBox.getId());
         db.setContent(content);
-
-        WritableImage image = vBox.snapshot(new SnapshotParameters(), null);
+        SnapshotParameters sp = new SnapshotParameters();
+        sp.setFill(Color.TRANSPARENT);
+        WritableImage image = vBox.snapshot(sp, null);
         db.setDragView(image, event.getX(), event.getY());
 
         event.consume();
