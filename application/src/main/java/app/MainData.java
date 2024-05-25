@@ -71,6 +71,8 @@ public class MainData {
             }
         }
 
+        int countSubGrid = (int) (Math.random() * 4) + 3;
+        attacked = new ArrayList<>(attacked.subList(0, countSubGrid));
     }
 
     public static MainData getInstance() {
@@ -269,8 +271,8 @@ public class MainData {
     public void showShuffleCards(ActionEvent event) {
         MainApplication.getInstance().showCardShufflePopup(event, getShuffleCards());
     }
-    
-    public void showBearAttack(ActionEvent event){
+
+    public void showBearAttack(ActionEvent event) {
         GameState gs = GameState.getInstance();
         int random = (int) (Math.random() * 5);
         if (random == 0 && gs.getTurn() > 1) {
@@ -523,8 +525,7 @@ public class MainData {
                     if (sourceCard instanceof Destroy) {
                         if (targetCard == null) {
                             MainApplication.getInstance().showInvalidMovePopup(event);
-                        }
-                        else {
+                        } else {
                             if (!targetCardEnemy.isProtected()) {
                                 gs.getEnemyPlayer().getFieldRef().removeCard(targetIndex);
                             }
@@ -534,8 +535,7 @@ public class MainData {
                     } else if (sourceCard instanceof Delay) {
                         if (targetCard == null) {
                             MainApplication.getInstance().showInvalidMovePopup(event);
-                        }
-                        else {
+                        } else {
                             ((Delay) sourceCard).use(targetCardEnemy);
                             targetCardEnemy.addEffect(sourceCard.getName());
                             gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
