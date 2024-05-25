@@ -536,8 +536,10 @@ public class MainData {
                         if (targetCard == null) {
                             MainApplication.getInstance().showInvalidMovePopup(event);
                         } else {
-                            ((Delay) sourceCard).use(targetCardEnemy);
-                            targetCardEnemy.addEffect(sourceCard.getName());
+                            if (!targetCardEnemy.isProtected()) {
+                                ((Delay) sourceCard).use(targetCardEnemy);
+                                targetCardEnemy.addEffect(sourceCard.getName());
+                            }
                             gs.getCurrentPlayer().getDeckRef().removeFromActiveDeck(sourceCard);
                             SwapField();
                         }
