@@ -115,7 +115,7 @@ public class MainData {
         if (!cancelAttack) {
             for (int i = 0; i < field.size(); i++) {
                 if (attacked.contains(i + 1)) {
-                    if (field.get(i) != null) {
+                    if (field.get(i) != null && !field.get(i).isProtected()) {
                         gs.getCurrentPlayer().getFieldRef().removeCard(i);
                     }
                 }
@@ -192,9 +192,9 @@ public class MainData {
             }
             gs.nextTurn();
             gs.getCurrentPlayer().getFieldRef().incrementAllCropAge();
-            gs.getCurrentPlayer().getFieldRef().activateAllEffects();
+            // gs.getCurrentPlayer().getFieldRef().activateAllEffects();
             gs.getEnemyPlayer().getFieldRef().incrementAllCropAge();
-            gs.getEnemyPlayer().getFieldRef().activateAllEffects();
+            // gs.getEnemyPlayer().getFieldRef().activateAllEffects();
             currentField = gs.getCurrentPlayer().getName();
         }
 
