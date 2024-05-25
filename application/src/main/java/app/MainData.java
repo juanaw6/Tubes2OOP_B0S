@@ -18,6 +18,7 @@ import app.state.Player;
 import app.store.Store;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -60,31 +61,84 @@ public class MainData {
     }
 
     public void genRandomSubGrid(Integer rows, Integer cols) {
-        // Initialize the larger grid with values
-        int[][] grid = new int[rows][cols];
-        int value = 1; // Start filling with 1
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                grid[i][j] = value++;
-            }
-        }
-
-        int subgridRows = 2;
-        int subgridCols = 3;
 
         Random random = new Random();
-        int startRow = random.nextInt(rows - subgridRows + 1); // 0 or 1 or 2
-        int startCol = random.nextInt(cols - subgridCols + 1); // 0 or 1 or 2
-
+        int subgridArea = random.nextInt(1, 7);
         attacked = new ArrayList<>();
-        for (int i = 0; i < subgridRows; i++) {
-            for (int j = 0; j < subgridCols; j++) {
-                attacked.add(grid[startRow + i][startCol + j]);
-            }
-        }
 
-        int countSubGrid = (int) (Math.random() * 4) + 3;
-        attacked = new ArrayList<>(attacked.subList(0, countSubGrid));
+        switch (subgridArea) {
+            case 1:
+                attacked.addAll(List.of(random.nextInt(rows), random.nextInt(cols)));
+                break;
+            case 2:
+                if (random.nextBoolean()) {
+                    int row2 = random.nextInt(0, rows);
+                    int col2 = random.nextInt(0, cols - 1);
+                    attacked.addAll(List.of(row2, col2));
+                    attacked.addAll(List.of(row2, col2 + 1));
+                } else {
+                    int row2 = random.nextInt(0, rows - 1);
+                    int col2 = random.nextInt(0, cols);
+                    attacked.addAll(List.of(row2, col2));
+                    attacked.addAll(List.of(row2 + 1, col2));
+                }
+                break;
+            case 3:
+                if (random.nextBoolean()) {
+                    int row3 = random.nextInt(0, rows);
+                    int col3 = random.nextInt(0, cols - 2);
+                    attacked.addAll(List.of(row3, col3));
+                    attacked.addAll(List.of(row3, col3 + 1));
+                    attacked.addAll(List.of(row3, col3 + 2));
+                } else {
+                    int row3 = random.nextInt(0, rows - 2);
+                    int col3 = random.nextInt(0, cols);
+                    attacked.addAll(List.of(row3, col3));
+                    attacked.addAll(List.of(row3 + 1, col3));
+                    attacked.addAll(List.of(row3 + 2, col3));
+                }
+                break;
+            case 4:
+                int row4 = random.nextInt(0, rows - 1);
+                int col4 = random.nextInt(0, cols - 1);
+                attacked.addAll(List.of(row4, col4));
+                attacked.addAll(List.of(row4, col4 + 1));
+                attacked.addAll(List.of(row4 + 1, col4));
+                attacked.addAll(List.of(row4 + 1, col4 + 1));
+                break;
+            case 5:
+                if (random.nextBoolean()) {
+                    int row5 = random.nextInt(0, rows);
+                    for (int i = 0; i < 5; i++) {
+                        attacked.addAll(List.of(row5, i));
+                    }
+                } else {
+                    int col5 = random.nextInt(0, cols);
+                    for (int i = 0; i < 4; i++) {
+                        attacked.addAll(List.of(i, col5));
+                    }
+                }
+                break;
+            case 6:
+                if (random.nextBoolean()) {
+                    int row6 = random.nextInt(0, rows - 2);
+                    int col6 = random.nextInt(0, cols - 3);
+                    for (int i = 0; i < 2; i++) {
+                        for (int j = 0; j < 3; j++) {
+                            attacked.addAll(List.of(row6 + i, col6 + j));
+                        }
+                    }
+                } else {
+                    int row6 = random.nextInt(0, rows - 3);
+                    int col6 = random.nextInt(0, cols - 2);
+                    for (int i = 0; i < 3; i++) {
+                        for (int j = 0; j < 2; j++) {
+                            attacked.addAll(List.of(row6 + i, col6 + j));
+                        }
+                    }
+                }
+                break;
+        }
     }
 
     public static MainData getInstance() {
