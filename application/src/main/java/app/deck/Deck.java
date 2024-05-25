@@ -187,4 +187,14 @@ public class Deck {
         }
         return count;
     }
+
+    public boolean isActiveDeckFull() {
+        for (Card card : activeDeck) {
+            if (card == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
