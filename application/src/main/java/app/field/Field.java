@@ -60,18 +60,35 @@ public class Field {
 
     public void expandField() {
         int MIN_FIELD_CARD_COUNT = NORMAL_FIELD_CARD_COUNT - 8;
-        if (field.size() == NORMAL_FIELD_CARD_COUNT || field.size() == MIN_FIELD_CARD_COUNT) {
+        if (field.size() == NORMAL_FIELD_CARD_COUNT) {
             for (int i = 0; i < 10; i++) {
                 field.add(null);
             }
+            return;
         }
+        if (field.size() == MIN_FIELD_CARD_COUNT) {
+            for (int i = 0; i < 8; i++) {
+                field.add(null);
+            }
+        }
+
     }
 
     public ArrayList<PlaceableCard> shrinkField() {
         int MAX_FIELD_CARD_COUNT = NORMAL_FIELD_CARD_COUNT + 10;
         ArrayList<PlaceableCard> pushedCards = new ArrayList<>();
-        if (field.size() == MAX_FIELD_CARD_COUNT || field.size() > NORMAL_FIELD_CARD_COUNT) {
+        if (field.size() == MAX_FIELD_CARD_COUNT) {
             for (int i = 0; i < 10; i++) {
+                int lastIndex = field.size() - 1;
+                PlaceableCard card = field.get(lastIndex);
+                if (card != null) {
+                    pushedCards.add(card);
+                }
+                field.remove(lastIndex);
+            }
+
+        } else if (field.size() == NORMAL_FIELD_CARD_COUNT) {
+            for (int i = 0; i < 8; i++) {
                 int lastIndex = field.size() - 1;
                 PlaceableCard card = field.get(lastIndex);
                 if (card != null) {
