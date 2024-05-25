@@ -70,12 +70,14 @@ public class LoaderManager {
         return false;
     }
 
-    public void loadGameState(String folderPath, String extension) {
+    public boolean loadGameState(String folderPath, String extension) {
         GameStateLoader loader = loaders.get(extension);
         if (loader != null) {
-            loader.loadGameState(folderPath);
+            boolean success  = loader.loadGameState(folderPath);
+            return success;
         } else {
             System.err.println("No loader registered for extension: " + extension);
+            return false;
         }
     }
 

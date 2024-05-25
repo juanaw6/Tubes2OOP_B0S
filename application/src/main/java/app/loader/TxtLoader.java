@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class TxtLoader implements GameStateLoader {
 
     @Override
-    public void loadGameState(String folderPath) {
+    public boolean loadGameState(String folderPath) {
         try {
             GameState gameState = GameState.getInstance();
             Store store = Store.getInstance();
@@ -44,9 +44,10 @@ public class TxtLoader implements GameStateLoader {
             gameState.setPlayer2(player2);
 
             gameState.setCurrentPlayerIndex((currentTurn + 1) % 2);
-
+            return true;
         } catch (IOException e) {
             System.err.println("Error loading game state from files: " + e.getMessage());
+            return false;
         }
     }
 

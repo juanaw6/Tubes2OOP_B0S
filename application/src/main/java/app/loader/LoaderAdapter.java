@@ -12,16 +12,18 @@ public class LoaderAdapter implements GameStateLoader {
     }
 
     @Override
-    public void loadGameState(String folderPath) {
+    public boolean loadGameState(String folderPath) {
         // Clean first
         fileConverter.cleanTxtFiles(folderPath);
 
         // Convert to txt and load
         fileConverter.convertToTxt(folderPath);
-        txtLoader.loadGameState(folderPath);
+        boolean success = txtLoader.loadGameState(folderPath);
 
         // Clean temp txt
         fileConverter.cleanTxtFiles(folderPath);
+
+        return success;
     }
 
     @Override

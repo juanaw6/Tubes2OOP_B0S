@@ -54,7 +54,10 @@ public class LoadDialogController {
             // Implement your file loading logic here
             System.out.println("File loaded from: " + folder);
             LoaderManager lm = LoaderManager.getInstance();
-            lm.loadGameState(folder, fileType);
+            boolean success = lm.loadGameState(folder, fileType);
+            if (!success) {
+                throw new RuntimeException();
+            }
             statusLabel.setText("Success!");
             // Close the dialog after loading
             MainData.getInstance().UpdateMainData();
