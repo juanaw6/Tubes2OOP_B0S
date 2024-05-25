@@ -39,7 +39,7 @@ Aplikasi ini juga memiliki fitur save & load untuk menyimpan dan memuat keadaan 
 
 ## How to Run The Program
 1. Open terminal
-2. Clone this repository by running `git clone https://github.com/juanaw6/Tubes2OOP_B0S.git` in the terminal
+2. Extract the zip
 3. run `cd Tubes2OOP_B0S` to be in the project's directory 
 3. run `mvn clean install` inside the project's directory to build the jar files
 4. run `cd application` to be in the application directory
