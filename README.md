@@ -18,14 +18,14 @@ Aplikasi ini juga memiliki fitur save & load untuk menyimpan dan memuat keadaan 
 
 ## Contributors
 ### **Kelompok B0S**
-|   NIM    |                  Nama                  |
-| :------: | :------------------------------------: |
-| 10023640 |          Zulkifli Ardiansyah           |
-| 13522047 |             Farel Winalda              |
-| 13522063 |         Shazya Audrea Taufik           |
-| 13522073 |          Juan Alfred Widjaja           |
-| 13522063 |            Enrique Yanuar              |
-| 13522081 |                Albert                  |
+|   NIM    |         Nama         |
+| :------: |:--------------------:|
+| 10023640 | Zulkifli Ardiansyah  |
+| 13522047 |    Farel Winalda     |
+| 13522063 | Shazya Audrea Taufik |
+| 13522073 | Juan Alfred Widjaya  |
+| 13522063 |    Enrique Yanuar    |
+| 13522081 |        Albert        |
 
 
 
