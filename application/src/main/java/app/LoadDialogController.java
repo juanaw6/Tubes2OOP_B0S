@@ -57,6 +57,7 @@ public class LoadDialogController {
             lm.loadGameState(folder, fileType);
             statusLabel.setText("Success!");
             // Close the dialog after loading
+            MainData.getInstance().UpdateMainData();
             MainData.getInstance().BackSwapField();
             MainController.getInstance().reload();
             ((Stage) statusLabel.getScene().getWindow()).close();

@@ -46,6 +46,18 @@ public class MainData {
         expandCount.put(gs.getPlayer2().getName(), 0);
         turn = 0;
     }
+    
+    public void UpdateMainData(){
+        farmNodes = new ArrayList<>(20);
+        deckNodes = new ArrayList<>(6);
+        shuffleCards = new ArrayList<>();
+        storeNodes = new ArrayList<>();
+        GameState gs = GameState.getInstance();
+        Store store = Store.getInstance();
+        expandCount.put(gs.getPlayer1().getName(), 0);
+        expandCount.put(gs.getPlayer2().getName(), 0);
+        turn = 0;
+    }
 
     public void genRandomSubGrid(Integer rows, Integer cols) {
         // Initialize the larger grid with values
@@ -466,25 +478,22 @@ public class MainData {
         GameState gs = GameState.getInstance();
         PlaceableCard cs = gs.getCurrentPlayer().getFieldRef().getFieldRef().get(id);
         CardFactory cf = new CardFactory();
-        if (!gs.getCurrentPlayer().getDeckRef().isActiveDeckFull()) {
-            if (cs instanceof Crop) {
-                gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(cs.getName().replace("Biji ", "")));
-            } else if (cs instanceof Animal) {
-                String name = "Daging " + cs.getName();
-                if (cs.getName().equals("Hiu Darat")) {
-                    name = "Sirip Hiu";
-                } else if (cs.getName().equals("Sapi")) {
-                    name = "Susu";
-                } else if (cs.getName().equals("Ayam")) {
-                    name = "Telur";
-                }
-
-                gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(name));
+        if (cs instanceof Crop) {
+            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(cs.getName().replace("Biji ", "")));
+        } else if (cs instanceof Animal) {
+            String name = "Daging " + cs.getName();
+            if (cs.getName().equals("Hiu Darat")) {
+                name = "Sirip Hiu";
+            } else if (cs.getName().equals("Sapi")) {
+                name = "Susu";
+            } else if (cs.getName().equals("Ayam")) {
+                name = "Telur";
             }
-            gs.getCurrentPlayer().getFieldRef().removeCard(id);
-        } else {
-            MainApplication.getInstance().showInvalidMovePopup(event);
+
+            gs.getCurrentPlayer().getDeckRef().addToActiveDeck(cf.createCard(name));
         }
+        gs.getCurrentPlayer().getFieldRef().removeCard(id);
+        
         BackSwapField();
         MainController.getInstance().reload();
     }
