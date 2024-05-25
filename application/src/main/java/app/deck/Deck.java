@@ -32,8 +32,8 @@ public class Deck {
         String[] cardTypes = {
                 "Hiu Darat", "Domba", "Sapi", "Kuda", "Ayam",
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
-                "Sirip Hiu", "Susu", "Daging Domba", "Daging Kuda", "Telur",
-                "Jagung", "Labu", "Stroberi",
+                "Susu", "Daging Domba", "Daging Kuda", "Telur",
+                "Jagung", "Stroberi",
                 "Accelerate", "Delay", "Instant Harvest", "Destroy", "Protect", "Trap", "Layout"
         };
         String[] mustHaveCards = {
@@ -67,8 +67,8 @@ public class Deck {
         String[] cardTypes = {
                 "Hiu Darat", "Domba", "Sapi", "Kuda", "Ayam",
                 "Biji Jagung", "Biji Labu", "Biji Stroberi",
-                "Sirip Hiu", "Susu", "Daging Domba", "Daging Kuda", "Telur",
-                "Jagung", "Labu", "Stroberi",
+                "Susu", "Daging Domba", "Daging Kuda", "Telur",
+                "Jagung", "Stroberi",
                 "Accelerate", "Delay", "Instant Harvest", "Destroy", "Protect", "Trap", "Layout"
         };
         String[] mustHaveCards = {
