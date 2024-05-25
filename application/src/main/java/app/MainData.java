@@ -523,7 +523,7 @@ public class MainData {
                 PlaceableCard targetCardEnemy = gs.getEnemyPlayer().getFieldRef().getFieldRef().get(targetIndex);
                 if (targetCardEnemy != null) {
                     if (sourceCard instanceof Destroy) {
-                        if (targetCard == null) {
+                        if (targetCardEnemy == null) {
                             MainApplication.getInstance().showInvalidMovePopup(event);
                         } else {
                             if (!targetCardEnemy.isProtected()) {
@@ -533,7 +533,7 @@ public class MainData {
                             SwapField();
                         }
                     } else if (sourceCard instanceof Delay) {
-                        if (targetCard == null) {
+                        if (targetCardEnemy == null) {
                             MainApplication.getInstance().showInvalidMovePopup(event);
                         } else {
                             if (!targetCardEnemy.isProtected()) {
